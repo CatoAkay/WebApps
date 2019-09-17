@@ -14,7 +14,12 @@ namespace Gruppeoppgave1.Controllers
             return View();
         }
 
-        public ActionResult registerer()
+        public ActionResult registrer()
+        {
+            return View();
+        }
+
+        public ActionResult kjopBillet()
         {
             return View();
         }
