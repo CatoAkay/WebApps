@@ -5,7 +5,9 @@ using System.Web;
 
 namespace Gruppeoppgave1.Models
 {
-    public class Class1
+    public class Reise
     {
+        public string fra { get; set; }
+        public string til { get; set; }
     }
 }

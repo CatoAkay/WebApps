@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gruppeoppgave1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,11 @@ namespace Gruppeoppgave1.Controllers
     {
         // GET: Home
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Reise()
         {
             return View();
         }

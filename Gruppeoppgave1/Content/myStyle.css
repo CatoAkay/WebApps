@@ -1,0 +1,22 @@
+﻿body {
+}
+
+.logo{
+    width: 85px;
+    height: 85px;
+}
+
+.background {
+    background-color: whitesmoke;
+    border-bottom-color: #089178;
+}
+
+.header {
+    font-family: Candara;
+    color: #1F241E;
+}
+
+.space{
+    margin-top: 3em;
+}
+
