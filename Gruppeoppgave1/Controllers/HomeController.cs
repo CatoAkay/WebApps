@@ -13,5 +13,10 @@ namespace Gruppeoppgave1.Controllers
         {
             return View();
         }
+
+        public ActionResult registerer()
+        {
+            return View();
+        }
     }
 }
