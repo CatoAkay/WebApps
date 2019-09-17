@@ -5,7 +5,12 @@ using System.Web;
 
 namespace Gruppeoppgave1.Models
 {
-    public class DB
+    public class DB:DBContext
     {
+        public DB() : base("name=Vy")
+        {
+            Database.CreateIfNotExists();
+
+        }
     }
 }
