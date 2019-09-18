@@ -2,8 +2,8 @@
 }
 
 .logo{
-    width: 85px;
-    height: 85px;
+    width: 60px;
+    height: 40px;
 }
 
 .background {
@@ -20,3 +20,8 @@
     margin-top: 3em;
 }
 
+a.navbar-brand {
+    color: #089178 !important;
+    font-family: 'Courier New';
+    font-size:50px;
+}

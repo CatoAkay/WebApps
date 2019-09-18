@@ -12,6 +12,7 @@
 </head>
 <body>
     <div class="background navbar navbar-inverse navbar-fixed-top">
+        @*<img src="~/img/Vy.jpg" class="logo img-rounded" />*@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,8 +21,6 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("VY", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Ny reise", "Reise", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                <img class="logo img-circle img-responsive" src="~/img/Vy.jpg" />
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

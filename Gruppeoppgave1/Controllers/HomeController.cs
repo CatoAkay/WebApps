@@ -14,10 +14,5 @@ namespace Gruppeoppgave1.Controllers
         {
             return View();
         }
-
-        public ActionResult Reise()
-        {
-            return View();
-        }
     }
 }
