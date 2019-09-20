@@ -18,14 +18,15 @@
             <label for="validationServer02">Reise til?</label>
             <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Hvor vil du dra?" required>
         </div>
-            <select class="mdb-select md-form">
-                <option selected>Hvor mange billetter vil du kjøpe?</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-        </div>    
+        <select class="mdb-select md-form">
+            <option selected>Hvor mange billetter vil du kjøpe?</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
     <button class="btn btn-primary" type="submit">Gå videre</button>
+    <input type="button" class="btn btn-primary" typeof="submit" value="Gå videre(Må fikses)" onclick="@("window.location.href='" + @Url.Action("Kunde", "Home") + "'");" />
 </form>
 
 
