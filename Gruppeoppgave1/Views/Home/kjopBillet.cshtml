@@ -9,11 +9,15 @@
     <form>
         <h2>Start din reise her!</h2>
         Fra:
-        <input type="text" name="fra" id="fra"/>
-        <input type="date"/>
+        <input type="text" name="fra" list="fromSuggestions" class="stopInput" />
+        <datalist id="fromSuggestions">
+        </datalist>
+        <input type="date" />
         Til:
-        <input type="text" name="til" id="til"/>
-        <input type="date"/>
+        <input type="text" name="til" list="toSuggestions" id="til" class="stopInput" />
+        <datalist id="toSuggestions">
+        </datalist>
+        <input type="date" />
         <button class="btn-primary">Kjøp bilett</button>
     </form>
 </div>
