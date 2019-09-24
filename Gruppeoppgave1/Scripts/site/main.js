@@ -42,7 +42,7 @@
         });
     }
 
-    $('.stopInput').on('input', debounce(stopQuery, 500));
+    $('.stopInput').on('input', debounce(stopQuery, 250));
 
    
 
