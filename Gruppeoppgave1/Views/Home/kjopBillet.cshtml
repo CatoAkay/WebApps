@@ -3,11 +3,19 @@
     ViewBag.Title = "kjopBillet";
 }
 
-<h2>Kjøp billett</h2>
+<h2 xmlns="http://www.w3.org/1999/html">Kjøp billett</h2>
 
 <div>
-    <form>
+    <form action="info" method="post">
         <h2>Start din reise her!</h2>
+        Fornavn:
+        <input type="text" name="Fornavn" id="Fornavn"/>
+        Etternavn:
+        <input type="text" name="Etternavn" id="Etternavn"/>
+        E-post:
+        <input type="text" name="Fornavn" id="Fornavn"/>
+        <br/>
+        
         Fra:
         <input type="text" name="fra" list="fromSuggestions" class="stopInput" />
         <datalist id="fromSuggestions">
