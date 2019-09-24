@@ -1,0 +1,30 @@
+﻿.white{
+    background-color: white;
+}
+
+.black {
+    color: black !important;
+}
+
+.black:hover{
+    font-weight: bold !important;
+}
+
+.size {
+    width: 500px;
+    height: 337px;
+}
+
+.showThis {
+    display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+    .gone {
+        display: none;
+    }
+    
+    .showThis{
+        display: inline-block;
+    }
+}
