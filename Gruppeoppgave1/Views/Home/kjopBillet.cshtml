@@ -1,32 +1,39 @@
-﻿
+﻿﻿
 @{
     ViewBag.Title = "kjopBillet";
 }
 
-<h2 xmlns="http://www.w3.org/1999/html">Kjøp billett</h2>
+<h2>Kjøp billett</h2>
+<h2>Start din reise her!</h2>
 
-<div>
-    <form action="info" method="post">
-        <h2>Start din reise her!</h2>
-        Fornavn:
-        <input type="text" name="Fornavn" id="Fornavn"/>
-        Etternavn:
-        <input type="text" name="Etternavn" id="Etternavn"/>
-        E-post:
-        <input type="text" name="Fornavn" id="Fornavn"/>
-        <br/>
-        
-        Fra:
-        <input type="text" name="fra" list="fromSuggestions" class="stopInput" />
-        <datalist id="fromSuggestions">
-        </datalist>
-        <input type="date" />
-        Til:
-        <input type="text" name="til" list="toSuggestions" id="til" class="stopInput" />
-        <datalist id="toSuggestions">
-        </datalist>
-        <input type="date" />
-        <button class="btn-primary">Kjøp bilett</button>
-    </form>
-</div>
+<form action="/Home/info" method="post">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Email">
+            <label for="Fornavn">Fornavn</label>
+            <input type="text" class="form-control" id="Fornavn" placeholder="Fornavn">      
+            <label for="Etternavn">Etternavn</label>
+            <input type="text" class="form-control" id="Etternavn" placeholder="Etternavn">     
+            <label for="Tlf">Telefon</label>
+            <input type="tel" class="form-control" id="Tlf" placeholder="Tlf">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="dato">Dato</label>
+            <input type="date" name="dato" id="dato" class="form-control"/>
+            <label for="Fra">Fra</label>
+            <input type="text" name="Fra" list="fromSuggestions" class="stopInput form-control" placeholder="Fra"/>
+            <datalist id="fromSuggestions">
+            </datalist>
+            <label for="til">Til</label>
+            <input type="text" name="til" list="toSuggestions" id="til" class="stopInput form-control" placeholder="Til"/>
+            <datalist id="toSuggestions">
+            </datalist>
+        </div>
+        <div class="form-group col-md-6">
+            <button type="submit" class="btn btn-primary">Kjøp Bilett</button>
+        </div>
+    </div>
+</form>
+
 

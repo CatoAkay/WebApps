@@ -1,14 +1,14 @@
 ﻿$(function () {
 
     const debounce = (func, delay) => {
-        let inDebounce
+        let inDebounce;
         return function () {
-            const context = this
-            const args = arguments
-            clearTimeout(inDebounce)
+            const context = this;
+            const args = arguments;
+            clearTimeout(inDebounce);
             inDebounce = setTimeout(() => func.apply(context, args), delay)
         }
-    }
+    };
 
     let stopQuery = function (input) {
         var data = JSON.stringify({
