@@ -3,5 +3,29 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+
+<div class="header page-header">
+    <h1>Hei, hvor vil du reise? </h1>
+</div>
+
+<form action="/Home/kjopBillet" method="post">
+    <div class="row">
+        <div class="col-md-4">
+            <label for="fra">Reise fra?</label>
+            <input type="text" name="Fra" list="fromSuggestions" class="stopInput form-control" placeholder="Hvor vil du reise ifra?" required>
+            <datalist id="fromSuggestions">
+            </datalist>
+        </div>
+        <div class="col-md-4">
+            <label for="til">Reise til?</label>
+            <input type="text" name="til" list="toSuggestions" id="til" class="stopInput form-control" placeholder="Hvor vil du dra?" required>
+            <datalist id="toSuggestions">
+            </datalist>
+        </div>
+        <label for="dato">Dato</label>
+        <input type="date" name="dato" id="dato" class="form-control" />
+    </div>
+    <button class="btn btn-primary" type="submit">Gå videre</button>
+</form>
+
 <a href="/Home/registrer">Registrer</a>

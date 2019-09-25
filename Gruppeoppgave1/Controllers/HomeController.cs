@@ -11,6 +11,7 @@ namespace Gruppeoppgave1.Controllers
         // GET: Home
         public ActionResult Index()
         {
+
             return View();
         }
 
@@ -27,6 +28,11 @@ namespace Gruppeoppgave1.Controllers
         public ActionResult info()
         {
             return View();
+        }
+
+        public ActionResult reisen()
+        {
+            return RedirectToAction("kjopBillet");
         }
     }
 }
