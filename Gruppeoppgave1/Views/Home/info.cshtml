@@ -2,25 +2,42 @@
 
 @{
     ViewBag.Title = "info";
+    var email = Request["email"];
+    var fornanvn = Request["Fornavn"];
+    var etternavn = Request["Etternavn"];
+    var Telefon = Request["Telefon"];
+    var Dato = Request["Dato"];
+    var Fra = Request["Fra"];
+    var Til = Request["Til"];
 }
 
 <!DOCTYPE html>
-
 <html lang="no">
+
 <head>
     <title>Info</title>
 </head>
 <body>
-<div class="info">
-    @{
-        var keys = Request.Form.AllKeys;
-        var value = "";
-        for (int i = 0; i < keys.Length; i++)
-        {
-            value = Request.Form[keys[i]];
-        }
-        Console.WriteLine(value);
-    }
-</div>
+    <div class="container table-bordered">
+        <h1>Din billett!</h1>
+        <div class="col-lg-6">
+            <label>Email:</label>
+            @email
+            <br /><label>Fornavn:</label>
+            @fornanvn
+            <br /><label>Etternavn:</label>
+            @etternavn
+            <br /><label>Telefon:</label>
+            @Telefon
+        </div>
+        <div class="col-lg-6">
+            <br /><label>Dato:</label>
+            @Dato
+            <br /><label>Fra:</label>
+            @Fra
+            <br /><label>Til:</label>
+            @Til
+        </div>
+    </div>
 </body>
 </html>
