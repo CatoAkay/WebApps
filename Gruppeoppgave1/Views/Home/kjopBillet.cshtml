@@ -2,9 +2,6 @@
 @{
     ViewBag.Title = "kjopBillet";
 
-    @Html.Hidden("Fra", Request["Fra"])
-    @Html.Hidden("til", Request["Til"])
-    @Html.Hidden("dato", Request["Dato"])
 }
 
 <h2>Personopplysninger</h2>
@@ -21,6 +18,9 @@
             <input type="text" class="form-control" name="Etternavn" id="Etternavn" placeholder="Etternavn">
             <label for="Tlf">Telefon</label>
             <input type="tel" class="form-control" name="Telefon" id="Tlf" placeholder="Tlf">
+            @Html.Hidden("Fra", Request["Fra"])
+            @Html.Hidden("til", Request["Til"])
+            @Html.Hidden("dato", Request["Dato"])
 
         </div>
         <div class="col-lg-6">
