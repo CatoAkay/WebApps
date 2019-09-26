@@ -2,14 +2,11 @@
 
 @{
     ViewBag.Title = "info";
-    var email = Request["email"];
-    var fornanvn = Request["Fornavn"];
-    var etternavn = Request["Etternavn"];
-    var Telefon = Request["Telefon"];
-    var Dato = Request["Dato"];
-    var Fra = Request["Fra"];
-    var Til = Request["Til"];
 
+    @Html.Hidden("email", Request["email"]);
+    @Html.Hidden("Fornavn", Request["Fornavn"]);
+    @Html.Hidden("Etternavn", Request["Etternavn"]);
+    @Html.Hidden("Telefon", Request["Telefon"]);
 }
 
 <!DOCTYPE html>
@@ -23,21 +20,21 @@
         <h1>Din billett!</h1>
         <div class="col-lg-6">
             <label>Email:</label>
-            @email
+            @Request["email"]
             <br /><label>Fornavn:</label>
-            @fornanvn
+            @Request["Fornavn"]
             <br /><label>Etternavn:</label>
-            @etternavn
+            @Request["Etternavn"]
             <br /><label>Telefon:</label>
-            @Telefon
+            @Request["Telefon"]
         </div>
         <div class="col-lg-6">
             <br /><label>Dato:</label>
-            @Dato
+            @Request["Dato"]
             <br /><label>Fra:</label>
-            @Fra
-            <br /><label>Til:</label>
-            @Til
+            @Request["Fra"]
+            <label>Til:</label>
+            @Request["Til"]
         </div>
     </div>
 </body>
