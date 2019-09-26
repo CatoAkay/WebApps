@@ -17,6 +17,7 @@ namespace Gruppeoppgave1.Controllers
 
         public ActionResult registrer()
         {
+
             return View();
         }
 
