@@ -14,5 +14,10 @@ namespace Gruppeoppgave1.Models
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+		public DbSet<Kunde> Kunde { get; set; }
+		public DbSet<Billett> Billett { get; set; }
+
+
     }
 }
