@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Gruppeoppgave1.Models;
 
 namespace Gruppeoppgave1.Controllers
 {
@@ -11,6 +12,7 @@ namespace Gruppeoppgave1.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            DB db = new DB();
             return View();
         }
 
@@ -24,9 +26,22 @@ namespace Gruppeoppgave1.Controllers
             return View();
         }
 
-        public ActionResult info()
+        public ActionResult info2()
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult info2(Kunde innkune)
+        {
+            Session["Kunde"] = innkune; 
+            return RedirectToAction("VisKunde");
+        }
+
+        public ActionResult VisKunde()
+        {
+            return View(Session["Kunde"]);
+        }
+       
     }
 }
