@@ -16,19 +16,21 @@ namespace Gruppeoppgave1.Controllers
             return View();
         }
 
-        public ActionResult registrer()
+        public ActionResult Customer()
         {
             return View();
         }
 
-        public ActionResult kjopBillet()
+        public ActionResult Destination()
         {
             return View();
         }
 
-        public ActionResult info()
+        public ActionResult Confirm()
         {
             return View();
         }
+
+
     }
 }
