@@ -26,7 +26,13 @@ namespace Gruppeoppgave1.Controllers
             return View();
         }
 
-        public ActionResult Confirm()
+		public ActionResult Destination2()
+		{
+			return View();
+		}
+
+
+		public ActionResult Confirm()
         {
             return View();
         }
