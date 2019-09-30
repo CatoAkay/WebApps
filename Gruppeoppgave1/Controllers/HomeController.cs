@@ -17,5 +17,20 @@ namespace Gruppeoppgave1.Controllers
             return View();
         }
 
+        public ActionResult Reisevalg ()
+        {
+            return View();
+        }
+
+        public ActionResult Kunde ()
+        {
+            return View();
+        }
+
+        public ActionResult Billett()
+        {
+            return View();
+        }
+
     }
 }
