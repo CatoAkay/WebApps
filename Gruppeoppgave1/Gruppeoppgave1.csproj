@@ -102,6 +102,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="IMG\linjekartNormalrotate.PNG" />
+    <Content Include="IMG\linjekartNormalstraight.png" />
     <Content Include="IMG\logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

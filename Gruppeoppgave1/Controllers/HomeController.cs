@@ -43,7 +43,7 @@ namespace Gruppeoppgave1.Controllers
 
         public ActionResult VisKunde()
         {
-          
+
             return View(Session["Kunde"]);
         }
        
