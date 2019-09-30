@@ -14,7 +14,15 @@ namespace Gruppeoppgave1.Controllers
         // GET: Home
         public ActionResult Index()
         {
+
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(Reise innReise)
+        {
+            Session["Reise"] = innReise;
+            return RedirectToAction("Reisevalg");
         }
 
         public ActionResult Reisevalg ()
@@ -24,7 +32,13 @@ namespace Gruppeoppgave1.Controllers
 
         public ActionResult Kunde ()
         {
-            return View();
+            return View(Session["Reise"]);
+        }
+        [HttpPost]
+        public ActionResult Kunde (Kunde innkunde)
+        {
+            Session["Kunde"] = innkunde;
+            return RedirectToAction("Billet");
         }
 
         public ActionResult Billett()
