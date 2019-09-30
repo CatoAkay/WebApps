@@ -13,6 +13,6 @@ namespace Gruppeoppgave1.Models
 		public String Dato { get; set; }
 		public String Tid { get; set; }
 		public Double Pris { get; set; }
-		public virtual Kunde kunde { get; set; }
+		public virtual Kunde Kunde { get; set; }
 	}
 }

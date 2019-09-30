@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gruppeoppgave1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,11 @@ namespace Gruppeoppgave1.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
-        public ActionResult Index()
+		private DB db = new DB();
+		// GET: Home
+		public ActionResult Index()
         {
+			
             return View();
         }
     }
