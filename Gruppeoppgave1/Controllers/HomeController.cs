@@ -19,10 +19,11 @@ namespace Gruppeoppgave1.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(Reise innReise)
+        public ActionResult Index(KundeReise innReise)
         {
+            
             Session["Reise"] = innReise;
-            return RedirectToAction("Kunde");
+            return RedirectToAction("Reiser");
         }
 
         public ActionResult Reisevalg ()
@@ -32,18 +33,36 @@ namespace Gruppeoppgave1.Controllers
 
         public ActionResult Kunde ()
         { 
-             return View(Session["Reise"]);
+             return View();
         }
         [HttpPost]
-        public ActionResult Kunde (Kunde innkunde)
+        public ActionResult Kunde (KundeReise innkunde)
         {
             Session["Kunde"] = innkunde;
-            return RedirectToAction("Billet");
+            return RedirectToAction("dobbelModel");
         }
 
         public ActionResult Billett()
         {
             return View();
+        }
+
+        public ActionResult Reiser()
+        { 
+            return View(Session["Reise"]);
+        }
+
+        public ActionResult dobbelModel(KundeReise reise, KundeReise kunde)
+        {
+            Session["Kunde"] = kunde;
+            Session["Reise"] = reise;
+            return View();
+        }
+
+        public ActionResult KundeInfo()
+        {
+            
+            return View(Session["Kunde"]);
         }
 
     }

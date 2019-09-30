@@ -150,6 +150,7 @@
     <Content Include="Views\Home\Billett.cshtml" />
     <Content Include="Views\Home\dobbelModel.cshtml" />
     <Content Include="Views\Home\Reiser.cshtml" />
+    <Content Include="Views\Home\KundeInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
