@@ -1,7 +1,38 @@
-﻿
+﻿@model Gruppeoppgave1.Models.Reise
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h1 class="center-block"> Velkommen til VY, kjoer rundt hele norge</h1>
-<img src="~/IMG/linjekartNormalstraight.png" alt="linjekart med stasjoner" class="center-block" width="700" height="1000"/>
+<h1 class="center-block"> Velkommen til VY</h1>
+
+<form action="/Home/Reisevalg" method="post">
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="dato">Dato</label>
+            <input type="date" name="Dato" id="dato" class="form-control"/>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="tid">Tid</label>
+            <input type="time" name="Tid" id="tid" class="form-control"/>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="Fra">Fra</label>
+            <input type="text" name="Fra" list="fromSuggestions" class="stopInput form-control" placeholder="Fra"/>
+            <datalist id="fromSuggestions">
+            </datalist>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="til">Til</label>
+            <input type="text" name="Fil" list="toSuggestions" id="til" class="stopInput form-control" placeholder="Til"/>
+            <datalist id="toSuggestions">
+            </datalist>
+        </div>
+        <div class="form-row">
+            <div class="form-group dol-md-1">
+                <button type="submit" class="btn btn-primary">Kjøp Bilett</button>
+            </div>
+        </div>
+    </div>
+</form>
+    

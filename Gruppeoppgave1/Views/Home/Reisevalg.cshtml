@@ -1,24 +1,12 @@
-﻿@model Gruppeoppgave1.Models.Kunde
-
+﻿
 @{
-    ViewBag.Title = "info";
-    Session["email"] = Request["email"];
-    Session["Fornavn"] = Request["Fornavn"];
-    Session["Etternavn"] = Request["Etternavn"];
-    Session["Telefon"] = Request["Telefon"];
-    Session["Dato"]= Request["Dato"];
+    ViewBag.Title = "Reisevalg";
+    Session["Dato"] = Request["Dato"];
     Session["Fra"] = Request["Fra"];
     Session["Til"] = Request["Til"];
+    Session["Tid"] = Request["Tid"];
 }
 
-
-<!DOCTYPE html>
-<html lang="no">
-
-<head>
-    <title>Info</title>
-</head>
-<body>
 <script type="text/javascript">
 const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search", 
 
@@ -42,26 +30,9 @@ const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search",
          
      
 </script>
-@*<div class="container table-bordered">
-    <h1>Din billett!</h1>
-    <div class="col-lg-6">
-        <label>Email:</label>
-        @Session["Email"]
-        <br/><label>Fornavn:</label>
-        @Session["Fornavn"]
-        <br/><label>Etternavn:</label>
-        @Session["Etternavn"]
-        <br/><label>Telefon:</label>
-        @Session["Telefon"]
-    </div>
-    <div class="col-lg-6">
-        <br/><label>Dato:</label>
-        @Session["Dato"]
-        <br/><label>Fra:</label>
-        @Session["Fra"]
-        <br/><label>Til:</label>
-        @Session["Til"]
-    </div>
-</div>*@
-</body>
-</html>
+
+<h1>Reisevalg</h1>
+<h2>Reise valg for @Session["Fra"] til @Session["Til"]</h2>
+<h2>Tid: @Session["Dato"] @Session["Tid"]</h2>
+
+
