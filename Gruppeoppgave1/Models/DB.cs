@@ -17,5 +17,6 @@ namespace Gruppeoppgave1.Models
 
 		public DbSet<Kunde> Kunde { get; set; }
 		public DbSet<Billett> Billett { get; set; }
+        public DbSet<Reise> Reise { get; set; }
 	}
 }
