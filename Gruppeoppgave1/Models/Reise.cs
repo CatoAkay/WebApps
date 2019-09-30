@@ -7,6 +7,7 @@ namespace Gruppeoppgave1.Models
 {
     public class Reise
     {
+        public int ID { get; set; }
         public String Fra { get; set; }
         public String Til { get; set; }
         public String Dato { get; set; }
