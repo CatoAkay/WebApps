@@ -9,6 +9,6 @@ namespace Gruppeoppgave1.Models
         public int pris { get; set; }
         public string fra { get; set; }
         public string til { get; set; }
-        public Kunde Kunde { get; set; }
+        public virtual Kunde Kunde { get; set; }
     }
 }
