@@ -9,12 +9,13 @@ namespace Gruppeoppgave1.Controllers
 {
     public class HomeController : Controller
     {
-		
-		// GET: Home
-		public ActionResult Index()
+		private DB db = new DB();
+
+        // GET: Home
+        public ActionResult Index()
         {
-            DB db = new DB();
             return View();
         }
+
     }
 }
