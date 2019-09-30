@@ -34,12 +34,16 @@ namespace Gruppeoppgave1.Controllers
         [HttpPost]
         public ActionResult info2(Kunde innkune)
         {
-            Session["Kunde"] = innkune; 
+           
+            Session["Kunde"] = innkune;
+     
+            
             return RedirectToAction("VisKunde");
         }
 
         public ActionResult VisKunde()
         {
+          
             return View(Session["Kunde"]);
         }
        
