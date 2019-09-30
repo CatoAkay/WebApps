@@ -10,6 +10,7 @@ namespace Gruppeoppgave1.Models
         public int ID { get; set; }
         public String Fornavn { get; set; }
         public String Etternavn { get; set; }
-        public int Fodselsdato { get; set; }
+        public String Email { get; set; }
+        public String Telefon { get; set; }
     }
 }
