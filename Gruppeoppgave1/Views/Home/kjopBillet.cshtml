@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "kjopBillet";
 
+    Session["Fra"] = Request["Fra"];
+
 }
 
 <h2>Personopplysninger</h2>
@@ -18,7 +20,7 @@
             <input type="text" class="form-control" name="Etternavn" id="Etternavn" placeholder="Etternavn">
             <label for="Tlf">Telefon</label>
             <input type="tel" class="form-control" name="Telefon" id="Tlf" placeholder="Tlf">
-            @Html.Hidden("Fra", Request["Fra"])
+           @* @Html.Hidden("Fra", Request["Fra"])*@
             @Html.Hidden("til", Request["Til"])
             @Html.Hidden("dato", Request["Dato"])
 
@@ -27,7 +29,7 @@
             <br /><label>Dato:</label>
             @Request["Dato"]
             <br /><label>Fra:</label>
-            @Request["Fra"]
+            @Session["Fra"]
             <label>Til:</label>
             @Request["Til"]
         </div>

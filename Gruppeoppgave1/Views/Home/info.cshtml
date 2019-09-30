@@ -3,10 +3,7 @@
 @{
     ViewBag.Title = "info";
 
-    @Html.Hidden("email", Request["email"]);
-    @Html.Hidden("Fornavn", Request["Fornavn"]);
-    @Html.Hidden("Etternavn", Request["Etternavn"]);
-    @Html.Hidden("Telefon", Request["Telefon"]);
+ 
 }
 
 <!DOCTYPE html>
@@ -32,7 +29,7 @@
             <br /><label>Dato:</label>
             @Request["Dato"]
             <br /><label>Fra:</label>
-            @Request["Fra"]
+            @Session["Fra"]
             <label>Til:</label>
             @Request["Til"]
         </div>
