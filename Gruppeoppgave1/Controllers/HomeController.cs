@@ -32,7 +32,7 @@ namespace Gruppeoppgave1.Controllers
 
         public ActionResult Kunde ()
         { 
-             return View();
+             return View(Session["Reise"]);
         }
         [HttpPost]
         public ActionResult Kunde (Kunde innkunde)
