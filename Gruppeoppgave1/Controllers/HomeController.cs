@@ -38,7 +38,7 @@ namespace Gruppeoppgave1.Controllers
         public ActionResult Kunde (Kunde innkunde)
         {
             Session["Kunde"] = innkunde;
-            return RedirectToAction("Billet");
+            return RedirectToAction("Billett");
         }
 
         public ActionResult Billett()
