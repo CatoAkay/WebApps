@@ -1,15 +1,23 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Reisevalg";
     Session["Dato"] = Request["Dato"];
     Session["Fra"] = Request["Fra"];
     Session["Til"] = Request["Til"];
     Session["Tid"] = Request["Tid"];
+    var time = Session["Dato"] + "T" + Session["Tid"];
 }
 
-<script type="text/javascript">
-const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search", 
+<div class="disapear">
+    <p id="Fra">@Session["Fra"]</p>
+    <p id="Til">@Session["Til"]</p>
+    <p id="Tid">@time</p>
+</div>
 
+<script type="text/javascript">
+const Fra = document.getElementById("Fra").innerHTML;
+const Til = document.getElementById("Til").innerHTML;
+const Tid = document.getElementById("Tid").innerHTML;
+const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search", 
 {
     "credentials":"omit","headers":
 {
@@ -19,16 +27,17 @@ const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search",
     "x-language":"no"},
     "referrer":"https://www.vy.no/bestill/velg-togavgang?from=Oslo%20S&fromDisplayName=Oslo%20S&fromType=train-station-name&to=Oslo%20Lufthavn&toDisplayName=Oslo%20Lufthavn&toType=train-station-name&departureDatetime=2019-09-30%2011%3A35&petFree=false&pasCats=1&numPasCats=1",
     "referrerPolicy":"no-referrer-when-downgrade",
-    "body":"{\"to\":\"Oslo Lufthavn\",\"from\":\"Oslo S\",\"time\":\"2019-09-30T11:35\",\"limitResultsToSameDay\":true,\"language\":\"no\",\"passengers\":[{\"type\":\"ADULT\",\"customerNumber\":null,\"discount\":\"NONE\",\"extras\":[]}],\"priceNecessity\":\"REQUIRED\",\"hasReturnTrip\":false}","method":"POST","mode":"cors"});
+    "body":"{\"to\":\""+Til+"\",\"from\":\""+Fra+"\",\"time\":\""+Tid+"\",\"limitResultsToSameDay\":true,\"language\":\"no\",\"passengers\":[{\"type\":\"ADULT\",\"customerNumber\":null,\"discount\":\"NONE\",\"extras\":[]}],\"priceNecessity\":\"REQUIRED\",\"hasReturnTrip\":false}","method":"POST","mode":"cors"});
      jason = promiseVy
      .then(data => data.json())
      .then(data => data.itineraries)
      .then(data => {
-     	console.log(data[0].priceOptions[0].amount);
-     	
+     	console.log(data);
+     	const pris = data[0].priceOptions[0].amount;
+     	console.log(pris);
+     	return pris;
      });
-         
-     
+     console.log(jason.pris);
 </script>
 
 <h1>Reisevalg</h1>
