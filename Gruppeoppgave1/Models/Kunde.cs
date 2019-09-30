@@ -9,6 +9,7 @@ namespace Gruppeoppgave1.Models
     public class Kunde
     {
         public int ID { get; set; }
+
         [Display(Name = "Fornavn")]
         [Required(ErrorMessage = "Oppgi fornavn!")]
         public String Fornavn { get; set; }
