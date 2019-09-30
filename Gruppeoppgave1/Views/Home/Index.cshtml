@@ -1,11 +1,12 @@
-﻿@model Gruppeoppgave1.Models.Reise
+﻿@using System.Web.UI.WebControls
+@model Gruppeoppgave1.Models.Reise
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h1 class="center-block"> Velkommen til VY, kjoer rundt hele norge</h1>
-<img src="~/IMG/linjekartNormalstraight.png" alt="linjekart med stasjoner" class="center-block" width="700" height="1000"/>
+
 
 
 @using (Html.BeginForm()) 
@@ -19,8 +20,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Fra, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Fra, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fra, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Fra, new {htmlAttributes = new
+                {
+                    name="Fra",list="fromSuggestions", @class = "stopInput form-control", PlaceHolder="Fra"
+                }})
+                @Html.ValidationMessageFor(model => model.Fra, "", new {@class = "text-danger"})
+                <datalist id="toSuggestions">
+                </datalist>
             </div>
         </div>
 
@@ -29,6 +35,8 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Til, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Til, "", new { @class = "text-danger" })
+                <datalist id="toSuggestions">
+                </datalist>
             </div>
         </div>
 
