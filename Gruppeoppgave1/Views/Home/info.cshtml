@@ -2,13 +2,13 @@
 
 @{
     ViewBag.Title = "info";
-    var email = Request["email"];
-    var fornanvn = Request["Fornavn"];
-    var etternavn = Request["Etternavn"];
-    var Telefon = Request["Telefon"];
-    var Dato = Request["Dato"];
-    var Fra = Request["Fra"];
-    var Til = Request["Til"];
+    Session["email"] = Request["email"];
+    Session["Fornavn"] = Request["Fornavn"];
+    Session["Etternavn"] = Request["Etternavn"];
+    Session["Telefon"] = Request["Telefon"];
+    Session["Dato"]= Request["Dato"];
+    Session["Fra"] = Request["Fra"];
+    Session["Til"] = Request["Til"];
 }
 
 
@@ -46,21 +46,21 @@ const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search",
     <h1>Din billett!</h1>
     <div class="col-lg-6">
         <label>Email:</label>
-        @email
+        @Session["Email"]
         <br/><label>Fornavn:</label>
-        @fornanvn
+        @Session["Fornavn"]
         <br/><label>Etternavn:</label>
-        @etternavn
+        @Session["Etternavn"]
         <br/><label>Telefon:</label>
-        @Telefon
+        @Session["Telefon"]
     </div>
     <div class="col-lg-6">
         <br/><label>Dato:</label>
-        @Dato
+        @Session["Dato"]
         <br/><label>Fra:</label>
-        @Fra
+        @Session["Fra"]
         <br/><label>Til:</label>
-        @Til
+        @Session["Til"]
     </div>
 </div>
 </body>
