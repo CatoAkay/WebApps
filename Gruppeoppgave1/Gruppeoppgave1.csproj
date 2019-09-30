@@ -102,8 +102,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="IMG\linjekartNormal.PNG" />
-    <Content Include="IMG\linjekartNormalstraight.png" />
     <Content Include="IMG\logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -152,6 +150,7 @@
     <Content Include="Views\Home\kjopBillet.cshtml" />
     <Content Include="Views\Home\info2.cshtml" />
     <Content Include="Views\Home\VisKunde.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
