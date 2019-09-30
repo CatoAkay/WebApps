@@ -22,7 +22,7 @@ namespace Gruppeoppgave1.Controllers
         public ActionResult Index(Reise innReise)
         {
             Session["Reise"] = innReise;
-            return RedirectToAction("Reisevalg");
+            return RedirectToAction("Kunde");
         }
 
         public ActionResult Reisevalg ()
@@ -31,8 +31,8 @@ namespace Gruppeoppgave1.Controllers
         }
 
         public ActionResult Kunde ()
-        {
-            return View(Session["Reise"]);
+        { 
+             return View();
         }
         [HttpPost]
         public ActionResult Kunde (Kunde innkunde)
