@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h1 class="center-block"> Velkommen til VY</h1>
+<h1 class="center-block" xmlns="http://www.w3.org/1999/html"> Velkommen til VY</h1>
 
 <form action="/Home/Reisevalg" method="post">
     <div class="form-row">
@@ -14,7 +14,31 @@
         </div>
         <div class="form-group col-md-3">
             <label for="tid">Tid</label>
-            <input type="time" name="Tid" id="tid" class="form-control"/>
+            <select type="time" name="Tid" id="tid" class="form-control">
+                <option>01:00:00</option>
+                <option>02:00:00</option>
+                <option>03:00:00</option>
+                <option>04:00:00</option>
+                <option>05:00:00</option>
+                <option>06:00:00</option>
+                <option>07:00:00</option>
+                <option>08:00:00</option>
+                <option>09:00:00</option>
+                <option>10:00:00</option>
+                <option>11:00:00</option>
+                <option>12:00:00</option>
+                <option>13:00:00</option>
+                <option>14:00:00</option>
+                <option>15:00:00</option>
+                <option>16:00:00</option>
+                <option>17:00:00</option>
+                <option>18:00:00</option>
+                <option>19:00:00</option>
+                <option>20:00:00</option>
+                <option>21:00:00</option>
+                <option>22:00:00</option>
+                <option>23:00:00</option>
+            </select>
         </div>
         <div class="form-group col-md-3">
             <label for="Fra">Fra</label>

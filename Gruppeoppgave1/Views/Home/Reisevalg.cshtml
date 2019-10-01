@@ -4,20 +4,19 @@
     Session["Fra"] = Request["Fra"];
     Session["Til"] = Request["Til"];
     Session["Tid"] = Request["Tid"];
-    var time = Session["Dato"] + "T" + Session["Tid"];
+    Session["Time"] = Session["Dato"] + "T" + Session["Tid"];
 }
 
 <div class="disapear">
     <p id="Fra">@Session["Fra"]</p>
     <p id="Til">@Session["Til"]</p>
-    <p id="Tid">@time</p>
+	<p id="Tid">@Session["Time"]</p>
 </div>
 
 <script type="text/javascript">
 const Fra = document.getElementById("Fra").innerHTML;
 const Til = document.getElementById("Til").innerHTML;
 const Tid = document.getElementById("Tid").innerHTML;
-let pris;
 const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search", 
 {
     "credentials":"omit","headers":
@@ -34,11 +33,24 @@ const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search",
      .then(data => data.itineraries)
      .then(data => {
      	console.log(data);
-     	pris = data[0].priceOptions[0].amount;
      	$.each(data, function(i, item) {
      		var day = data[i].duration.days;
      		var hours = data[i].duration.hours;
      		var minutes = data[i].duration.minutes;
+     		var avgang = data[i].departureScheduled.slice(11,-3);
+     		var ankost = data[i].arrivalScheduled.slice(11,-3);
+     		var bytter = data[i].numberOfTransfers;
+     		var spor = data[i].legs[0].departureTrack;
+     		var tog = data[i].legs[0].line.name;
+     		
+     		var pris = 0;
+     		if(data[i].priceOptions.length === 2){
+     			
+     			pris = data[i].priceOptions[1].amount;
+     		}else{
+     			pris = data[i].priceOptions[0].amount;
+     		}
+     		
      		var duration = "";
      		if (day === 0 && hours === 0){
      			duration += minutes + " min";
@@ -47,19 +59,24 @@ const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search",
      		}else {
      			duration += day + " d " + hours + " t " + minutes + " min";
      		}
+     		
+     		var farge = data[i].legs[0].line.colors.background;
+     		if (farge === "333333"){
+     			farge ="white";
+     		}
      		var tur = '<form action="/Home/info" method="post"><div class="form-group col-md-12">' +
      	   '<label>Avgang - Ankomst</label>' + 
-           '<input class="fjernStyle" readonly name="FraTil" value=" ' + data[i].departureScheduled.slice(11,-3) + ' - ' + data[i].arrivalScheduled.slice(11,-3) + '">'   +      	 
+           '<input class="fjernStyle" readonly name="FraTil" value=" ' + avgang + ' - ' + ankost + '">'   +      	 
      	   '<label>Tid:</label>' + 
      	   '<input class="fjernStyle" readonly name="Tid" value=" ' + duration + '">'   +      	     
      	   '<label>Bytter:</label>' + 
-     	   '<input class="fjernStyle" readonly name="Bytter" value=" ' + data[i].numberOfTransfers + ' bytter">'   +      	   
+     	   '<input class="fjernStyle" readonly name="Bytter" value=" ' + bytter + ' bytter">'   +      	   
      	   '<label>Spor:</label>' + 
-     	   '<input class="fjernStyle" readonly name="Spor" value=" ' + data[i].legs[0].departureTrack + '">'   +      	   
+     	   '<input class="fjernStyle" readonly name="Spor" value=" ' + spor + '">'   +      	   
      	   '<label>Tog:</label>' +
-     	   '<input size="1" class="region fjernStyle" readonly name="Tog" style="' + 'border: solid black 1px; background-color:#' + data[i].legs[0].line.colors.background + '" value="' + data[i].legs[0].line.name + '">'   +      	   
+     	   '<input size="1" class="region fjernStyle" readonly name="Tog" style="' + 'border: solid black 1px; background-color:#' + farge + '" value="' + tog + '">'   +      	   
            '<label>Pris:</label>' + 
-     	   '<input class="fjernStyle" readonly name="pris" value=" ' + data[i].priceOptions[0].amount + '">'   + 
+     	   '<input class="fjernStyle" readonly name="pris" value=" ' + pris + ',-">'   + 
      	   '<button type="submit" class="btn btn-primary">Velg reise</button>' +
      	   '</div><form>';
      	  $("#valg").append(tur);
