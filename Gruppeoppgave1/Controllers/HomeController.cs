@@ -23,7 +23,7 @@ namespace Gruppeoppgave1.Controllers
         {
             
             Session["Reise"] = innReise;
-            return RedirectToAction("Reiser");
+            return RedirectToAction("dobbelModel");
         }
 
         public ActionResult Reisevalg ()
@@ -52,16 +52,34 @@ namespace Gruppeoppgave1.Controllers
             return View(Session["Reise"]);
         }
 
-        public ActionResult dobbelModel(KundeReise reise, KundeReise kunde)
+        [HttpPost]
+        public ActionResult dobbelModel(KundeReise innkunde, KundeReise kundeReise)
         {
-            Session["Kunde"] = kunde;
-            Session["Reise"] = reise;
-            return View();
+            
+            DB db = new DB();
+            Billett billet = new Billett();
+            
+            kundeReise = (KundeReise)Session["Reise"];
+            kundeReise.reise.Pris = 23;
+            billet.Reise = kundeReise.reise;
+            billet.Kunde = innkunde.kunde;
+            db.Billett.Add(billet);
+            db.Reise.Add(kundeReise.reise);
+            db.Kunde.Add(innkunde.kunde);
+            db.SaveChanges();
+            
+ 
+            return RedirectToAction("Billett") ;
+        }
+
+        public ActionResult dobbelModel()
+        {
+            return View(Session["Reise"]);
         }
 
         public ActionResult KundeInfo()
         {
-            
+      
             return View(Session["Kunde"]);
         }
 
