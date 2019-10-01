@@ -14,16 +14,15 @@ namespace Gruppeoppgave1.Controllers
         // GET: Home
         public ActionResult Index()
         {
-
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(KundeReise innReise)
+        public ActionResult Index(KundeReise reiseInput)
         {
             
-            Session["Reise"] = innReise;
-            return RedirectToAction("dobbelModel");
+            Session["Reise"] = reiseInput;
+            return RedirectToAction("ReiseInfo");
         }
 
         public ActionResult Reisevalg ()
@@ -39,13 +38,9 @@ namespace Gruppeoppgave1.Controllers
         public ActionResult Kunde (KundeReise innkunde)
         {
             Session["Kunde"] = innkunde;
-            return RedirectToAction("dobbelModel");
+            return RedirectToAction("ReiseInfo");
         }
 
-        public ActionResult Billett()
-        {
-            return View();
-        }
 
         public ActionResult Reiser()
         { 
@@ -53,12 +48,10 @@ namespace Gruppeoppgave1.Controllers
         }
 
         [HttpPost]
-        public ActionResult dobbelModel(KundeReise innkunde, KundeReise kundeReise)
+        public ActionResult ReiseInfo(KundeReise innkunde, KundeReise kundeReise)
         {
-            
             DB db = new DB();
             Billett billet = new Billett();
-            
             kundeReise = (KundeReise)Session["Reise"];
             kundeReise.reise.Pris = 23;
             billet.Reise = kundeReise.reise;
@@ -67,20 +60,28 @@ namespace Gruppeoppgave1.Controllers
             db.Reise.Add(kundeReise.reise);
             db.Kunde.Add(innkunde.kunde);
             db.SaveChanges();
-            
- 
-            return RedirectToAction("Billett") ;
+            Session["ID"] = billet.ID;
+           
+            return RedirectToAction("Billett",Session["ID"]) ;
         }
 
-        public ActionResult dobbelModel()
+        public ActionResult ReiseInfo()
         {
             return View(Session["Reise"]);
         }
 
         public ActionResult KundeInfo()
         {
-      
             return View(Session["Kunde"]);
+        }
+
+        public ActionResult Billett()
+        {
+            var billettID = Session["ID"];
+            DB db = new DB();
+            var valgtBillett = db.Billett.Find(billettID);
+
+            return View(valgtBillett);
         }
 
     }

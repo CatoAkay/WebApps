@@ -148,7 +148,7 @@
     <Content Include="Views\Home\Reisevalg.cshtml" />
     <Content Include="Views\Home\Kunde.cshtml" />
     <Content Include="Views\Home\Billett.cshtml" />
-    <Content Include="Views\Home\dobbelModel.cshtml" />
+    <Content Include="Views\Home\ReiseInfo.cshtml" />
     <Content Include="Views\Home\Reiser.cshtml" />
     <Content Include="Views\Home\KundeInfo.cshtml" />
     <None Include="Web.Debug.config">
