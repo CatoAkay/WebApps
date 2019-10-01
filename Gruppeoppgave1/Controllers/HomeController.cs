@@ -25,32 +25,25 @@ namespace Gruppeoppgave1.Controllers
             return RedirectToAction("ReiseInfo");
         }
 
-        public ActionResult Reisevalg ()
-        {
-            return View();
-        }
 
         public ActionResult Kunde ()
         { 
              return View();
         }
-        [HttpPost]
-        public ActionResult Kunde (KundeReise innkunde)
-        {
-            Session["Kunde"] = innkunde;
-            return RedirectToAction("ReiseInfo");
-        }
-
 
         public ActionResult Reiser()
         { 
             return View(Session["Reise"]);
         }
 
+        public ActionResult ReiseInfo()
+        {
+            return View(Session["Reise"]);
+        }
+
         [HttpPost]
         public ActionResult ReiseInfo(KundeReise innkunde, KundeReise kundeReise)
         {
-            DB db = new DB();
             Billett billet = new Billett();
             kundeReise = (KundeReise)Session["Reise"];
             kundeReise.reise.Pris = 23;
@@ -65,16 +58,6 @@ namespace Gruppeoppgave1.Controllers
             return RedirectToAction("Billett",Session["ID"]) ;
         }
 
-        public ActionResult ReiseInfo()
-        {
-            return View(Session["Reise"]);
-        }
-
-        public ActionResult KundeInfo()
-        {
-            return View(Session["Kunde"]);
-        }
-
         public ActionResult Billett()
         {
             var billettID = Session["ID"];
@@ -83,6 +66,29 @@ namespace Gruppeoppgave1.Controllers
 
             return View(valgtBillett);
         }
+
+        /*  trenger den til reisevalg view fra cato
+        public ActionResult Reisevalg ()
+        {
+            return View();
+        }
+        */
+
+        /* brukes ikke enda
+        public ActionResult KundeInfo()
+        {
+            return View(Session["Kunde"]);
+        }
+        */
+
+        /* brukes ikke enda
+        [HttpPost]
+        public ActionResult Kunde (KundeReise innkunde)
+        {
+            Session["Kunde"] = innkunde;
+            return RedirectToAction("ReiseInfo");
+        }
+        */
 
     }
 }
