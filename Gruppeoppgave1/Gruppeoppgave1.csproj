@@ -132,6 +132,7 @@
     <Compile Include="Models\Bestilling.cs" />
     <Compile Include="Models\Kunde.cs" />
     <Compile Include="Models\DB.cs" />
+    <Compile Include="Models\KundeReise.cs" />
     <Compile Include="Models\Reise.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -158,6 +159,9 @@
     <Content Include="Views\Home\Reisevalg.cshtml" />
     <Content Include="Views\Home\Kunde.cshtml" />
     <Content Include="Views\Home\Billett.cshtml" />
+    <Content Include="Views\Home\ReiseInfo.cshtml" />
+    <Content Include="Views\Home\Reiser.cshtml" />
+    <Content Include="Views\Home\KundeInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

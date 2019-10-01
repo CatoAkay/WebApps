@@ -14,57 +14,81 @@ namespace Gruppeoppgave1.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            DB db = new DB();
-            return View();
-        }
-
-        public ActionResult registrer()
-        {
-            return View();
-        }
-
-        public ActionResult kjopBillet()
-        {
-            return View();
-        }
-
-        public ActionResult info()
-        {
-            return View();
-        }
-
-        public ActionResult info2()
-        {
             return View();
         }
 
         [HttpPost]
-        public ActionResult info2(Kunde innkune)
+        public ActionResult Index(KundeReise reiseInput)
         {
-            Session["Kunde"] = innkune; 
-            return RedirectToAction("VisKunde");
+            
+            Session["Reise"] = reiseInput;
+            return RedirectToAction("ReiseInfo");
         }
 
-        public ActionResult VisKunde()
-        {
-            return View(Session["Kunde"]);
-        }
-       
-
-        public ActionResult Reisevalg ()
-        {
-            return View();
-        }
 
         public ActionResult Kunde ()
+        { 
+             return View();
+        }
+
+        public ActionResult Reiser()
+        { 
+            return View(Session["Reise"]);
+        }
+
+        public ActionResult ReiseInfo()
         {
-            return View();
+            return View(Session["Reise"]);
+        }
+
+        [HttpPost]
+        public ActionResult ReiseInfo(KundeReise innkunde, KundeReise kundeReise)
+        {
+            Billett billet = new Billett();
+            kundeReise = (KundeReise)Session["Reise"];
+            kundeReise.reise.Pris = 23;
+            billet.Reise = kundeReise.reise;
+            billet.Kunde = innkunde.kunde;
+            db.Billett.Add(billet);
+            db.Reise.Add(kundeReise.reise);
+            db.Kunde.Add(innkunde.kunde);
+            db.SaveChanges();
+            Session["ID"] = billet.ID;
+           
+            return RedirectToAction("Billett",Session["ID"]) ;
         }
 
         public ActionResult Billett()
         {
+            var billettID = Session["ID"];
+            DB db = new DB();
+            var valgtBillett = db.Billett.Find(billettID);
+
+            return View(valgtBillett);
+        }
+
+        /*  trenger den til reisevalg view fra cato
+        public ActionResult Reisevalg ()
+        {
             return View();
         }
+        */
+
+        /* brukes ikke enda
+        public ActionResult KundeInfo()
+        {
+            return View(Session["Kunde"]);
+        }
+        */
+
+        /* brukes ikke enda
+        [HttpPost]
+        public ActionResult Kunde (KundeReise innkunde)
+        {
+            Session["Kunde"] = innkunde;
+            return RedirectToAction("ReiseInfo");
+        }
+        */
 
     }
 }
