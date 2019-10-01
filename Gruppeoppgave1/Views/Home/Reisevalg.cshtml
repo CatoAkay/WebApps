@@ -17,6 +17,7 @@
 const Fra = document.getElementById("Fra").innerHTML;
 const Til = document.getElementById("Til").innerHTML;
 const Tid = document.getElementById("Tid").innerHTML;
+let pris;
 const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search", 
 {
     "credentials":"omit","headers":
@@ -33,15 +34,46 @@ const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search",
      .then(data => data.itineraries)
      .then(data => {
      	console.log(data);
-     	const pris = data[0].priceOptions[0].amount;
-     	console.log(pris);
-     	return pris;
+     	pris = data[0].priceOptions[0].amount;
+     	$.each(data, function(i, item) {
+     		var day = data[i].duration.days;
+     		var hours = data[i].duration.hours;
+     		var minutes = data[i].duration.minutes;
+     		var duration = "";
+     		if (day === 0 && hours === 0){
+     			duration += minutes + " min";
+     		}else if (day === 0){
+     			duration += hours + " t " + minutes + " min"
+     		}else {
+     			duration += day + " d " + hours + " t " + minutes + " min";
+     		}
+     		var tur = '<form action="/Home/info" method="post"><div class="form-group col-md-12">' +
+     	   '<label>Avgang - Ankomst</label>' + 
+           '<input class="fjernStyle" readonly name="FraTil" value=" ' + data[i].departureScheduled.slice(11,-3) + ' - ' + data[i].arrivalScheduled.slice(11,-3) + '">'   +      	 
+     	   '<label>Tid:</label>' + 
+     	   '<input class="fjernStyle" readonly name="Tid" value=" ' + duration + '">'   +      	     
+     	   '<label>Bytter:</label>' + 
+     	   '<input class="fjernStyle" readonly name="Bytter" value=" ' + data[i].numberOfTransfers + ' bytter">'   +      	   
+     	   '<label>Spor:</label>' + 
+     	   '<input class="fjernStyle" readonly name="Spor" value=" ' + data[i].legs[0].departureTrack + '">'   +      	   
+     	   '<label>Tog:</label>' +
+     	   '<input size="1" class="region fjernStyle" readonly name="Tog" style="' + 'border: solid black 1px; background-color:#' + data[i].legs[0].line.colors.background + '" value="' + data[i].legs[0].line.name + '">'   +      	   
+           '<label>Pris:</label>' + 
+     	   '<input class="fjernStyle" readonly name="pris" value=" ' + data[i].priceOptions[0].amount + '">'   + 
+     	   '<button type="submit" class="btn btn-primary">Velg reise</button>' +
+     	   '</div><form>';
+     	  $("#valg").append(tur);
+     	});
      });
-     console.log(jason.pris);
 </script>
 
 <h1>Reisevalg</h1>
 <h2>Reise valg for @Session["Fra"] til @Session["Til"]</h2>
 <h2>Tid: @Session["Dato"] @Session["Tid"]</h2>
+
+    <div id="valg" class="form-row">
+        
+    </div>
+
 
 

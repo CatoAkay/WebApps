@@ -1,14 +1,7 @@
 ﻿@model Gruppeoppgave1.Models.Kunde
 
 @{
-    ViewBag.Title = "info";
-    Session["email"] = Request["email"];
-    Session["Fornavn"] = Request["Fornavn"];
-    Session["Etternavn"] = Request["Etternavn"];
-    Session["Telefon"] = Request["Telefon"];
-    Session["Dato"]= Request["Dato"];
-    Session["Fra"] = Request["Fra"];
-    Session["Til"] = Request["Til"];
+    Session["Pris"] = Request["Pris"];
 }
 
 
@@ -19,29 +12,9 @@
     <title>Info</title>
 </head>
 <body>
-<script type="text/javascript">
-const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search", 
 
-{
-    "credentials":"omit","headers":
-{
-    "accept":"application/json",
-    "content-type":"application/json",
-    "sec-fetch-mode":"cors",
-    "x-language":"no"},
-    "referrer":"https://www.vy.no/bestill/velg-togavgang?from=Oslo%20S&fromDisplayName=Oslo%20S&fromType=train-station-name&to=Oslo%20Lufthavn&toDisplayName=Oslo%20Lufthavn&toType=train-station-name&departureDatetime=2019-09-30%2011%3A35&petFree=false&pasCats=1&numPasCats=1",
-    "referrerPolicy":"no-referrer-when-downgrade",
-    "body":"{\"to\":\"Oslo Lufthavn\",\"from\":\"Oslo S\",\"time\":\"2019-09-30T11:35\",\"limitResultsToSameDay\":true,\"language\":\"no\",\"passengers\":[{\"type\":\"ADULT\",\"customerNumber\":null,\"discount\":\"NONE\",\"extras\":[]}],\"priceNecessity\":\"REQUIRED\",\"hasReturnTrip\":false}","method":"POST","mode":"cors"});
-     jason = promiseVy
-     .then(data => data.json())
-     .then(data => data.itineraries)
-     .then(data => {
-     	console.log(data[0].priceOptions[0].amount);
-     	
-     });
-         
-     
-</script>
+<p>Prisen er: @Session["Pris"]</p>
+
 @*<div class="container table-bordered">
     <h1>Din billett!</h1>
     <div class="col-lg-6">

@@ -23,6 +23,20 @@
     display: none; !important;
 }
 
+.fjernStyle{
+    border: none; !important;
+    text-align: left;
+    outline: none;
+    box-shadow: none;
+    width: 11%;
+}
+
+.region{
+    width: auto;
+    text-align: center;
+    font-weight: bold;
+}
+
 @media only screen and (max-width: 1200px) {
     .gone {
         display: none;
