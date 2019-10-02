@@ -3,55 +3,25 @@
 
 @{
     ViewBag.Title = "Reisevalg";
-   /* Session["Dato"] = Request["Dato"];
-    Session["Fra"] = Request["Fra"];
-    Session["Til"] = Request["Til"];
-    Session["Tid"] = Request["Tid"];
+    /* Session["Dato"] = Request["Dato"];
+     Session["Fra"] = Request["Fra"];
+     Session["Til"] = Request["Til"];
+     Session["Tid"] = Request["Tid"];
+     Session["Fra"] = Model.reise.Fra;
+     Session["Til"] = Model.reise.Til;
+     Session["Tid"] = Model.reise.Dato + "T" + Model.reise.Tid;
+     Session["Time"] = Session["Dato"] + "T" + Session["Tid"]; */
+
     Session["Fra"] = Model.reise.Fra;
     Session["Til"] = Model.reise.Til;
     Session["Tid"] = Model.reise.Dato + "T" + Model.reise.Tid;
-    Session["Time"] = Session["Dato"] + "T" + Session["Tid"];
 }
 
 <div class="disapear">
     <p id="Fra">@Session["Fra"]</p>
     <p id="Til">@Session["Til"]</p>
-    <p id="Tid">@time</p>
+    <p id="Tid">@Session["Tid"]</p>
 </div>
-
-<dl>
-    <dt>
-        @Html.DisplayNameFor(model => model.reise.Fra)
-    </dt>
-    <dd id="Fra">
-
-        @Html.DisplayFor(model => model.reise.Fra)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.reise.Til)
-    </dt>
-
-    <dd id="Til">
-
-        @Html.DisplayFor(model => model.reise.Til)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.reise.Tid)
-    </dt>
-    <dd id="Tid">
-
-        @Html.DisplayFor(model => model.reise.Tid)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.reise.Dato)
-    </dt>
-    <dd id="Dato">
-
-        @Html.DisplayFor(model => model.reise.Dato)
-    </dd>
-
-</dl>
-
 
 
 <script type="text/javascript">
@@ -105,7 +75,7 @@ const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search",
      		if (farge === "333333"){
      			farge ="white";
      		}
-     		var tur = '<form action="/Home/info" method="post"><div class="form-group col-md-12">' +
+     		var tur = '<form action="/Home/ReiseInfo" ><div class="form-group col-md-12">' +
      	   '<label>Avgang - Ankomst</label>' + 
            '<input class="fjernStyle" readonly name="FraTil" value=" ' + avgang + ' - ' + ankost + '">'   +      	 
      	   '<label>Tid:</label>' + 
