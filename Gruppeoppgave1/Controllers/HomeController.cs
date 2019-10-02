@@ -22,7 +22,7 @@ namespace Gruppeoppgave1.Controllers
         {
             
             Session["Reise"] = reiseInput;
-            return RedirectToAction("Reiser");
+            return RedirectToAction("Reisevalg");
         }
 
         public ActionResult ReiseValg()

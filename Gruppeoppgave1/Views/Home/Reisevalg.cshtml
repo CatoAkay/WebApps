@@ -3,14 +3,18 @@
 
 @{
     ViewBag.Title = "Reisevalg";
-    Session["Dato"] = Request["Dato"];
+   /* Session["Dato"] = Request["Dato"];
     Session["Fra"] = Request["Fra"];
     Session["Til"] = Request["Til"];
     Session["Tid"] = Request["Tid"];
     var session = Request["Reise"];
     var time = Session["Dato"] + "T" + Session["Tid"];
+    */
 
-  
+
+    Session["Fra"] = Model.reise.Fra;
+    Session["Til"] = Model.reise.Til;
+    Session["Tid"] = Model.reise.Dato + "T" + Model.reise.Tid;
 
 
     /*
@@ -26,34 +30,50 @@
 }
 
 <div class="disapear">
-    @*
+    
         <p id="Fra">@Session["Fra"]</p>
         <p id="Til" @Session["Til"]></p>
-        <p id="Tid">@time</p>
-    *@
+        <p id="Tid">@Session["Tid"]</p>
+    
 
 
 
 </div>
 
-<dd id="Fra">
+<dl>
+    <dt>
+        @Html.DisplayNameFor(model => model.reise.Fra)
+    </dt>
+    <dd id="Fra">
 
-    @Html.DisplayFor(model => model.reise.Fra)
-</dd>
-<dd id="Til">
+        @Html.DisplayFor(model => model.reise.Fra)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.reise.Til)
+    </dt>
 
-    @Html.DisplayFor(model => model.reise.Til)
-</dd>
-<dd id="Tid">
+    <dd id="Til">
 
-    @Html.DisplayFor(model => model.reise.Tid)
-</dd>
-<dd id="Dato">
+        @Html.DisplayFor(model => model.reise.Til)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.reise.Tid)
+    </dt>
+    <dd id="Tid">
 
-    @Html.DisplayFor(model => model.reise.Dato)
-</dd>
+        @Html.DisplayFor(model => model.reise.Tid)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.reise.Dato)
+    </dt>
+    <dd id="Dato">
 
-@Session["Reise"];
+        @Html.DisplayFor(model => model.reise.Dato)
+    </dd>
+
+</dl>
+
+
 
 <script type="text/javascript">
     const Fra = document.getElementById("Fra").innerHTML;
