@@ -38,28 +38,65 @@ namespace Gruppeoppgave1.Controllers
 
         public ActionResult Reiser()
         { 
-            return View(Session["Reise"]);
+            return View(Session["Reisen"]);
         }
-
-        public ActionResult ReiseInfo()
+        [HttpPost]
+        public ActionResult ReiseInfo2()
         {
-            return View(Session["Reise"]);
+            return View(Session["Reisen"]);
         }
 
         [HttpPost]
-        public ActionResult ReiseInfo(KundeReise innkunde, KundeReise kundeReise)
+        public ActionResult ReiseInfo(KundeReise info)
         {
+            if (info.kunde == null)
+            {
+                var fra = Session["Fra"].ToString();
+                var til = Session["Til"].ToString();
+                var dato = Session["Dato"].ToString();
+                var tid = Request["Tid"];
+                double pris = Double.Parse(Request["Pris"]);
+                var spor = Request["Spor"];
+                var tog = Request["Tog"];
+                int bytter = int.Parse(Request["Bytter"]);
+                var avgang = Request["Avgang"];
+                var ankomst = Request["Ankomst"];
+
+
+                Reise reise = new Reise
+                {
+
+                    Fra = fra,
+                    Til = til,
+                    Dato = dato,
+                    Tid = tid,
+                    Pris = pris,
+                    Spor = spor,
+                    Tog = tog,
+                    Bytter = bytter,
+                    Avgang = avgang,
+                    Ankomst = ankomst
+                };
+
+              
+
+                Session["Reisen"] = reise;
+
+                return View(Session["Reisen"]);
+            }
+
+
             Billett billet = new Billett();
-            kundeReise = (KundeReise)Session["Reise"];
-            billet.Reise = kundeReise.reise;
-            billet.Kunde = innkunde.kunde;
+            info.reise = (Reise)Session["Reisen"];
+            billet.Reise = info.reise;
+            billet.Kunde = info.kunde;
             db.Billett.Add(billet);
-            db.Reise.Add(kundeReise.reise);
-            db.Kunde.Add(innkunde.kunde);
+            db.Reise.Add(info.reise);
+            db.Kunde.Add(info.kunde);
             db.SaveChanges();
             Session["ID"] = billet.ID;
-           
-            return RedirectToAction("Billett",Session["ID"]) ;
+
+            return RedirectToAction("Billet", Session["ID"]);
         }
 
         public ActionResult Billett()

@@ -9,5 +9,11 @@ namespace Gruppeoppgave1.Models
     {
         public Kunde kunde { get; set; }
         public Reise reise { get; set; }
+
+        /*public KundeReise(Reise reise)
+        {
+            this.reise = reise;
+        }
+        */
     }
 }

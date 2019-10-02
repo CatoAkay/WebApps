@@ -12,5 +12,6 @@ namespace Gruppeoppgave1.Models
         public String Etternavn { get; set; }
         public String Email { get; set; }
         public String Telefon { get; set; }
+        public String KreditKort { get; set; }
     }
 }

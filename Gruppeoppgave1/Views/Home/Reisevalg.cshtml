@@ -15,6 +15,7 @@
     Session["Fra"] = Model.reise.Fra;
     Session["Til"] = Model.reise.Til;
     Session["Tid"] = Model.reise.Dato + "T" + Model.reise.Tid;
+    Session["Dato"] = Model.reise.Dato;
 }
 
 <div class="disapear">
@@ -49,7 +50,7 @@ const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search",
      		var hours = data[i].duration.hours;
      		var minutes = data[i].duration.minutes;
      		var avgang = data[i].departureScheduled.slice(11,-3);
-     		var ankost = data[i].arrivalScheduled.slice(11,-3);
+     		var ankomst = data[i].arrivalScheduled.slice(11,-3);
      		var bytter = data[i].numberOfTransfers;
      		var spor = data[i].legs[0].departureTrack;
      		var tog = data[i].legs[0].line.name;
@@ -75,19 +76,25 @@ const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search",
      		if (farge === "333333"){
      			farge ="white";
      		}
-     		var tur = '<form action="/Home/ReiseInfo" ><div class="form-group col-md-12">' +
+     		var tur = '<form action="/Home/ReiseInfo" method = "Post" ><div class="form-group col-md-12">' +
      	   '<label>Avgang - Ankomst</label>' + 
-           '<input class="fjernStyle" readonly name="FraTil" value=" ' + avgang + ' - ' + ankost + '">'   +      	 
+                    '<input type="hidden" name="Avgang" value="' + avgang + '">' +
+                    '<input type="hidden" name="Ankomst" value="' + ankomst + '">' +
+                    '<input type="hidden" name="Pris" value="' + pris + '">' +
+                    '<input type="hidden" name="Bytter" value="' + bytter + '">' +
+
+
+           '<input class="fjernStyle" readonly name="FraTil" value=" ' + avgang + ' - ' + ankomst + '">'   +      	 
      	   '<label>Tid:</label>' + 
      	   '<input class="fjernStyle" readonly name="Tid" value=" ' + duration + '">'   +      	     
      	   '<label>Bytter:</label>' + 
-     	   '<input class="fjernStyle" readonly name="Bytter" value=" ' + bytter + ' bytter">'   +      	   
+     	   '<input class="fjernStyle" readonly name="BytterStreng" value=" ' + bytter + ' bytter">'   +      	   
      	   '<label>Spor:</label>' + 
      	   '<input class="fjernStyle" readonly name="Spor" value=" ' + spor + '">'   +      	   
      	   '<label>Tog:</label>' +
      	   '<input size="1" class="region fjernStyle" readonly name="Tog" style="' + 'border: solid black 1px; background-color:#' + farge + '" value="' + tog + '">'   +      	   
            '<label>Pris:</label>' + 
-     	   '<input class="fjernStyle" readonly name="pris" value=" ' + pris + ',-">'   + 
+     	   '<input class="fjernStyle" readonly name="PrisStreng" value=" ' + pris + ',-">'   + 
      	   '<button type="submit" class="btn btn-primary">Velg reise</button>' +
      	   '</div><form>';
      	  $("#valg").append(tur);
