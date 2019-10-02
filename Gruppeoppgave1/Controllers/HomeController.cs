@@ -78,16 +78,21 @@ namespace Gruppeoppgave1.Controllers
                     Ankomst = ankomst
                 };
 
+                KundeReise reisen = new KundeReise
+                {
+                    kunde = null,
+                    reise = reise
+                };
               
 
-                Session["Reisen"] = reise;
+                Session["Reisen"] = reisen;
 
                 return View(Session["Reisen"]);
             }
 
 
             Billett billet = new Billett();
-            info.reise = (Reise)Session["Reisen"];
+            info.reise = ((KundeReise)Session["Reisen"]).reise;
             billet.Reise = info.reise;
             billet.Kunde = info.kunde;
             db.Billett.Add(billet);
@@ -96,7 +101,7 @@ namespace Gruppeoppgave1.Controllers
             db.SaveChanges();
             Session["ID"] = billet.ID;
 
-            return RedirectToAction("Billet", Session["ID"]);
+            return RedirectToAction("Billett", Session["ID"]);
         }
 
         public ActionResult Billett()
