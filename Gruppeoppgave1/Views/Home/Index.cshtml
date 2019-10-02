@@ -1,30 +1,43 @@
-﻿@model Gruppeoppgave1.Models.Reise
+﻿@using Gruppeoppgave1.Models
+@model Gruppeoppgave1.Models.KundeReise
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h1 class="center-block"> Velkommen til VY</h1>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-<form action="/Home/Reisevalg" method="post">
+    <h1 class="center-block"> Velkommen til VY</h1>
+
+
     <div class="form-row">
         <div class="form-group col-md-3">
-            <label for="dato">Dato</label>
-            <input type="date" name="Dato" id="dato" class="form-control"/>
+            @Html.LabelFor(model => model.reise.Dato, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.reise.Dato, new { htmlAttributes = new { @class = "form-control" , type = "date",  id = "dato", name = "Dato"} })
+         @*  <input type="date" name="Dato" id="dato" class="form-control" /> *@
+
         </div>
         <div class="form-group col-md-3">
-            <label for="tid">Tid</label>
-            <input type="time" name="Tid" id="tid" class="form-control"/>
+            @Html.LabelFor(model => model.reise.Tid, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.reise.Tid, new { htmlAttributes = new { @class = "form-control", type = "time", id = "tid", name = "Tid" } })
+
+           @* <input type="time" name="Tid" id="tid" class="form-control" model="reise.Tid"/> *@
         </div>
         <div class="form-group col-md-3">
-            <label for="Fra">Fra</label>
-            <input type="text" name="Fra" list="fromSuggestions" class="stopInput form-control" placeholder="Fra"/>
+            @Html.LabelFor(model => model.reise.Fra, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.reise.Fra, new { htmlAttributes = new { @class = "stopInput form-control", type = "text", list ="fromSuggestions", name = "Fra", placeholder="Fra" } })
+
+           @* <input type="text" name="Fra" list="fromSuggestions" class="stopInput form-control" placeholder="Fra" /> *@
             <datalist id="fromSuggestions">
             </datalist>
         </div>
         <div class="form-group col-md-3">
-            <label for="til">Til</label>
-            <input type="text" name="Til" list="toSuggestions" id="til" class="stopInput form-control" placeholder="Til"/>
+            @Html.LabelFor(model => model.reise.Til, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.reise.Til, new { htmlAttributes = new { @class = "stopInput form-control", type = "text", list = "toSuggestions",id="til", name = "Til", placeholder = "Til" } })
+
+           @* <input type="text" name="Til" list="toSuggestions" id="til" class="stopInput form-control" placeholder="Til" /> *@
             <datalist id="toSuggestions">
             </datalist>
         </div>
@@ -34,5 +47,13 @@
             </div>
         </div>
     </div>
-</form>
-    
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Reiser")
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

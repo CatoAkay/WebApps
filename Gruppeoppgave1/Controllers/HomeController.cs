@@ -22,9 +22,14 @@ namespace Gruppeoppgave1.Controllers
         {
             
             Session["Reise"] = reiseInput;
-            return RedirectToAction("ReiseInfo");
+            return RedirectToAction("Reiser");
         }
 
+        public ActionResult ReiseValg()
+        {
+
+            return View(Session["Reise"]);
+        }
 
         public ActionResult Kunde ()
         { 
@@ -46,7 +51,6 @@ namespace Gruppeoppgave1.Controllers
         {
             Billett billet = new Billett();
             kundeReise = (KundeReise)Session["Reise"];
-            kundeReise.reise.Pris = 23;
             billet.Reise = kundeReise.reise;
             billet.Kunde = innkunde.kunde;
             db.Billett.Add(billet);
