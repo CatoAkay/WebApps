@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Gruppeoppgave1.Models
 {
@@ -11,6 +13,9 @@ namespace Gruppeoppgave1.Models
         public String Fra { get; set; }
         public String Til { get; set; }
         public String Dato { get; set; }
+
+        [Required]
+        [Display(Name = "Tid")]
         public String Tid { get; set; }
         public Double Pris { get; set; }
         public String Spor { get; set; }
@@ -19,16 +24,11 @@ namespace Gruppeoppgave1.Models
         public String Avgang { get; set; }
         public String Ankomst { get; set; }
 
-        /*
-        public Reise(int iD, string fra, string til, string dato, string tid, double pris)
-        {
-            ID = iD;
-            Fra = fra;
-            Til = til;
-            Dato = dato;
-            Tid = tid;
-            Pris = pris;
-        }
-        */
     }
-}
+    /**    public tidar tider { get; set; }
+    }
+    public enum tidar
+    { 
+
+    }   */
+} 

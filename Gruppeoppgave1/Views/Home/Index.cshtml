@@ -1,6 +1,7 @@
 ﻿@using Gruppeoppgave1.Models
 @model Gruppeoppgave1.Models.KundeReise
 
+
 @{
     ViewBag.Title = "Index";
 }
@@ -22,35 +23,40 @@
         </div>
         <div class="form-group col-md-3">
             @Html.LabelFor(model => model.reise.Tid, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.reise.Tid, new { htmlAttributes = new { @class = "form-control", type = "time", id = "tid", name = "Tid" } })
+            @Html.DropDownListFor(model => model.reise.Tid, new SelectList(Model.reiseTidene, "Value", "Text"), new { @class = "form-control", type = "time", id = "tid", name = "Tid" })
+            @*@Html.EditorFor(model => model.reise.Tid, new { htmlAttributes = new { @class = "form-control", type = "time", id = "tid", name = "Tid" } }) *@
+            @* @Html.DropDownListFor(model => model.reise.Tid,
+        new SelectList(Enum.GetValues(typeof(tid))),
+        new { @class = "form-control", type = "time", id = "tid", name = "Tid" }) *@
 
-            <label for="tid">Tid</label>
-            <select type="time" name="Tid" id="tid" class="form-control">
-                <option>01:00:00</option>
-                <option>02:00:00</option>
-                <option>03:00:00</option>
-                <option>04:00:00</option>
-                <option>05:00:00</option>
-                <option>06:00:00</option>
-                <option>07:00:00</option>
-                <option>08:00:00</option>
-                <option>09:00:00</option>
-                <option>10:00:00</option>
-                <option>11:00:00</option>
-                <option>12:00:00</option>
-                <option>13:00:00</option>
-                <option>14:00:00</option>
-                <option>15:00:00</option>
-                <option>16:00:00</option>
-                <option>17:00:00</option>
-                <option>18:00:00</option>
-                <option>19:00:00</option>
-                <option>20:00:00</option>
-                <option>21:00:00</option>
-                <option>22:00:00</option>
-                <option>23:00:00</option>
-            </select>
-        </div>
+
+            @* <label for="tid">Tid</label>
+        <select type="time" name="Tid" id="tid" class="form-control">
+            <option>01:00:00</option>
+            <option>02:00:00</option>
+            <option>03:00:00</option>
+            <option>04:00:00</option>
+            <option>05:00:00</option>
+            <option>06:00:00</option>
+            <option>07:00:00</option>
+            <option>08:00:00</option>
+            <option>09:00:00</option>
+            <option>10:00:00</option>
+            <option>11:00:00</option>
+            <option>12:00:00</option>
+            <option>13:00:00</option>
+            <option>14:00:00</option>
+            <option>15:00:00</option>
+            <option>16:00:00</option>
+            <option>17:00:00</option>
+            <option>18:00:00</option>
+            <option>19:00:00</option>
+            <option>20:00:00</option>
+            <option>21:00:00</option>
+            <option>22:00:00</option>
+            <option>23:00:00</option>
+        </select> *@
+        </div> 
         <div class="form-group col-md-3">
             @Html.LabelFor(model => model.reise.Fra, htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.EditorFor(model => model.reise.Fra, new { htmlAttributes = new { @class = "stopInput form-control", type = "text", list ="fromSuggestions", name = "Fra", placeholder="Fra" } })

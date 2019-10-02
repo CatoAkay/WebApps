@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Gruppeoppgave1.Models
 {
@@ -10,10 +11,6 @@ namespace Gruppeoppgave1.Models
         public Kunde kunde { get; set; }
         public Reise reise { get; set; }
 
-        /*public KundeReise(Reise reise)
-        {
-            this.reise = reise;
-        }
-        */
+        public IEnumerable<SelectListItem> reiseTidene { get; set; }
     }
 }
