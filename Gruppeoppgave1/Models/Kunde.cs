@@ -18,7 +18,6 @@ namespace Gruppeoppgave1.Models
         [Required(ErrorMessage = "Oppgi etternavn")]
         public String Etternavn { get; set; }
 
-        [Display(Name = "Email")]
         [Required(ErrorMessage = "Oppgi email")]
         [EmailAddress(ErrorMessage ="Skriv inn en gyldig emailAdresse")]
         public String Email { get; set; }

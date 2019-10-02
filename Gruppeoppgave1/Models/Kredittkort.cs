@@ -16,10 +16,9 @@ namespace Gruppeoppgave1.Models
         [RegularExpression(@"^[0-9]*$", ErrorMessage = "Input må innholde bare tall")]
         public String Kortnummer { get; set; }
 
-        [Display(Name = "Utløpsdato")]
         [Required(ErrorMessage = "Oppgi utløpsdato")]
-        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Input må innholde bare tall")]
-        public String Utløpsdato { get; set; }
+        [RegularExpression(@"^\d{2}\/\d{2}$", ErrorMessage = "Må være slik: xx/xx")]
+        public String Utlopsdato { get; set; }
 
         [Display(Name = "CVC")]
         [Required(ErrorMessage = "Oppgi CVC")]

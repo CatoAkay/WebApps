@@ -9,67 +9,26 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-<h1 class="center-block" xmlns="http://www.w3.org/1999/html"> Velkommen til VY</h1>
-
-    <h1 class="center-block"> Velkommen til VY</h1>
-
+    <h1 class="center-block" xmlns="http://www.w3.org/1999/html"> Hei, hvor vil du reise?</h1>
 
     <div class="form-row">
         <div class="form-group col-md-3">
-            @Html.LabelFor(model => model.reise.Dato, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.reise.Dato, htmlAttributes: new { @class = "control-label col-md-2",  min = @DateTime.Now.ToString("dd/MM/yyyy")})
             @Html.EditorFor(model => model.reise.Dato, new { htmlAttributes = new { @class = "form-control" , type = "date",  id = "dato", name = "Dato"} })
-         @*  <input type="date" name="Dato" id="dato" class="form-control" /> *@
-
         </div>
         <div class="form-group col-md-3">
             @Html.LabelFor(model => model.reise.Tid, htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.DropDownListFor(model => model.reise.Tid, new SelectList(Model.reiseTidene, "Value", "Text"), new { @class = "form-control", type = "time", id = "tid", name = "Tid" })
-            @*@Html.EditorFor(model => model.reise.Tid, new { htmlAttributes = new { @class = "form-control", type = "time", id = "tid", name = "Tid" } }) *@
-            @* @Html.DropDownListFor(model => model.reise.Tid,
-        new SelectList(Enum.GetValues(typeof(tid))),
-        new { @class = "form-control", type = "time", id = "tid", name = "Tid" }) *@
-
-
-            @* <label for="tid">Tid</label>
-        <select type="time" name="Tid" id="tid" class="form-control">
-            <option>01:00:00</option>
-            <option>02:00:00</option>
-            <option>03:00:00</option>
-            <option>04:00:00</option>
-            <option>05:00:00</option>
-            <option>06:00:00</option>
-            <option>07:00:00</option>
-            <option>08:00:00</option>
-            <option>09:00:00</option>
-            <option>10:00:00</option>
-            <option>11:00:00</option>
-            <option>12:00:00</option>
-            <option>13:00:00</option>
-            <option>14:00:00</option>
-            <option>15:00:00</option>
-            <option>16:00:00</option>
-            <option>17:00:00</option>
-            <option>18:00:00</option>
-            <option>19:00:00</option>
-            <option>20:00:00</option>
-            <option>21:00:00</option>
-            <option>22:00:00</option>
-            <option>23:00:00</option>
-        </select> *@
         </div> 
         <div class="form-group col-md-3">
             @Html.LabelFor(model => model.reise.Fra, htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.EditorFor(model => model.reise.Fra, new { htmlAttributes = new { @class = "stopInput form-control", type = "text", list ="fromSuggestions", name = "Fra", placeholder="Fra" } })
-
-           @* <input type="text" name="Fra" list="fromSuggestions" class="stopInput form-control" placeholder="Fra" /> *@
             <datalist id="fromSuggestions">
             </datalist>
         </div>
         <div class="form-group col-md-3">
             @Html.LabelFor(model => model.reise.Til, htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.EditorFor(model => model.reise.Til, new { htmlAttributes = new { @class = "stopInput form-control", type = "text", list = "toSuggestions",id="til", name = "Til", placeholder = "Til" } })
-
-           @* <input type="text" name="Til" list="toSuggestions" id="til" class="stopInput form-control" placeholder="Til" /> *@
             <datalist id="toSuggestions">
             </datalist>
         </div>
