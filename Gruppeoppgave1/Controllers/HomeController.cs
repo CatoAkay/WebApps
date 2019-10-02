@@ -16,7 +16,6 @@ namespace Gruppeoppgave1.Controllers
         {
             var tider = getAlleTider();
             var reiseModel = new KundeReise();
-
             reiseModel.reiseTidene = GetSelectListItems(tider);
            
             return View(reiseModel);
@@ -27,14 +26,13 @@ namespace Gruppeoppgave1.Controllers
         {
             var tider = getAlleTider();
             reiseInput.reiseTidene = GetSelectListItems(tider);
-
             Session["Reise"] = reiseInput;
+
             return RedirectToAction("Reisevalg");
         }
 
         public ActionResult ReiseValg()
         {
-
             return View(Session["Reise"]);
         }
 
@@ -47,12 +45,7 @@ namespace Gruppeoppgave1.Controllers
         { 
             return View(Session["Reisen"]);
         }
-        [HttpPost]
-        public ActionResult ReiseInfo2()
-        {
-            return View(Session["Reisen"]);
-        }
-
+     
         [HttpPost]
         public ActionResult ReiseInfo(KundeReise info)
         {
@@ -69,10 +62,8 @@ namespace Gruppeoppgave1.Controllers
                 var avgang = Request["Avgang"];
                 var ankomst = Request["Ankomst"];
 
-
                 Reise reise = new Reise
                 {
-
                     Fra = fra,
                     Til = til,
                     Dato = dato,
@@ -90,13 +81,10 @@ namespace Gruppeoppgave1.Controllers
                     kunde = null,
                     reise = reise
                 };
-              
-
                 Session["Reisen"] = reisen;
 
                 return View(Session["Reisen"]);
             }
-
 
             Billett billet = new Billett();
             info.reise = ((KundeReise)Session["Reisen"]).reise;
@@ -119,30 +107,6 @@ namespace Gruppeoppgave1.Controllers
 
             return View(valgtBillett);
         }
-
-        /*  trenger den til reisevalg view fra cato
-        public ActionResult Reisevalg ()
-        {
-            return View();
-        }
-        */
-
-        /* brukes ikke enda
-        public ActionResult KundeInfo()
-        {
-            return View(Session["Kunde"]);
-        }
-        */
-
-        /* brukes ikke enda
-        [HttpPost]
-        public ActionResult Kunde (KundeReise innkunde)
-        {
-            Session["Kunde"] = innkunde;
-            return RedirectToAction("ReiseInfo");
-        }
-        */
-
         
         private IEnumerable<String> getAlleTider()
         {
@@ -172,16 +136,12 @@ namespace Gruppeoppgave1.Controllers
                 "21:00",
                 "22:00",
                 "23:00",
-
-
             };
         }
-
 
         private IEnumerable<SelectListItem> GetSelectListItems (IEnumerable<String> tider)
         {
             var valgteListe = new List<SelectListItem>();
-
             foreach (var tid in tider)
             {
                 valgteListe.Add(new SelectListItem
@@ -189,7 +149,6 @@ namespace Gruppeoppgave1.Controllers
                     Value = tid,
                     Text = tid
                 });
-
             }
             return valgteListe;
         }    

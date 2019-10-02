@@ -25,10 +25,4 @@ namespace Gruppeoppgave1.Models
         public String Ankomst { get; set; }
 
     }
-    /**    public tidar tider { get; set; }
-    }
-    public enum tidar
-    { 
-
-    }   */
 } 
