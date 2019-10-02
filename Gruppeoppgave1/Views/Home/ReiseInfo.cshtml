@@ -5,36 +5,7 @@
 @{
     ViewBag.Title = "ReiseInfo";
     Layout = null;
-
-    /*
-    var fra = Session["Fra"].ToString();
-    var til = Session["Til"].ToString();
-    var dato = Session["Dato"].ToString();
-    var tid = Request["Tid"];
-    double pris = Double.Parse(Request["Pris"]);
-    var spor = Request["Spor"];
-    var tog= Request["Tog"];
-    int bytter= int.Parse(Request["Bytter"]);
-    var avgang= Request["Avgang"];
-    var ankomst= Request["Ankomst"];
-
-
-    KundeReise reisen = new KundeReise();
-    reisen.reise.Fra = fra;
-    reisen.reise.Til = til;
-    reisen.reise.Dato = dato;
-    reisen.reise.Tid = tid;
-    reisen.reise.Pris = pris;
-    reisen.reise.Spor = spor;
-    reisen.reise.Tog = tog;
-    reisen.reise.Bytter = bytter;
-    reisen.reise.Avgang = avgang;
-    reisen.reise.Ankomst = ankomst;
-
-    Session["Reisen"] = reisen;
-    */
-
-    }
+}
 
 @{Html.RenderPartial("Kunde", Model);}
 @{Html.RenderPartial("Reiser", Model);}

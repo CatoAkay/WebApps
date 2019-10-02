@@ -4,132 +4,48 @@
     ViewBag.Title = "Billett";
 }
 
-<h2>Billett</h2>
-
-<div>
-    <h4>Billett</h4>
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
+<h1 class="bilettH">KVITTERING</h1>
+<div class="borderStrekk">
+<div class="down container">
+    <div class="col-lg-4">
+        <label>ID:</label>
+        @Html.DisplayFor(model => model.ID)
+        <br/><label>Fornavn:</label>
+        @Html.DisplayFor(model => model.Kunde.Fornavn)
+        <br/><label>Etternavn:</label>
+        @Html.DisplayFor(model => model.Kunde.Etternavn)
+        <br/><label>Email:</label>
+        @Html.DisplayFor(model => model.Kunde.Email)        
+        <br/><label>Telefon:</label>
+        @Html.DisplayFor(model => model.Kunde.Telefon)
+    </div>
+    <div class="col-lg-4">
+        <label>Pris:</label>
+        @Html.DisplayFor(model => model.Reise.Pris) ,-
+        <br/><label>Fra:</label>
+        @Html.DisplayFor(model => model.Reise.Fra)
+        <br/><label>Til:</label>
+        @Html.DisplayFor(model => model.Reise.Til)
+        <br/><label>Dato:</label>
+        @Html.DisplayFor(model => model.Reise.Dato)
+        <br/><label>Tid:</label>
+        @Html.DisplayFor(model => model.Reise.Tid)
+    </div>
+    <div class="col-lg-4">
+        <label>Spor:</label>
+        @Html.DisplayFor(model => model.Reise.Spor)
+        <br/><label>Tog:</label>
+        @Html.DisplayFor(model => model.Reise.Tog)
+        <br/><label>Bytter:</label>
+        @Html.DisplayFor(model => model.Reise.Bytter)
+        <br/><label>Avgang:</label>
+        @Html.DisplayFor(model => model.Reise.Avgang)
+        <br/><label>Ankomst:</label>
+        @Html.DisplayFor(model => model.Reise.Ankomst)
+    </div>
+</div>
 </div>
 
-<dt>
-    @Html.DisplayNameFor(model => model.ID)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.ID)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Kunde.Fornavn)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Kunde.Fornavn)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Kunde.Etternavn)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Kunde.Etternavn)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Kunde.Email)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Kunde.Email)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Kunde.Telefon)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Kunde.Telefon)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Reise.Fra)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Reise.Fra)
-</dd>
-<dt>
-    @Html.DisplayNameFor(model => model.Reise.Til)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Reise.Til)
-</dd><dt>
-
-    @Html.DisplayNameFor(model => model.Reise.Dato)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Reise.Dato)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Reise.Tid)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Reise.Tid)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Reise.Pris)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Reise.Pris)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Reise.Spor)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Reise.Spor)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Reise.Tog)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Reise.Tog)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Reise.Bytter)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Reise.Bytter)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Reise.Avgang)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Reise.Avgang)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Reise.Ankomst)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.Reise.Ankomst)
-</dd>
 
 
 

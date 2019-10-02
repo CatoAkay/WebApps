@@ -68,14 +68,13 @@ const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search",
      		if (farge === "333333"){
      			farge ="white";
      		}
-     		var tur = '<form action="/Home/ReiseInfo" method = "Post" ><div class="form-group col-md-12">' +
-     	   '<label>Avgang - Ankomst</label>' + 
-                    '<input type="hidden" name="Avgang" value="' + avgang + '">' +
-                    '<input type="hidden" name="Ankomst" value="' + ankomst + '">' +
-                    '<input type="hidden" name="Pris" value="' + pris + '">' +
-                    '<input type="hidden" name="Bytter" value="' + bytter + '">' +
-
-
+     		var tur = 
+     		'<form action="/Home/ReiseInfo" method = "Post" ><div class="form-group col-md-12">' +
+     		'<label>Avgang - Ankomst</label>' + 
+           '<input type="hidden" name="Avgang" value="' + avgang + '">' +
+           '<input type="hidden" name="Ankomst" value="' + ankomst + '">' +
+           '<input type="hidden" name="Pris" value="' + pris + '">' +
+           '<input type="hidden" name="Bytter" value="' + bytter + '">' +
            '<input class="fjernStyle" readonly name="FraTil" value=" ' + avgang + ' - ' + ankomst + '">'   +      	 
      	   '<label>Tid:</label>' + 
      	   '<input class="fjernStyle" readonly name="Tid" value=" ' + duration + '">'   +      	     
