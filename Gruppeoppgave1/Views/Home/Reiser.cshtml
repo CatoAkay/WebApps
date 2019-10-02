@@ -1,0 +1,59 @@
+﻿@using Gruppeoppgave1.Models
+@model KundeReise
+
+@{
+    ViewBag.Title = "Reiser";
+}
+
+<h2>Reiser</h2>
+
+<div>
+    <h4>Reise</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.reise.Fra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reise.Fra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reise.Til)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reise.Til)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reise.Dato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reise.Dato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reise.Tid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reise.Tid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reise.Pris)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reise.Pris)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index") *@
+</p>
