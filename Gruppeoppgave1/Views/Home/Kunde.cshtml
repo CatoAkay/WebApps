@@ -13,57 +13,73 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Kunde</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.kunde.Fornavn, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.kunde.Fornavn, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.kunde.Fornavn, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.kunde.Etternavn, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.kunde.Etternavn, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.kunde.Etternavn, "", new { @class = "text-danger" })
-            </div>
-       
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.kunde.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.kunde.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.kunde.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.kunde.Telefon, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.kunde.Telefon, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.kunde.Telefon, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Telefon, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Telefon, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(m=>m.Etternavn)} })
-                @Html.ValidationMessageFor(model => model.Telefon, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+<div class="form-horizontal">
+    <h4>Kunde</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.kunde.Fornavn, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.kunde.Fornavn, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayFor(model=>model.kunde.Fornavn) } })
+            @Html.ValidationMessageFor(model => model.kunde.Fornavn, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.kunde.Etternavn, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.kunde.Etternavn, new { htmlAttributes = new { @class = "form-control" , placeholder = @Html.DisplayFor(model=>model.kunde.Etternavn) } })
+            @Html.ValidationMessageFor(model => model.kunde.Etternavn, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.kunde.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.kunde.Email, new { htmlAttributes = new { @class = "form-control" , placeholder = @Html.DisplayFor(model=>model.kunde.Email)  } })
+            @Html.ValidationMessageFor(model => model.kunde.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.kunde.Telefon, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.kunde.Telefon, new { htmlAttributes = new { @class = "form-control" , placeholder = @Html.DisplayFor(model=>model.kunde.Telefon) } })
+            @Html.ValidationMessageFor(model => model.kunde.Telefon, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.kunde.Kredittkort.Kortnummer, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.kunde.Kredittkort.Kortnummer, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayFor(model=>model.kunde.Kredittkort.Kortnummer) } })
+            @Html.ValidationMessageFor(model => model.kunde.Kredittkort.Kortnummer, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.kunde.Kredittkort.Utløpsdato, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.kunde.Kredittkort.Utløpsdato, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayFor(model=>model.kunde.Kredittkort.Utløpsdato)} })
+            @Html.ValidationMessageFor(model => model.kunde.Kredittkort.Utløpsdato, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.kunde.Kredittkort.Cvc, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.kunde.Kredittkort.Cvc, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayFor(model=>model.kunde.Kredittkort.Cvc) } })
+            @Html.ValidationMessageFor(model => model.kunde.Kredittkort.Cvc, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>

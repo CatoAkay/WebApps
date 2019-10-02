@@ -130,6 +130,7 @@
     </Compile>
     <Compile Include="Models\Billett.cs" />
     <Compile Include="Models\Bestilling.cs" />
+    <Compile Include="Models\Kredittkort.cs" />
     <Compile Include="Models\Kunde.cs" />
     <Compile Include="Models\DB.cs" />
     <Compile Include="Models\KundeReise.cs" />
