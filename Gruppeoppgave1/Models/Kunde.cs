@@ -14,6 +14,7 @@ namespace Gruppeoppgave1.Models
         [Required(ErrorMessage = "Oppgi fornavn!")]
         public String Fornavn { get; set; }
 
+
         [Display(Name = "Etternavn")]
         [Required(ErrorMessage = "Oppgi etternavn!")]
         public String Etternavn { get; set; }
