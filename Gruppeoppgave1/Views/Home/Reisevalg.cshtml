@@ -6,9 +6,15 @@
 
     Session["Fra"] = Model.reise.Fra;
     Session["Til"] = Model.reise.Til;
-    Session["Tid"] = Model.reise.Dato + "T" + Model.reise.Tid;
-    Session["TidA"] = Model.reise.Tid;
-    Session["Dato"] = Model.reise.Dato;
+	Session["Klokke"] = "T" + Model.reise.Tid;
+	Session["Dato"] = Model.reise.Dato;
+	String tid = (String)Session["klokke"];
+	Session["Tid"] = Model.reise.Tid;
+	String dato = Model.reise.Dato;
+
+	String[] datoSplit = dato.Split('-');
+
+	Session["Tid"] = datoSplit[2] + "-" + datoSplit[1] + "-" + datoSplit[0] + tid;
 }
 
 <div class="disapear">
@@ -95,7 +101,7 @@ const promiseVy = fetch("https://booking.cloud.nsb.no/api/itineraries/search",
 
 <h1>Reisevalg</h1>
 <h2>Reise valg for @Session["Fra"] til @Session["Til"]</h2>
-<h2>Tid: @Session["Dato"] Fra Kl: @Session["TidA"] </h2>
+<h2>Tid: @Session["Dato"] Fra Kl: @Model.reise.Tid </h2>
 
 <div id="valg" class="form-row">
 
