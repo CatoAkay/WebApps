@@ -7,7 +7,7 @@
 }
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#dato").datepicker({
             dateFormat: "dd-mm-yy",
             minDate: -0,
@@ -32,11 +32,11 @@
             <datalist id="toSuggestions">
             </datalist>
         </div>
-        <div class="space ekstraPadding webflow-style-input form-group col-md-5">
+        <div class="dropup space ekstraPadding webflow-style-input form-group col-md-5">
             @Html.EditorFor(model => model.reise.Dato, new {htmlAttributes = new {placeHolder="Dato",autocomplete = "off", @class = "fyll", id = "dato", name = "Dato"}})
         </div>
         <div class="space webflow-style-input form-group col-md-5">
-            @Html.DropDownListFor(model => model.reise.Tid, new SelectList(Model.reiseTidene, "Value", "Text"), new {@class = "select form-control", type = "time", id = "tid", name = "Tid"})
+            @Html.DropDownListFor(model => model.reise.Tid, new SelectList(Model.reiseTidene, "Value", "Text"), new {@class = "fyll select form-control", type = "time", id = "tid", name = "Tid"})
         </div>
         <div class=" form-group col-md-5">
             <button type="submit" class="btn btn-primary">Se avganger</button>
