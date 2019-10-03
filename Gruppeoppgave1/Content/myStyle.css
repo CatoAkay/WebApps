@@ -1,90 +1,15 @@
-﻿body {
+﻿/*Felles */
+body {
     background-color: whitesmoke;
     font-family: sans-serif;
 }
 
-.fontReise{
-    font-size: 25px;
-}
-
-.hForside{
-    margin-top: 2em;
-    text-align: center;
-}
-
-.hReiseinfo{
-    margin-top: 2em;
-    margin-bottom: 2em;
-    text-align: center;
-}
-
-.center{
-    text-align: center;
-}
-
-.select{
-    background: #F5F5F5;
-    border:0;
-    outline:0;
+.fjernStyle{
+    border: none; !important;
+    text-align: left;
+    outline: none;
     box-shadow: none;
-    margin: auto;
-    max-width: 100%;
-    font-size: 23px;
-}
-
-.fyll{
-    max-width: 100%;
-    font-size: 23px !important;
-}
-
-.select:hover, .select:active{
-    background: #F5F5F5;
-    border:0;
-    outline:0;
-    box-shadow: none;
-}
-
-.ekstraPadding{
-    padding: 19px !important; 
-}
-
-.space {
-    margin: 50px 100px 100px 50px !important;
-}
-
-.spaceReiseInfo{
-    margin-right: 185px !important;
-}
-
-.borderStrekk{
-    border-top: 5px solid #089C80;
-    border-bottom: 5px solid #089C80;
-}
-
-.borderStrekk2{
-    border-top: 2px solid black;
-    padding-top: 2em;
-}
-
-.bilettH {
-    text-align: center;
-    font-size: 60px;
-    margin-top: 2em;
-    margin-bottom: 1em;
-}
-
-.white{
-    background-color: white;
-    border-bottom: 2px solid #089C80;
-    height: 6em;
-}
-
-.down{
-    font-size: 20px;
-    line-height: 3;
-    margin: 30px 0px 30px 0px;
-    text-align: center;
-    
+    width: 11%;
 }
 
 .black {
@@ -113,20 +38,107 @@
     height: 4em;
 }
 
-.fjernStyle{
-    border: none; !important;
-    text-align: left;
-    outline: none;
-    box-shadow: none;
-    width: 11%;
+
+.down{
+    font-size: 20px;
+    line-height: 3;
+    margin: 30px 0px 30px 0px;
+    text-align: center;
+
 }
 
+.white{
+    background-color: white;
+    border-bottom: 2px solid #089C80;
+    height: 6em;
+}
+
+.borderStrekk{
+    border-top: 5px solid #089C80;
+    border-bottom: 5px solid #089C80;
+}
+
+.fyll{
+    max-width: 100%;
+    font-size: 23px !important;
+}
+
+.space {
+    margin: 50px 100px 100px 50px !important;
+}
+
+.center{
+    text-align: center;
+}
+
+.ekstraPadding{
+    padding: 19px !important;
+}
+
+.select{
+    background: #F5F5F5;
+    border:0;
+    outline:0;
+    box-shadow: none;
+    margin: auto;
+    max-width: 100%;
+    font-size: 23px;
+}
+
+.select:hover, .select:active{
+    background: #F5F5F5;
+    border:0;
+    outline:0;
+    box-shadow: none;
+}
+
+.fontReise{
+    font-size: 25px;
+}
+
+.hForside{
+    margin-top: 2em;
+    text-align: center;
+}
+
+.hReiseinfo{
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+/*ReiseInfo */
+
+.spaceReiseInfo{
+    margin-right: 185px !important;
+}
+
+.borderStrekk2{
+    border-top: 2px solid black;
+    padding-top: 2em;
+}
+
+/*ReiseValg*/
 .region{
     width: 60px;
     text-align: center;
     font-weight: bold;
 }
 
+.hReisevalg{
+    margin-top: 2em;
+}
+/*Billett */
+
+.bilettH {
+    text-align: center;
+    font-size: 60px;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+
+/*MEDIA QUERIES*/
 @media only screen and (max-width: 1200px) {
     .gone {
         display: none;
