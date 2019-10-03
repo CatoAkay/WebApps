@@ -5,7 +5,7 @@
     ViewBag.Title = "ReiseInfo";
 }
 
-<h2 class="hReiseinfo">ReiseInfo</h2>
+<h1 class="hReiseinfo">ReiseInfo</h1>
 
 
 @using (Html.BeginForm()) 
@@ -13,101 +13,94 @@
     @Html.AntiForgeryToken()
     
     <div class="borderStrekk2 form-horizontal">
-        <div class="form-group">
+        <div class="goneReiseInfo form-group">
             <div class="col-md-6">
-                <h4>Kunde</h4>
+                <h2>Kunde</h2>
             </div>            
             <div class="col-md-6">
-                <h4>Reise</h4>
+                <h2>Reise</h2>
             </div>
         </div>
         @Html.ValidationSummary(true, "", new {@class = "text-danger"})
         <div class="form-group">
-            @Html.LabelFor(model => model.kunde.Fornavn, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.kunde.Fornavn, new {htmlAttributes = new {@class = "form-control", placeholder = @Html.DisplayNameFor(model => model.kunde.Fornavn)}})
+            <div class="spaceReiseInfo col-md-4 webflow-style-input">
+                @Html.EditorFor(model => model.kunde.Fornavn, new {htmlAttributes = new {@class = "", placeholder = @Html.DisplayNameFor(model => model.kunde.Fornavn)}})
                 @Html.ValidationMessageFor(model => model.kunde.Fornavn, "", new {@class = "text-danger"})
             </div>
-            <div class="col-md-2">
+            <div class="fontReise col-md-3">
                 <label>Fra:</label>
                 @Html.DisplayFor(model => model.reise.Fra)
             </div>
-            <div class="col-md-2">
+            <div class="fontReise col-md-3">
                 <label>Til:</label>
                 @Html.DisplayFor(model => model.reise.Til)
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.kunde.Etternavn, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.kunde.Etternavn, new {htmlAttributes = new {@class = "form-control", placeholder = @Html.DisplayNameFor(model => model.kunde.Etternavn)}})
+            <div class="spaceReiseInfo col-md-4 webflow-style-input">
+                @Html.EditorFor(model => model.kunde.Etternavn, new {htmlAttributes = new {@class = "", placeholder = @Html.DisplayNameFor(model => model.kunde.Etternavn)}})
                 @Html.ValidationMessageFor(model => model.kunde.Etternavn, "", new {@class = "text-danger"})
             </div>
-            <div class="col-md-2">
+            <div class="fontReise col-md-3">
                 <label>Avgang:</label>
                 @Html.DisplayFor(model => model.reise.Avgang)
             </div>
-            <div class="col-md-2">
+            <div class="fontReise col-md-3">
                 <label>Ankomst:</label>
                 @Html.DisplayFor(model => model.reise.Ankomst)
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.kunde.Email, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.kunde.Email, new {htmlAttributes = new {@class = "form-control", placeholder = "OlaNordmann@hotmail.com"}})
+            <div class="spaceReiseInfo col-md-4 webflow-style-input">
+                @Html.EditorFor(model => model.kunde.Email, new {htmlAttributes = new {@class = "", placeholder = "OlaNordmann@hotmail.com"}})
                 @Html.ValidationMessageFor(model => model.kunde.Email, "", new {@class = "text-danger"})
             </div>
-            <div class="col-md-2">
+            <div class="fontReise col-md-3">
                 <label>Dato:</label>
                 @Html.DisplayFor(model => model.reise.Dato)
             </div>
-            <div class="col-md-2">
+            <div class="fontReise col-md-3">
                 <label>Tid:</label>
                 @Html.DisplayFor(model => model.reise.Tid)
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.kunde.Telefon, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.kunde.Telefon, new {htmlAttributes = new {@class = "form-control", placeholder = @Html.DisplayNameFor(model => model.kunde.Telefon)}})
+            <div class="spaceReiseInfo col-md-4 webflow-style-input">
+                @Html.EditorFor(model => model.kunde.Telefon, new {htmlAttributes = new {@class = "", placeholder = @Html.DisplayNameFor(model => model.kunde.Telefon)}})
                 @Html.ValidationMessageFor(model => model.kunde.Telefon, "", new {@class = "text-danger"})
             </div>
-            <div class="col-md-2">
+            <div class="fontReise col-md-3">
                 <label>Spor:</label>
                 @Html.DisplayFor(model => model.reise.Spor)
             </div>
-            <div class="col-md-2">
+            <div class="fontReise col-md-3">
                 <label>Tog:</label>
                 @Html.DisplayFor(model => model.reise.Tog)
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.kunde.Kredittkort.Kortnummer, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.kunde.Kredittkort.Kortnummer, new {htmlAttributes = new {@class = "form-control", placeholder = @Html.DisplayNameFor(model => model.kunde.Kredittkort.Kortnummer)}})
+            <div class="spaceReiseInfo col-md-4 webflow-style-input">
+                @Html.EditorFor(model => model.kunde.Kredittkort.Kortnummer, new {htmlAttributes = new {@class = "", placeholder = @Html.DisplayNameFor(model => model.kunde.Kredittkort.Kortnummer)}})
                 @Html.ValidationMessageFor(model => model.kunde.Kredittkort.Kortnummer, "", new {@class = "text-danger"})
             </div>
-            <div class="col-md-2">
+            <div class="fontReise col-md-3">
                 <label>Bytter:</label>
                 @Html.DisplayFor(model => model.reise.Bytter)
             </div>
-            <div class="col-md-2">
+            <div class="fontReise col-md-3">
                 <label>Pris:</label>
                 @Html.DisplayFor(model => model.reise.Pris)
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.kunde.Kredittkort.Utlopsdato, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.kunde.Kredittkort.Utlopsdato, new {htmlAttributes = new {@class = "form-control", placeholder = "10/22"}})
+            <div class="spaceReiseInfo col-md-4 webflow-style-input">
+                @Html.EditorFor(model => model.kunde.Kredittkort.Utlopsdato, new {htmlAttributes = new {@class = "", placeholder = "10/22"}})
                 @Html.ValidationMessageFor(model => model.kunde.Kredittkort.Utlopsdato, "", new {@class = "text-danger"})
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.kunde.Kredittkort.Cvc, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.kunde.Kredittkort.Cvc, new {htmlAttributes = new {@class = "form-control", placeholder = @Html.DisplayNameFor(model => model.kunde.Kredittkort.Cvc)}})
+            <div class="spaceReiseInfo col-md-4 webflow-style-input">
+                @Html.EditorFor(model => model.kunde.Kredittkort.Cvc, new {htmlAttributes = new {@class = "", placeholder = @Html.DisplayNameFor(model => model.kunde.Kredittkort.Cvc)}})
                 @Html.ValidationMessageFor(model => model.kunde.Kredittkort.Cvc, "", new {@class = "text-danger"})
             </div>
         </div>

@@ -3,6 +3,10 @@
     font-family: sans-serif;
 }
 
+.fontReise{
+    font-size: 25px;
+}
+
 .hForside{
     margin-top: 2em;
     text-align: center;
@@ -25,10 +29,12 @@
     box-shadow: none;
     margin: auto;
     max-width: 100%;
+    font-size: 23px;
 }
 
 .fyll{
     max-width: 100%;
+    font-size: 23px !important;
 }
 
 .select:hover, .select:active{
@@ -44,6 +50,10 @@
 
 .space {
     margin: 50px 100px 100px 50px !important;
+}
+
+.spaceReiseInfo{
+    margin-right: 185px !important;
 }
 
 .borderStrekk{
@@ -125,6 +135,17 @@
     .showThis{
         display: inline-block;
     }
+
+    .spaceReiseInfo{
+        margin-right: 85px !important;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .goneReiseInfo{
+        display: none;
+    }
+    
 }
 
 /*INPUT BUTTONS STYLE*/
@@ -217,7 +238,7 @@ a.demo {
 
 .webflow-style-input input {
     flex-grow: 1;
-    color: #BFD2FF;
+    color: black;
     font-size: 1.8rem;
     line-height: 2.4rem;
     vertical-align: middle;
