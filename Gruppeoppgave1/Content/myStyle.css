@@ -1,32 +1,15 @@
-﻿body {
+﻿/*Felles */
+body {
     background-color: whitesmoke;
     font-family: sans-serif;
 }
 
-.borderStrekk{
-    border-top: 5px solid #089C80;
-    border-bottom: 5px solid #089C80;
-}
-
-.bilettH {
-    text-align: center;
-    font-size: 60px;
-    margin-top: 2em;
-    margin-bottom: 1em;
-}
-
-.white{
-    background-color: white;
-    border-bottom: 2px solid #089C80;
-    height: 6em;
-}
-
-.down{
-    font-size: 20px;
-    line-height: 3;
-    margin: 30px 0px 30px 0px;
-    text-align: center;
-    
+.fjernStyle{
+    border: none; !important;
+    text-align: left;
+    outline: none;
+    box-shadow: none;
+    width: 11%;
 }
 
 .black {
@@ -55,20 +38,107 @@
     height: 4em;
 }
 
-.fjernStyle{
-    border: none; !important;
-    text-align: left;
-    outline: none;
-    box-shadow: none;
-    width: 11%;
+
+.down{
+    font-size: 20px;
+    line-height: 3;
+    margin: 30px 0px 30px 0px;
+    text-align: center;
+
 }
 
+.white{
+    background-color: white;
+    border-bottom: 2px solid #089C80;
+    height: 6em;
+}
+
+.borderStrekk{
+    border-top: 5px solid #089C80;
+    border-bottom: 5px solid #089C80;
+}
+
+.fyll{
+    max-width: 100%;
+    font-size: 23px !important;
+}
+
+.space {
+    margin: 50px 100px 100px 50px !important;
+}
+
+.center{
+    text-align: center;
+}
+
+.ekstraPadding{
+    padding: 19px !important;
+}
+
+.select{
+    background: #F5F5F5;
+    border:0;
+    outline:0;
+    box-shadow: none;
+    margin: auto;
+    max-width: 100%;
+    font-size: 23px;
+}
+
+.select:hover, .select:active{
+    background: #F5F5F5;
+    border:0;
+    outline:0;
+    box-shadow: none;
+}
+
+.fontReise{
+    font-size: 25px;
+}
+
+.hForside{
+    margin-top: 2em;
+    text-align: center;
+}
+
+.hReiseinfo{
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+/*ReiseInfo */
+
+.spaceReiseInfo{
+    margin-right: 185px !important;
+}
+
+.borderStrekk2{
+    border-top: 2px solid black;
+    padding-top: 2em;
+}
+
+/*ReiseValg*/
 .region{
     width: 60px;
     text-align: center;
     font-weight: bold;
 }
 
+.hReisevalg{
+    margin-top: 2em;
+}
+/*Billett */
+
+.bilettH {
+    text-align: center;
+    font-size: 60px;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+
+/*MEDIA QUERIES*/
 @media only screen and (max-width: 1200px) {
     .gone {
         display: none;
@@ -77,7 +147,129 @@
     .showThis{
         display: inline-block;
     }
+
+    .spaceReiseInfo{
+        margin-right: 85px !important;
+    }
 }
+
+@media only screen and (max-width: 990px) {
+    .goneReiseInfo{
+        display: none;
+    }
+    
+}
+
+/*INPUT BUTTONS STYLE*/
+/* ====================================================
+Recreating the email field from https://webflow.com/cms. Just an experiment - not as cross-browser friendly as the original.
+Changed:
+- animated gradient bar to :after element
+- flexbox for layout
+==================================================== */
+
+input {
+    border-style: none;
+    background: transparent;
+    outline: none;
+}
+
+button {
+    padding: 0;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+
+
+h1.demo {
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+    color: #f5f6ff;
+}
+
+a.demo {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: rgba(202, 205, 239, 0.8);
+    margin-bottom: 3rem;
+}
+
+.demo-flex-spacer {
+    flex-grow: 1;
+}
+
+@-webkit-keyframes gradient {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+.webflow-style-input {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: 2px;
+    padding: 1.4rem 2rem 1.6rem;
+    background: #F5F5F5;
+}
+.webflow-style-input:after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 999;
+    height: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-position: 0% 0%;
+    background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
+    background-size: 500% auto;
+    -webkit-animation: gradient 3s linear infinite;
+    animation: gradient 3s linear infinite;
+}
+
+.webflow-style-input input {
+    flex-grow: 1;
+    color: black;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    vertical-align: middle;
+}
+.webflow-style-input input::-webkit-input-placeholder {
+    color: #7881A1;
+}
+
+.webflow-style-input button {
+    color: #7881A1;
+    font-size: 2.4rem;
+    line-height: 2.4rem;
+    vertical-align: middle;
+    transition: color .25s;
+}
+.webflow-style-input button:hover {
+    color: #BFD2FF;
+}
+
 
 #spinner {
     visibility: hidden;
