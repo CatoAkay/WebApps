@@ -6,15 +6,15 @@
 
     Session["Fra"] = Model.reise.Fra;
     Session["Til"] = Model.reise.Til;
-	Session["Klokke"] = "T" + Model.reise.Tid;
-	Session["Dato"] = Model.reise.Dato;
-	String tid = (String)Session["klokke"];
-	Session["Tid"] = Model.reise.Tid;
-	String dato = Model.reise.Dato;
+    Session["Klokke"] = "T" + Model.reise.Tid;
+    Session["Dato"] = Model.reise.Dato;
+    String tid = (String)Session["klokke"];
+    Session["Tid"] = Model.reise.Tid;
+    String dato = Model.reise.Dato;
 
-	String[] datoSplit = dato.Split('-');
+    String[] datoSplit = dato.Split('-');
 
-	Session["Tid"] = datoSplit[2] + "-" + datoSplit[1] + "-" + datoSplit[0] + tid;
+    Session["Tid"] = datoSplit[2] + "-" + datoSplit[1] + "-" + datoSplit[0] + tid;
 }
 
 <div class="disapear">
@@ -23,46 +23,58 @@
     <p id="Tid">@Session["Tid"]</p>
 </div>
 
+<div id="spinner" class="show"></div>
+
+
 <script type="text/javascript">
     const Fra = document.getElementById("Fra").innerHTML;
     const Til = document.getElementById("Til").innerHTML;
     const Tid = document.getElementById("Tid").innerHTML;
+
+    const spinner = document.getElementById("spinner");
+
+  
+
+    function hideSpinner() {
+        spinner.className = spinner.className.replace("show", "");
+    }
+
     const promiseVy =
         fetch
             (
-                "https://booking.cloud.nsb.no/api/itineraries/search", 
-            {
-
-                "credentials":"omit","headers":
+                "https://booking.cloud.nsb.no/api/itineraries/search",
                 {
-                    "accept":"application/json",
-                    "content-type":"application/json",
-                    "sec-fetch-mode":"cors",
+
+                    "credentials": "omit", "headers":
+                    {
+                        "accept": "application/json",
+                        "content-type": "application/json",
+                        "sec-fetch-mode": "cors",
                         "x-language": "no"
-                },
-                "referrer":"https://www.vy.no/bestill/velg-togavgang?from=Oslo%20S&fromDisplayName=Oslo%20S&fromType=train-station-name&to=Oslo%20Lufthavn&toDisplayName=Oslo%20Lufthavn&toType=train-station-name&departureDatetime=2019-09-30%2011%3A35&petFree=false&pasCats=1&numPasCats=1",
-                "referrerPolicy": "no-referrer-when-downgrade",
-                "body": "{\"to\":\"" + Til + "\",\"from\":\"" + Fra + "\",\"time\":\"" + Tid + "\",\"limitResultsToSameDay\":true,\"language\":\"no\",\"passengers\":[{\"type\":\"ADULT\",\"customerNumber\":null,\"discount\":\"NONE\",\"extras\":[]}],\"priceNecessity\":\"REQUIRED\",\"hasReturnTrip\":false}", "method": "POST", "mode": "cors"
-            });
+                    },
+                    "referrer": "https://www.vy.no/bestill/velg-togavgang?from=Oslo%20S&fromDisplayName=Oslo%20S&fromType=train-station-name&to=Oslo%20Lufthavn&toDisplayName=Oslo%20Lufthavn&toType=train-station-name&departureDatetime=2019-09-30%2011%3A35&petFree=false&pasCats=1&numPasCats=1",
+                    "referrerPolicy": "no-referrer-when-downgrade",
+                    "body": "{\"to\":\"" + Til + "\",\"from\":\"" + Fra + "\",\"time\":\"" + Tid + "\",\"limitResultsToSameDay\":true,\"language\":\"no\",\"passengers\":[{\"type\":\"ADULT\",\"customerNumber\":null,\"discount\":\"NONE\",\"extras\":[]}],\"priceNecessity\":\"REQUIRED\",\"hasReturnTrip\":false}", "method": "POST", "mode": "cors"
+                });
 
     jason = promiseVy.then(data => data.json())
         .then(data => data.itineraries)
-        .then(data =>
-        {
+        .then(data => {
             console.log(data);
-            if (data == undefined)
-            {
+            if (data == undefined) {
+                hideSpinner();
                 alert('Fant ingen reiser');
                 window.location = '/Home/';
             }
 
-            if (data.length == 0)
-            {
+            if (data.length == 0) {
+                hideSpinner();
                 alert('Fant ingen reiser');
                 window.location = '/Home/';
             }
-           
+
             $.each(data, function (i, item) {
+                hideSpinner();
                 var day = data[i].duration.days;
                 var hours = data[i].duration.hours;
                 var minutes = data[i].duration.minutes;
@@ -126,8 +138,9 @@
 <h2>Tid: @Session["Dato"] Fra Kl: @Model.reise.Tid </h2>
 
 <div id="valg" class="form-row">
-
 </div>
+
+
 
 
 

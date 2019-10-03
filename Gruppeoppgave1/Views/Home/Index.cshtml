@@ -7,7 +7,7 @@
 }
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#dato").datepicker({
             dateFormat: "dd-mm-yy",
             minDate: -0,
@@ -23,22 +23,22 @@
 
     <div class="form-row">
         <div class="form-group col-md-3">
-            @Html.LabelFor(model => model.reise.Dato, htmlAttributes: new { @class = "control-label col-md-2",  min = @DateTime.Now.ToString("dd-MM-yyyy")})
-            @Html.EditorFor(model => model.reise.Dato, new { htmlAttributes = new { autocomplete="off", @class = "form-control" , id = "dato", name = "Dato", placeholder = "Velg Dato"} })
+            @Html.LabelFor(model => model.reise.Dato, htmlAttributes: new { @class = "control-label col-md-2", min = @DateTime.Now.ToString("dd-MM-yyyy") })
+            @Html.EditorFor(model => model.reise.Dato, new { htmlAttributes = new { autocomplete = "off", @class = "form-control", id = "dato", name = "Dato", placeholder = "Velg Dato" } })
         </div>
         <div class="form-group col-md-3">
             @Html.LabelFor(model => model.reise.Tid, htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.DropDownListFor(model => model.reise.Tid, new SelectList(Model.reiseTidene, "Value", "Text"), new { @class = "form-control", type = "time", id = "tid", name = "Tid" })
-        </div> 
+        </div>
         <div class="form-group col-md-3">
             @Html.LabelFor(model => model.reise.Fra, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.reise.Fra, new { htmlAttributes = new { @class = "stopInput form-control", type = "text", list ="fromSuggestions", name = "Fra", placeholder="Fra" } })
+            @Html.EditorFor(model => model.reise.Fra, new { htmlAttributes = new { @class = "stopInput form-control", type = "text", list = "fromSuggestions", name = "Fra", placeholder = "Fra" } })
             <datalist id="fromSuggestions">
             </datalist>
         </div>
         <div class="form-group col-md-3">
             @Html.LabelFor(model => model.reise.Til, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.reise.Til, new { htmlAttributes = new { @class = "stopInput form-control", type = "text", list = "toSuggestions",id="til", name = "Til", placeholder = "Til" } })
+            @Html.EditorFor(model => model.reise.Til, new { htmlAttributes = new { @class = "stopInput form-control", type = "text", list = "toSuggestions", id = "til", name = "Til", placeholder = "Til" } })
             <datalist id="toSuggestions">
             </datalist>
         </div>
