@@ -6,9 +6,19 @@
 
     Session["Fra"] = Model.reise.Fra;
     Session["Til"] = Model.reise.Til;
-    Session["Tid"] = Model.reise.Dato + "T" + Model.reise.Tid;
-    Session["TidA"] = Model.reise.Tid;
+    Session["Clocke"] = "T" + Model.reise.Tid;
     Session["Dato"] = Model.reise.Dato;
+    String tid = (String)Session["Clocke"];
+    Session["Tid"] = Model.reise.Tid;
+    String dato = Model.reise.Dato;
+
+    String[] datoSplit = dato.Split('-');
+
+    Session["Tid"] = datoSplit[2] + "-" + datoSplit[1] + "-" + datoSplit[0] + tid;
+
+
+
+
 }
 
 <div class="disapear">
