@@ -117,14 +117,10 @@
     font-weight: bold;
 }
 
-@media only screen and (max-width: 1200px) {
-    .gone {
-        display: none;
-    }
-    
-    .showThis{
-        display: inline-block;
-    }
+.img {
+    height: 80px; 
+    width: 95px;
+
 }
 
 /*INPUT BUTTONS STYLE*/
