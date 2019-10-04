@@ -63,13 +63,13 @@
             console.log(data);
             if (data == undefined) {
                 hideSpinner();
-                alert('Fant ingen reiser');
+                alert('Fant ingen reiser, prøv igjen');
                 window.location = '/Home/';
             }
 
             if (data.length == 0) {
                 hideSpinner();
-                alert('Fant ingen reiser');
+                alert('Fant ingen reiser, prøv igjen');
                 window.location = '/Home/';
             }
 
@@ -154,7 +154,7 @@
 <h2 class="h2ReiseValg">Tid: @Session["Dato"] Fra Kl: @Model.reise.Tid </h2>
 
 <div id="valg" class="container-fluid">
-    
+    <a href="/Home/Index" class="clearA"><button id="velgReise" type="submit" class="btn ">Tilbake</button></a>
 </div>
 
 

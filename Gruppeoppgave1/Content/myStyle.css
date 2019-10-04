@@ -124,6 +124,7 @@ body {
 
 .bigger{
     width: 190px;
+    margin-bottom: 2em;
 }
 
 /*Reise Valg*/
@@ -192,6 +193,11 @@ body {
     font-size: 60px;
     margin-top: 2em;
     margin-bottom: 1em;
+}
+
+.bigger2{
+    width: -webkit-fill-available;
+    margin-top: 10px;
 }
 
 
@@ -374,7 +380,7 @@ button{
     outline:none;
 }
 button:hover{
-    background:#fff;
+    background:whitesmoke;
     color:#1AAB8A;
 }
 button:before,button:after{

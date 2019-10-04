@@ -6,45 +6,47 @@
 
 <h1 class="bilettH">KVITTERING</h1>
 <div class="borderStrekk">
-<div class="down container">
-    <div class="col-lg-4">
-        <label>ID:</label>
-        @Html.DisplayFor(model => model.ID)
-        <br/><label>Fornavn:</label>
-        @Html.DisplayFor(model => model.Kunde.Fornavn)
-        <br/><label>Etternavn:</label>
-        @Html.DisplayFor(model => model.Kunde.Etternavn)
-        <br/><label>Email:</label>
-        @Html.DisplayFor(model => model.Kunde.Email)        
-        <br/><label>Telefon:</label>
-        @Html.DisplayFor(model => model.Kunde.Telefon)
-    </div>
-    <div class="col-lg-4">
-        <label>Pris:</label>
-        @Html.DisplayFor(model => model.Reise.Pris) ,-
-        <br/><label>Fra:</label>
-        @Html.DisplayFor(model => model.Reise.Fra)
-        <br/><label>Til:</label>
-        @Html.DisplayFor(model => model.Reise.Til)
-        <br/><label>Dato:</label>
-        @Html.DisplayFor(model => model.Reise.Dato)
-        <br/><label>Tid:</label>
-        @Html.DisplayFor(model => model.Reise.Tid)
-    </div>
-    <div class="col-lg-4">
-        <label>Spor:</label>
-        @Html.DisplayFor(model => model.Reise.Spor)
-        <br/><label>Tog:</label>
-        @Html.DisplayFor(model => model.Reise.Tog)
-        <br/><label>Bytter:</label>
-        @Html.DisplayFor(model => model.Reise.Bytter)
-        <br/><label>Avgang:</label>
-        @Html.DisplayFor(model => model.Reise.Avgang)
-        <br/><label>Ankomst:</label>
-        @Html.DisplayFor(model => model.Reise.Ankomst)
+    <div class="down container">
+        <div class="col-lg-4">
+            <label>ID:</label>
+            @Html.DisplayFor(model => model.ID)
+            <br/><label>Fornavn:</label>
+            @Html.DisplayFor(model => model.Kunde.Fornavn)
+            <br/><label>Etternavn:</label>
+            @Html.DisplayFor(model => model.Kunde.Etternavn)
+            <br/><label>Email:</label>
+            @Html.DisplayFor(model => model.Kunde.Email)        
+            <br/><label>Telefon:</label>
+            @Html.DisplayFor(model => model.Kunde.Telefon)
+        </div>
+        <div class="col-lg-4">
+            <label>Pris:</label>
+            @Html.DisplayFor(model => model.Reise.Pris) ,-
+            <br/><label>Fra:</label>
+            @Html.DisplayFor(model => model.Reise.Fra)
+            <br/><label>Til:</label>
+            @Html.DisplayFor(model => model.Reise.Til)
+            <br/><label>Dato:</label>
+            @Html.DisplayFor(model => model.Reise.Dato)
+            <br/><label>Tid:</label>
+            @Html.DisplayFor(model => model.Reise.Tid)
+        </div>
+        <div class="col-lg-4">
+            <label>Spor:</label>
+            @Html.DisplayFor(model => model.Reise.Spor)
+            <br/><label>Tog:</label>
+            @Html.DisplayFor(model => model.Reise.Tog)
+            <br/><label>Bytter:</label>
+            @Html.DisplayFor(model => model.Reise.Bytter)
+            <br/><label>Avgang:</label>
+            @Html.DisplayFor(model => model.Reise.Avgang)
+            <br/><label>Ankomst:</label>
+            @Html.DisplayFor(model => model.Reise.Ankomst)
+        </div>
     </div>
 </div>
-</div>
+<a href="/Home/Index"><button class="bigger2 btn">Ny bilett</button></a>
+
 
 
 
