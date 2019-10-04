@@ -109,6 +109,7 @@ body {
 
 .knappIndex{
     margin-left: 40px;
+    font-size: 20px;
 }
 
 /*ReiseInfo */
@@ -129,6 +130,9 @@ body {
 
 /*Reise Valg*/
 
+.tilbake{
+    font-size: 20px;
+}
 #velgReise{
     height: auto;
 }
@@ -198,6 +202,7 @@ body {
 .bigger2{
     width: -webkit-fill-available;
     margin-top: 10px;
+    font-size: 25px;
 }
 
 

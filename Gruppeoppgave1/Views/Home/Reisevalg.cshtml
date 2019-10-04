@@ -136,7 +136,7 @@
                     '<input class="fjernStyle4" readonly name="PrisStreng" value=" ' + pris + ',-">' +
                     '</div>' + 
                     '<div class="form-group col-lg-2">' +
-                    '<button id="velgReise" type="submit" class="btn ">Velg reise</button>' +
+                    '<button id="velgReise" type="submit" class="tilbake btn">Velg reise</button>' +
                     '</div>' +
                     '<input type="hidden" name="Avgang" value="' + avgang + '">' +
                     '<input type="hidden" name="Ankomst" value="' + ankomst + '">' +
@@ -154,7 +154,7 @@
 <h2 class="h2ReiseValg">Tid: @Session["Dato"] Fra Kl: @Model.reise.Tid </h2>
 
 <div id="valg" class="container-fluid">
-    <a href="/Home/Index" class="clearA"><button id="velgReise" type="submit" class="btn ">Tilbake</button></a>
+    <a href="/Home/Index"><button id="velgReise" type="submit" class="tilbake btn">Tilbake</button></a>
 </div>
 
 
