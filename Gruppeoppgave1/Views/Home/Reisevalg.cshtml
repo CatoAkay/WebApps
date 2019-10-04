@@ -109,35 +109,38 @@
                 }
 
                 var tur =
-                    '<form action="/Home/ReiseInfo" method = "Post" ><div class="form-group col-md-12">' +
-                    '<label>Avgang - Ankomst</label>' +
+                    '<form action="/Home/ReiseInfo" method = "Post" >' +
+                    '<div class="boksReisevalg form-group col-md-12">' +
+                    '<label>Avg.-Ank.</label>' +
+                    '<input class="fjernStyle" readonly name="FraTil" value=" ' + avgang + ' - ' + ankomst + '">' +
+                    '<label id="tid">Tid:</label>' +
+                    '<input class="fjernStyle" readonly name="Tid" value=" ' + duration + '">' +
+                    '<label id="bytter">Bytter:</label>' +
+                    '<input class="fjernStyle2" readonly name="BytterStreng" value=" ' + bytter + ' bytter">' +
+                    '<label id="spor">Spor:</label>' +
+                    '<input class="fjernStyle4" readonly name="Spor" value=" ' + spor + '">' +
+                    '<label id="tog">Tog:</label>' +
+                    '<input size="1" class="region fjernStyle3" readonly name="Tog" style="' + 'border: solid black 1px; background-color:#' + farge + '" value="' + tog + '">' +
+                    '<label id="pris">Pris:</label>' +
+                    '<input class="fjernStyle4" readonly name="PrisStreng" value=" ' + pris + ',-">' +
+                    '<button id="velgReise" type="submit" class="btn ">Velg reise</button>' +
+                    '</div>' +
                     '<input type="hidden" name="Avgang" value="' + avgang + '">' +
                     '<input type="hidden" name="Ankomst" value="' + ankomst + '">' +
                     '<input type="hidden" name="Pris" value="' + pris + '">' +
                     '<input type="hidden" name="Bytter" value="' + bytter + '">' +
-                    '<input class="fjernStyle" readonly name="FraTil" value=" ' + avgang + ' - ' + ankomst + '">' +
-                    '<label>Tid:</label>' +
-                    '<input class="fjernStyle" readonly name="Tid" value=" ' + duration + '">' +
-                    '<label>Bytter:</label>' +
-                    '<input class="fjernStyle" readonly name="BytterStreng" value=" ' + bytter + ' bytter">' +
-                    '<label>Spor:</label>' +
-                    '<input class="fjernStyle" readonly name="Spor" value=" ' + spor + '">' +
-                    '<label>Tog:</label>' +
-                    '<input size="1" class="region fjernStyle" readonly name="Tog" style="' + 'border: solid black 1px; background-color:#' + farge + '" value="' + tog + '">' +
-                    '<label>Pris:</label>' +
-                    '<input class="fjernStyle" readonly name="PrisStreng" value=" ' + pris + ',-">' +
-                    '<button type="submit" class="btn btn-primary">Velg reise</button>' +
-                    '</div><form>';
+                    '<form>';
                 $("#valg").append(tur);
             });
         });
 </script>
 
 <h1 class="hReisevalg">Reisevalg</h1>
-<h2>Reise valg for @Session["Fra"] til @Session["Til"]</h2>
-<h2>Tid: @Session["Dato"] Fra Kl: @Model.reise.Tid </h2>
+<h2 class="h2ReiseValg">Reise valg for @Session["Fra"] til @Session["Til"]</h2>
+<h2 class="h2ReiseValg">Tid: @Session["Dato"] Fra Kl: @Model.reise.Tid </h2>
 
 <div id="valg" class="form-row">
+    
 </div>
 
 
