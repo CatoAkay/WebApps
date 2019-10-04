@@ -148,6 +148,7 @@
     <Content Include="IMG\logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\Gruppeoppgave120191004061949 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -195,10 +196,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Home\Reisevalg.cshtml" />
-    <Content Include="Views\Home\Kunde.cshtml" />
     <Content Include="Views\Home\Billett.cshtml" />
     <Content Include="Views\Home\ReiseInfo.cshtml" />
-    <Content Include="Views\Home\Reiser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

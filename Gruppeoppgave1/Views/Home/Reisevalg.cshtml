@@ -71,6 +71,7 @@
                 hideSpinner();
                 alert('Fant ingen reiser, prøv igjen');
                 window.location = '/Home/';
+
             }
 
             $.each(data, function (i, item) {
@@ -91,6 +92,12 @@
                 }
                 else {
                     pris = data[i].priceOptions[0].amount;
+                }
+
+                if (pris == null) {
+                    hideSpinner();
+                    alert('Velg tid som ikke har vært');
+                    window.location = '/Home/';
                 }
 
                 if (day === 0 && hours === 0) {
