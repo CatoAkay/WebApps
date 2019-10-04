@@ -32,7 +32,7 @@
                 var id = "#" + input.target.attributes.list.value;
                 $(id).html("");
                 response.data.stopPlace.forEach(function (item) {
-                    $(id).append('<option data-value="' + item.id + '">' + item.name.value + '</option>');
+                    $(id).append('<option data-value=""  ' + item.id + '">' + item.name.value + '</option>');
                 });
                 console.log(response.data);
             },
