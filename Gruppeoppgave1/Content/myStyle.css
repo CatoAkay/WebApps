@@ -1,15 +1,13 @@
 ﻿/*Felles */
 body {
     background-color: whitesmoke;
-    font-family: sans-serif;
+    font-family: "Times New Roman", Times, serif;
 }
 
 .img {
     height: 80px;
     width: 95px;
 }
-
-
 
 .black {
     color: black !important;
@@ -107,6 +105,12 @@ body {
     text-align: center;
 }
 
+/*Index */
+
+.knappIndex{
+    margin-left: 40px;
+}
+
 /*ReiseInfo */
 
 .spaceReiseInfo{
@@ -122,24 +126,10 @@ body {
     width: 190px;
 }
 
-ReiseValg
-#tid{
-    margin-left: 15px;
-}
-#bytter{
-    margin-left: 5px;
-}
-#spor{
-    margin-left: 10px;
-}
-#tog{
-    margin-left: 7px;
-}
-#pris{
-    margin-left: 20px;
-}
+/*Reise Valg*/
 
 #velgReise{
+    height: auto;
 }
 .fjernStyle{
     text-align: left;

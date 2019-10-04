@@ -109,26 +109,40 @@
                 }
 
                 var tur =
+                    '<div class="boksReisevalg row">' +
                     '<form action="/Home/ReiseInfo" method = "Post" >' +
-                    '<div class="boksReisevalg form-group col-md-12">' +
+                    '<div class="form-group col-lg-4">' +
                     '<label>Avg.-Ank.</label>' +
                     '<input class="fjernStyle" readonly name="FraTil" value=" ' + avgang + ' - ' + ankomst + '">' +
+                    '</div>' +
+                    '<div class="form-group col-lg-3">' +
                     '<label id="tid">Tid:</label>' +
                     '<input class="fjernStyle" readonly name="Tid" value=" ' + duration + '">' +
+                    '</div>' +
+                    '<div class="form-group col-lg-3">' +
                     '<label id="bytter">Bytter:</label>' +
                     '<input class="fjernStyle2" readonly name="BytterStreng" value=" ' + bytter + ' bytter">' +
+                    '</div>' +
+                    '<div class="form-group col-lg-4">' +
                     '<label id="spor">Spor:</label>' +
                     '<input class="fjernStyle4" readonly name="Spor" value=" ' + spor + '">' +
+                    '</div>' +
+                    '<div class="form-group col-lg-3">' +
                     '<label id="tog">Tog:</label>' +
                     '<input size="1" class="region fjernStyle3" readonly name="Tog" style="' + 'border: solid black 1px; background-color:#' + farge + '" value="' + tog + '">' +
+                    '</div>' +
+                    '<div class="form-group col-lg-3">' +
                     '<label id="pris">Pris:</label>' +
                     '<input class="fjernStyle4" readonly name="PrisStreng" value=" ' + pris + ',-">' +
+                    '</div>' + 
+                    '<div class="form-group col-lg-2">' +
                     '<button id="velgReise" type="submit" class="btn ">Velg reise</button>' +
                     '</div>' +
                     '<input type="hidden" name="Avgang" value="' + avgang + '">' +
                     '<input type="hidden" name="Ankomst" value="' + ankomst + '">' +
                     '<input type="hidden" name="Pris" value="' + pris + '">' +
                     '<input type="hidden" name="Bytter" value="' + bytter + '">' +
+                    '</div>' +
                     '<form>';
                 $("#valg").append(tur);
             });
@@ -139,7 +153,7 @@
 <h2 class="h2ReiseValg">Reise valg for @Session["Fra"] til @Session["Til"]</h2>
 <h2 class="h2ReiseValg">Tid: @Session["Dato"] Fra Kl: @Model.reise.Tid </h2>
 
-<div id="valg" class="form-row">
+<div id="valg" class="container-fluid">
     
 </div>
 
