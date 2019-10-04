@@ -9,30 +9,31 @@ namespace Gruppeoppgave1.Controllers
 {
     public class HomeController : Controller
     {
-		private DB db = new DB();
+        private DB db = new DB();
+        private Reise reise = new Reise();
 
         // GET: Home
         public ActionResult Index()
         {
-            var tider = getAlleTider();
+            var tider = reise.getAlleTider();
             var reiseModel = new KundeReise();
-            reiseModel.reiseTidene = GetSelectListItems(tider);
-           
+            reiseModel.reiseTidene = reise.GetSelectListItems(tider);
+
             return View(reiseModel);
         }
 
         [HttpPost]
         public ActionResult Index(KundeReise reiseInput)
         {
-			var tider = getAlleTider();
-			reiseInput.reiseTidene = GetSelectListItems(tider);
-			if (ModelState.IsValid)
-			{
-				Session["Reise"] = reiseInput;
+            var tider = reise.getAlleTider();
+            reiseInput.reiseTidene = reise.GetSelectListItems(tider);
+            if (ModelState.IsValid)
+            {
+                Session["Reise"] = reiseInput;
 
-				return RedirectToAction("Reisevalg");
-			}
-			return View(reiseInput);
+                return RedirectToAction("Reisevalg");
+            }
+            return View(reiseInput);
         }
 
         public ActionResult ReiseValg()
@@ -40,16 +41,16 @@ namespace Gruppeoppgave1.Controllers
             return View(Session["Reise"]);
         }
 
-        public ActionResult Kunde ()
-        { 
-             return View();
+        public ActionResult Kunde()
+        {
+            return View();
         }
 
         public ActionResult Reiser()
-        { 
+        {
             return View(Session["Reisen"]);
         }
-     
+
         [HttpPost]
         public ActionResult ReiseInfo(KundeReise info)
         {
@@ -66,7 +67,7 @@ namespace Gruppeoppgave1.Controllers
                 var avgang = Request["Avgang"];
                 var ankomst = Request["Ankomst"];
 
-                Reise reise = new Reise
+                 reise = new Reise
                 {
                     Fra = fra,
                     Til = til,
@@ -111,51 +112,6 @@ namespace Gruppeoppgave1.Controllers
 
             return View(valgtBillett);
         }
-        
-        public IEnumerable<String> getAlleTider()
-        {
-            return new List<String>
-            {
-                "00:00",
-                "01:00",
-                "02:00",
-                "03:00",
-                "04:00",
-                "05:00",
-                "06:00",
-                "07:00",
-                "08:00",
-                "09:00",
-                "10:00",
-                "11:00",
-                "12:00",
-                "13:00",
-                "14:00",
-                "15:00",
-                "16:00",
-                "17:00",
-                "18:00",
-                "19:00",
-                "20:00",
-                "21:00",
-                "22:00",
-                "23:00",
-            };
-        }
-
-        public IEnumerable<SelectListItem> GetSelectListItems (IEnumerable<String> tider)
-        {
-            var valgteListe = new List<SelectListItem>();
-            foreach (var tid in tider)
-            {
-                valgteListe.Add(new SelectListItem
-                {
-                    Value = tid,
-                    Text = tid
-                });
-            }
-            return valgteListe;
-        }    
 
     }
 }
