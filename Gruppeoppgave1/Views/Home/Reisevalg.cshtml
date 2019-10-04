@@ -1,0 +1,163 @@
+﻿@using Gruppeoppgave1.Models
+@model Gruppeoppgave1.Models.KundeReise
+
+@{
+    ViewBag.Title = "Reisevalg";
+
+    Session["Fra"] = Model.reise.Fra;
+    Session["Til"] = Model.reise.Til;
+    Session["Klokke"] = "T" + Model.reise.Tid;
+    Session["Dato"] = Model.reise.Dato;
+    String tid = (String)Session["klokke"];
+    Session["Tid"] = Model.reise.Tid;
+    String dato = Model.reise.Dato;
+
+    String[] datoSplit = dato.Split('-');
+
+    Session["Tid"] = datoSplit[2] + "-" + datoSplit[1] + "-" + datoSplit[0] + tid;
+}
+
+<div class="disapear">
+    <p id="Fra">@Session["Fra"]</p>
+    <p id="Til">@Session["Til"]</p>
+    <p id="Tid">@Session["Tid"]</p>
+</div>
+
+<div id="spinner" class="show"></div>
+
+
+<script type="text/javascript">
+    const Fra = document.getElementById("Fra").innerHTML;
+    const Til = document.getElementById("Til").innerHTML;
+    const Tid = document.getElementById("Tid").innerHTML;
+
+    const spinner = document.getElementById("spinner");
+
+  
+
+    function hideSpinner() {
+        spinner.remove();
+    }
+
+    const promiseVy =
+        fetch
+            (
+                "https://booking.cloud.nsb.no/api/itineraries/search",
+                {
+
+                    "credentials": "omit", "headers":
+                    {
+                        "accept": "application/json",
+                        "content-type": "application/json",
+                        "sec-fetch-mode": "cors",
+                        "x-language": "no"
+                    },
+                    "referrer": "https://www.vy.no/bestill/velg-togavgang?from=Oslo%20S&fromDisplayName=Oslo%20S&fromType=train-station-name&to=Oslo%20Lufthavn&toDisplayName=Oslo%20Lufthavn&toType=train-station-name&departureDatetime=2019-09-30%2011%3A35&petFree=false&pasCats=1&numPasCats=1",
+                    "referrerPolicy": "no-referrer-when-downgrade",
+                    "body": "{\"to\":\"" + Til + "\",\"from\":\"" + Fra + "\",\"time\":\"" + Tid + "\",\"limitResultsToSameDay\":true,\"language\":\"no\",\"passengers\":[{\"type\":\"ADULT\",\"customerNumber\":null,\"discount\":\"NONE\",\"extras\":[]}],\"priceNecessity\":\"REQUIRED\",\"hasReturnTrip\":false}", "method": "POST", "mode": "cors"
+                });
+
+    jason = promiseVy.then(data => data.json())
+        .then(data => data.itineraries)
+        .then(data => {
+            console.log(data);
+            if (data == undefined) {
+                hideSpinner();
+                alert('Fant ingen reiser, prøv igjen');
+                window.location = '/Home/';
+            }
+
+            if (data.length == 0) {
+                hideSpinner();
+                alert('Fant ingen reiser, prøv igjen');
+                window.location = '/Home/';
+            }
+
+            $.each(data, function (i, item) {
+                hideSpinner();
+                var day = data[i].duration.days;
+                var hours = data[i].duration.hours;
+                var minutes = data[i].duration.minutes;
+                var avgang = data[i].departureScheduled.slice(11, -3);
+                var ankomst = data[i].arrivalScheduled.slice(11, -3);
+                var bytter = data[i].numberOfTransfers;
+                var spor = data[i].legs[0].departureTrack;
+                var tog = data[i].legs[0].line.name;
+                var pris = 0;
+                var duration = "";
+
+                if (data[i].priceOptions.length === 2) {
+                    pris = data[i].priceOptions[1].amount;
+                }
+                else {
+                    pris = data[i].priceOptions[0].amount;
+                }
+
+                if (day === 0 && hours === 0) {
+                    duration += minutes + " min";
+                }
+                else if (day === 0) {
+                    duration += hours + " t " + minutes + " min"
+                }
+                else {
+                    duration += day + " d " + hours + " t " + minutes + " min";
+                }
+
+                var farge = data[i].legs[0].line.colors.background;
+                if (farge === "333333") {
+                    farge = "white";
+                }
+
+                var tur =
+                    '<div class="boksReisevalg row">' +
+                    '<form action="/Home/ReiseInfo" method = "Post" >' +
+                    '<div class="form-group col-lg-4">' +
+                    '<label>Avg.-Ank.</label>' +
+                    '<input class="fjernStyle" readonly name="FraTil" value=" ' + avgang + ' - ' + ankomst + '">' +
+                    '</div>' +
+                    '<div class="form-group col-lg-3">' +
+                    '<label id="tid">Tid:</label>' +
+                    '<input class="fjernStyle" readonly name="Tid" value=" ' + duration + '">' +
+                    '</div>' +
+                    '<div class="form-group col-lg-3">' +
+                    '<label id="bytter">Bytter:</label>' +
+                    '<input class="fjernStyle2" readonly name="BytterStreng" value=" ' + bytter + ' bytter">' +
+                    '</div>' +
+                    '<div class="form-group col-lg-4">' +
+                    '<label id="spor">Spor:</label>' +
+                    '<input class="fjernStyle4" readonly name="Spor" value=" ' + spor + '">' +
+                    '</div>' +
+                    '<div class="form-group col-lg-3">' +
+                    '<label id="tog">Tog:</label>' +
+                    '<input size="1" class="region fjernStyle3" readonly name="Tog" style="' + 'border: solid black 1px; background-color:#' + farge + '" value="' + tog + '">' +
+                    '</div>' +
+                    '<div class="form-group col-lg-3">' +
+                    '<label id="pris">Pris:</label>' +
+                    '<input class="fjernStyle4" readonly name="PrisStreng" value=" ' + pris + ',-">' +
+                    '</div>' + 
+                    '<div class="form-group col-lg-2">' +
+                    '<button id="velgReise" type="submit" class="tilbake btn">Velg reise</button>' +
+                    '</div>' +
+                    '<input type="hidden" name="Avgang" value="' + avgang + '">' +
+                    '<input type="hidden" name="Ankomst" value="' + ankomst + '">' +
+                    '<input type="hidden" name="Pris" value="' + pris + '">' +
+                    '<input type="hidden" name="Bytter" value="' + bytter + '">' +
+                    '</div>' +
+                    '<form>';
+                $("#valg").append(tur);
+            });
+        });
+</script>
+
+<h1 class="hReisevalg">Reisevalg</h1>
+<h2 class="h2ReiseValg">Reise valg for @Session["Fra"] til @Session["Til"]</h2>
+<h2 class="h2ReiseValg">Tid: @Session["Dato"] Fra Kl: @Model.reise.Tid </h2>
+
+<div id="valg" class="container-fluid">
+    <a href="/Home/Index"><button id="velgReise" type="submit" class="tilbake btn">Tilbake</button></a>
+</div>
+
+
+
+
+
