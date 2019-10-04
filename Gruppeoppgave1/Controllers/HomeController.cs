@@ -24,11 +24,15 @@ namespace Gruppeoppgave1.Controllers
         [HttpPost]
         public ActionResult Index(KundeReise reiseInput)
         {
-            var tider = getAlleTider();
-            reiseInput.reiseTidene = GetSelectListItems(tider);
-            Session["Reise"] = reiseInput;
+			var tider = getAlleTider();
+			reiseInput.reiseTidene = GetSelectListItems(tider);
+			if (ModelState.IsValid)
+			{
+				Session["Reise"] = reiseInput;
 
-            return RedirectToAction("Reisevalg");
+				return RedirectToAction("Reisevalg");
+			}
+			return View(reiseInput);
         }
 
         public ActionResult ReiseValg()
@@ -108,7 +112,7 @@ namespace Gruppeoppgave1.Controllers
             return View(valgtBillett);
         }
         
-        private IEnumerable<String> getAlleTider()
+        public IEnumerable<String> getAlleTider()
         {
             return new List<String>
             {
@@ -139,7 +143,7 @@ namespace Gruppeoppgave1.Controllers
             };
         }
 
-        private IEnumerable<SelectListItem> GetSelectListItems (IEnumerable<String> tider)
+        public IEnumerable<SelectListItem> GetSelectListItems (IEnumerable<String> tider)
         {
             var valgteListe = new List<SelectListItem>();
             foreach (var tid in tider)
