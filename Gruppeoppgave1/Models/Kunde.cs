@@ -19,9 +19,7 @@ namespace Gruppeoppgave1.Models
         public String Etternavn { get; set; }
 
         [Required(ErrorMessage = "Oppgi email")]
-        [EmailAddress]
-        [RegularExpression(@"^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(hotmail|gmail)\.(com|no)$", ErrorMessage ="Skriv inn riktig domene (gmail/hotmail)")]
-        //[RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}", ErrorMessage = "Skriv inn riktig format: abc@mail.com")]
+        [EmailAddress(ErrorMessage ="Skriv inn en gyldig emailAdresse")]
         public String Email { get; set; }
 
         [Display(Name = "Telefon")]
