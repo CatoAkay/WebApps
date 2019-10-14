@@ -176,6 +176,7 @@
     <Compile Include="Models\Kunde.cs" />
     <Compile Include="Models\DB.cs" />
     <Compile Include="Models\KundeReise.cs" />
+    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Reise.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -198,6 +199,7 @@
     <Content Include="Views\Home\Reisevalg.cshtml" />
     <Content Include="Views\Home\Billett.cshtml" />
     <Content Include="Views\Home\ReiseInfo.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -208,6 +210,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Api\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
