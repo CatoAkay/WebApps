@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Gruppeoppgave1.Models.Kunde>
+
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Admin</h2>
+
+    
+<table>
+    @foreach (var k in Model)
+    {
+    <tr>
+        <td> ID: </td>
+        <td> @k.ID </td>
+        <td> Fornavn: </td>
+        <td> @k.Fornavn</td>
+        <td> Etternavn: </td>
+        <td> @k.Etternavn </td>
+        <td> Email: </td>
+        <td> @k.Email </td>
+        <td> Telefon: </td>
+        <td> @k.Telefon </td>
+
+
+
+
+        <td><a href="/Home/SlettKunde?id=@k.ID" class="btn">Slett</a></td>
+        <td><a href="/Home/EditKunde?id=@k.ID" class="btn">Edit</a></td>
+        <td><a href="/Home/AdminReise?id=@k.ID" class="btn">se Reise</a></td>
+    </tr>
+    }
+</table>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

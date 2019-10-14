@@ -15,9 +15,9 @@ namespace Gruppeoppgave1.Models
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
-		public DbSet<Kunde> Kunde { get; set; }
-		public DbSet<Billett> Billett { get; set; }
-        public DbSet<Reise> Reise { get; set; }
-        public DbSet<Kredittkort> Kredittkort { get; set; }
+		public virtual DbSet<Kunde> Kunde { get; set; }
+		public virtual DbSet<Billett> Billett { get; set; }
+        public virtual DbSet<Reise> Reise { get; set; }
+        public virtual DbSet<Kredittkort> Kredittkort { get; set; }
     }
 }

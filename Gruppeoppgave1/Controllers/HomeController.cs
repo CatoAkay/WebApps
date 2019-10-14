@@ -113,5 +113,56 @@ namespace Gruppeoppgave1.Controllers
             return View(valgtBillett);
         }
 
+        public ActionResult Admin()
+        {
+            DB db = new DB();
+            IEnumerable<Kunde> allebilleter = db.Kunde;
+            return View(allebilleter);
+        }
+
+        public ActionResult SlettKunde(int ID)
+        {
+            DB db = new DB();
+            Kunde valgkunde = db.Kunde.Find(ID);
+            Reise valgtReise = db.Reise.Find(ID);
+            Billett billett = db.Billett.Find(ID);
+            Kredittkort kredidkort = db.Kredittkort.Find(ID);
+            db.Kunde.Remove(valgkunde);
+            db.Reise.Remove(valgtReise);
+            db.Billett.Remove(billett);
+            db.Kredittkort.Remove(kredidkort);
+            db.SaveChanges();
+            return RedirectToAction("Admin");
+        }
+
+        public ActionResult EditKunde(int ID)
+        {
+
+            return View();
+        }
+
+        public ActionResult AdminReise(int ID)
+        {
+            DB db = new DB();
+            Reise valgtreise = db.Reise.Find(ID);
+            return View(valgtreise);
+        }
+
+        public ActionResult SlettReise(int ID)
+        {
+            DB db = new DB();
+            Kunde valgkunde = db.Kunde.Find(ID);
+            Reise valgtReise = db.Reise.Find(ID);
+            Billett billett = db.Billett.Find(ID);
+            Kredittkort kredidkort = db.Kredittkort.Find(ID);
+            db.Kunde.Remove(valgkunde);
+            db.Reise.Remove(valgtReise);
+            db.Billett.Remove(billett);
+            db.Kredittkort.Remove(kredidkort);
+
+            db.SaveChanges();
+            return RedirectToAction("Admin");
+        }
+
     }
 }
