@@ -6,37 +6,46 @@
 
 <h2>Admin</h2>
 
-    
-<table>
-    @foreach (var k in Model)
-    {
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
     <tr>
-        <td> ID: </td>
-        <td> @k.ID </td>
-        <td> Fornavn: </td>
-        <td> @k.Fornavn   </td>
-        <td> Etternavn: </td>
-        <td> @k.Etternavn </td>
-        <td> Email: </td>
-        <td> @k.Email </td>
-        <td> Telefon: </td> 
-        <td> @k.Telefon </td>
-
-
-
-
-        <td><a href="/Home/SlettKunde?id=@k.ID" class="btn">Slett</a></td>
-        <td><a href="/Home/EditKunde?id=@k.ID" class="btn">Edit</a></td>
-        <td><a href="/Home/AdminReise?id=@k.ID" class="btn">se Reise</a></td>
+        <th>
+            @Html.DisplayNameFor(model => model.Fornavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Etternavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </th>
+        <th></th>
     </tr>
-    }
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fornavn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etternavn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefon)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditKunde", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "SlettKunde", new { id=item.ID }) |
+            @Html.ActionLink("Se Reisen", "AdminReise", new { id=item.ID })
+        </td>
+    </tr>
+}
+
 </table>
-
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
