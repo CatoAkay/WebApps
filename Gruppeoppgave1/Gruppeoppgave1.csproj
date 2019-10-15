@@ -200,6 +200,7 @@
     <Content Include="Views\Home\ReiseInfo.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\Home\AdminReise.cshtml" />
+    <Content Include="Views\Home\EditKunde.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

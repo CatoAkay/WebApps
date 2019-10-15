@@ -1,6 +1,7 @@
 ﻿using Gruppeoppgave1.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -137,8 +138,19 @@ namespace Gruppeoppgave1.Controllers
 
         public ActionResult EditKunde(int ID)
         {
+            Kunde valgtkunde = db.Kunde.Find(ID);
+            return View(valgtkunde);
+        }
 
-            return View();
+        [HttpPost]
+        public ActionResult EditKunde(Kunde valgtkunde)
+        {
+            db.Kunde.Attach(valgtkunde);
+            db.Entry(valgtkunde).State = EntityState.Modified;
+
+            db.SaveChanges();
+         
+            return RedirectToAction("Admin");
         }
 
         public ActionResult AdminReise(int ID)
@@ -146,6 +158,16 @@ namespace Gruppeoppgave1.Controllers
             DB db = new DB();
             Reise valgtreise = db.Reise.Find(ID);
             return View(valgtreise);
+        }
+
+        [HttpPost]
+        public ActionResult AdminReise(Reise valgReise)
+        {
+            db.Reise.Attach(valgReise);
+            db.Entry(valgReise).State = EntityState.Modified;
+
+            db.SaveChanges();
+            return RedirectToAction("Admin");
         }
 
         public ActionResult SlettReise(int ID)
