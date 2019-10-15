@@ -10,22 +10,17 @@ namespace Gruppeoppgave1.Controllers
     public class HomeController : Controller
     {
         private DB db = new DB();
-        Login admin = new Login();
         private Reise reise = new Reise();
+        
+
+      
 
         // GET: Home
         public ActionResult Index()
         {
-            admin.Brukernavn = "admin";
-            admin.ID = 1;
-            admin.Passord = "admin";
-            db.Login.Add(admin);
-            db.SaveChanges();
             var tider = reise.getAlleTider();
             var reiseModel = new KundeReise();
             reiseModel.reiseTidene = reise.GetSelectListItems(tider);
-
-           
 
             return View(reiseModel);
         }
@@ -129,8 +124,9 @@ namespace Gruppeoppgave1.Controllers
             return View();
         }
 
+
         [HttpPost]
-        public ActionResult Autorisasjon(Login admin)
+        public ActionResult Autorisasjon(Admin admin)
         {
             using (DB db = new DB())
             {
@@ -138,7 +134,7 @@ namespace Gruppeoppgave1.Controllers
                 if (adminDetail == null)
                 {
                     admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
-                    return View("Index", admin);
+                   return View("Login", admin); 
                 }
                 else
                 {

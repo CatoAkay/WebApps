@@ -176,7 +176,7 @@
     <Compile Include="Models\Kunde.cs" />
     <Compile Include="Models\DB.cs" />
     <Compile Include="Models\KundeReise.cs" />
-    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Reise.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
