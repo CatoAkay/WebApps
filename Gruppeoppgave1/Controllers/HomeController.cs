@@ -22,14 +22,6 @@ namespace Gruppeoppgave1.Controllers
             var reiseModel = new KundeReise();
             reiseModel.reiseTidene = reise.GetSelectListItems(tider);
 
-            var admin = new Admin
-            {
-                Brukernavn = "Sven",
-                Passord = "sven"
-            };
-
-            db.Admin.Add(admin);
-            db.SaveChanges();
             return View(reiseModel);
         }
 
