@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using Gruppeoppgave1.Models;
 using Model;
 
 namespace DAL
@@ -14,8 +15,6 @@ namespace DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-                
-              
         }
 
 		public DbSet<Kunde> Kunde { get; set; }
@@ -23,8 +22,5 @@ namespace DAL
         public DbSet<Reise> Reise { get; set; }
         public DbSet<Kredittkort> Kredittkort { get; set; }
         public DbSet<Admin> Login { get; set; }
-
-        
-        
     }
 }

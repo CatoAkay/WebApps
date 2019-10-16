@@ -70,6 +70,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.cs" />
+    <Compile Include="Billett.cs" />
     <Compile Include="Kredittkort.cs" />
     <Compile Include="Kunde.cs" />
     <Compile Include="KundeReise.cs" />
