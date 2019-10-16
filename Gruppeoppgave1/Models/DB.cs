@@ -1,5 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using TrackerEnabledDbContext.Identity;
+using TrackerEnabledDbContext.Common.Extensions;
+
 
 namespace Gruppeoppgave1.Models
 {

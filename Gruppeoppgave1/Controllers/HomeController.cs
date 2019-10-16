@@ -42,16 +42,6 @@ namespace Gruppeoppgave1.Controllers
             return View(Session["Reise"]);
         }
 
-        public ActionResult Kunde()
-        {
-            return View();
-        }
-
-        public ActionResult Reiser()
-        {
-            return View(Session["Reisen"]);
-        }
-
         [HttpPost]
         public ActionResult ReiseInfo(KundeReise info)
         {

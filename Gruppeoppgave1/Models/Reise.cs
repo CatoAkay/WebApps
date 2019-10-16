@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Gruppeoppgave1.Models
 {
+    [TrackChanges]
     public class Reise
     {
         public int ID { get; set; }

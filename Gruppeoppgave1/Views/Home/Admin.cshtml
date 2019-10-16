@@ -41,7 +41,7 @@
             @Html.DisplayFor(modelItem => item.Telefon)
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditKunde", new { id=item.ID }) |
+            @Html.ActionLink( "Edit", "EditKunde", new { id=item.ID }) |
             @Html.ActionLink("Delete", "SlettKunde", new { id=item.ID }) |
             @Html.ActionLink("Se Reisen", "AdminReise", new { id=item.ID })
         </td>

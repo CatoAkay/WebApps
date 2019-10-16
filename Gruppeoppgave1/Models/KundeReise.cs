@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Gruppeoppgave1.Models
 {
+
     public class KundeReise
     {
         public Kunde kunde { get; set; }

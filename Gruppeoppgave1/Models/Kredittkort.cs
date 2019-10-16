@@ -6,6 +6,7 @@ using System.Web;
 
 namespace Gruppeoppgave1.Models
 {
+    [TrackChanges]
     public class Kredittkort
     {
         public int ID { get; set; }
