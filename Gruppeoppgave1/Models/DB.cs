@@ -25,6 +25,7 @@ namespace Gruppeoppgave1.Models
                 .Where(p => p.State == EntityState.Modified).ToList();
             var now = DateTime.UtcNow;
 
+
             foreach (var change in modifiedEntities)
             {
                 var entityName = change.Entity.GetType().Name;
@@ -33,8 +34,7 @@ namespace Gruppeoppgave1.Models
                 foreach (var prop in change.OriginalValues.PropertyNames)
                 {
 
-                    // lagre orginalValue if currentvalue er ulik databasen sine verdier i entityName sin tabell. 
-                    var orginalValue = change.OriginalValues[prop].ToString();
+                    var orginalValue = change.GetDatabaseValues().GetValue<object>(prop).ToString();
                     var currentValue = change.CurrentValues[prop].ToString();
 
                     if (orginalValue != currentValue)
