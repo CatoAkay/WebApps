@@ -13,9 +13,12 @@ namespace Gruppeoppgave1.Controllers
         private DB db = new DB();
         private Reise reise = new Reise();
 
+
+
         // GET: Home
         public ActionResult Index()
         {
+            db.setAdmin();
             var tider = reise.getAlleTider();
             var reiseModel = new KundeReise();
             reiseModel.reiseTidene = reise.GetSelectListItems(tider);
@@ -37,10 +40,14 @@ namespace Gruppeoppgave1.Controllers
             return View(reiseInput);
         }
 
+
+
         public ActionResult ReiseValg()
         {
             return View(Session["Reise"]);
         }
+
+
 
         [HttpPost]
         public ActionResult ReiseInfo(KundeReise info)
@@ -176,5 +183,34 @@ namespace Gruppeoppgave1.Controllers
             return RedirectToAction("Admin");
         }
 
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Autorisasjon(Admin admin)
+        {
+            using (db)
+            {
+                var adminDetail = db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn && x.Passord == admin.Passord);
+                if (adminDetail == null)
+                {
+                    admin.LoginMsgError = "Ikke gyldig brukernavn eller passord";
+                   return View("Login", admin); 
+                }
+                else
+                {
+                    Session["loginID"] = admin.ID;
+                    return RedirectToAction("Index");
+                }
+            }
+        }
+
+
     }
+
+
 }
