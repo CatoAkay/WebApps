@@ -216,6 +216,8 @@
     <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\Home\AdminReise.cshtml" />
     <Content Include="Views\Home\EditKunde.cshtml" />
+    <Content Include="Views\Home\listAdmin.cshtml" />
+    <Content Include="Views\Home\lagAdmin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

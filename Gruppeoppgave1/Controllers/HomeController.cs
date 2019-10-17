@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 
 namespace Gruppeoppgave1.Controllers
 {
@@ -12,6 +13,7 @@ namespace Gruppeoppgave1.Controllers
     {
         private DB db = new DB();
         private Reise reise = new Reise();
+        private Admin admin = new Admin();
 
 
 
@@ -118,6 +120,48 @@ namespace Gruppeoppgave1.Controllers
             return View(allebilleter);
         }
 
+        public ActionResult listAdmin()
+        {
+            DB db = new DB();
+            IEnumerable<Admin> alleAdmins = db.Admin;
+            return View(alleAdmins);
+        }
+
+        [HttpPost]
+        public ActionResult lagAdmin(Admin admin)
+        {
+            DB db = new DB();
+            db.Admin.Add(admin);
+            db.SaveChanges();
+            return RedirectToAction("listAdmin");
+        }
+
+        public ActionResult lagAdmin()
+        {
+            return View();
+        }
+
+        public ActionResult slettAdmin(int ID)
+        {
+            var currentAdmin = Request["loginID"];
+            try
+            {
+                if (ID.ToString() != currentAdmin)
+                {
+                    DB db = new DB();
+                    Admin admin = db.Admin.Find(ID);
+                    db.Admin.Remove(admin);
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+                admin.LoginMsgError = "Ingen rettigheter til å slette Admin";
+            }
+
+            return RedirectToAction("listAdmin");
+        }
+
         public ActionResult SlettKunde(int ID)
         {
             DB db = new DB();
@@ -204,7 +248,7 @@ namespace Gruppeoppgave1.Controllers
                 else
                 {
                     Session["loginID"] = admin.ID;
-                    return RedirectToAction("Admin");
+                    return RedirectToAction("Admin", Session["loginID"]);
                 }
             }
         }

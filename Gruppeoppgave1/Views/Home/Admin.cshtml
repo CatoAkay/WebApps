@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Admin";
+
+    var login = Request["loginID"];
 }
 
 <h2>Admin</h2>
@@ -25,27 +27,31 @@
         </th>
         <th></th>
     </tr>
+    <label> Welcome: @login</label>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fornavn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Etternavn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefon)
-        </td>
-        <td>
-            @Html.ActionLink( "Edit", "EditKunde", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "SlettKunde", new { id=item.ID }) |
-            @Html.ActionLink("Se Reisen", "AdminReise", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fornavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Etternavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefon)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditKunde", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "SlettKunde", new { id = item.ID }) |
+                @Html.ActionLink("Se Reisen", "AdminReise", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+    @Html.ActionLink("Oversik over admins", "listAdmin")
 
 </table>
