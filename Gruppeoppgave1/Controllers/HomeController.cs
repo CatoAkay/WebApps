@@ -204,7 +204,7 @@ namespace Gruppeoppgave1.Controllers
                 else
                 {
                     Session["loginID"] = admin.ID;
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Admin");
                 }
             }
         }

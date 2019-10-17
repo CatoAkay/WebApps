@@ -70,11 +70,7 @@ namespace Gruppeoppgave1.Models
             return verdi.EntityKey.EntityKeyValues[0].Value;
         }
 
-		public virtual DbSet<Kunde> Kunde { get; set; }
-		public virtual DbSet<Billett> Billett { get; set; }
-        public virtual DbSet<Reise> Reise { get; set; }
-        public virtual DbSet<Kredittkort> Kredittkort { get; set; }
-        public virtual DbSet<Logging> Logg { get; set; }
+
         public void setAdmin()
         {
             DB db = new DB();
@@ -89,6 +85,13 @@ namespace Gruppeoppgave1.Models
                 db.SaveChanges();
             }
         }
+
+        public virtual DbSet<Kunde> Kunde { get; set; }
+        public virtual DbSet<Billett> Billett { get; set; }
+        public virtual DbSet<Reise> Reise { get; set; }
+        public virtual DbSet<Kredittkort> Kredittkort { get; set; }
+        public virtual DbSet<Logging> Logg { get; set; }
         public virtual DbSet<Admin> Admin { get; set; }
+
     }
 }
