@@ -75,6 +75,7 @@
     <Compile Include="Kredittkort.cs" />
     <Compile Include="Kunde.cs" />
     <Compile Include="KundeReise.cs" />
+    <Compile Include="Logging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reise.cs" />
   </ItemGroup>

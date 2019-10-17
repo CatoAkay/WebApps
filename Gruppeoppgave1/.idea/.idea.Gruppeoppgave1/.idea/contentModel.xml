@@ -146,8 +146,13 @@
         <e p="_ViewStart.cshtml" t="Include" />
         <e p="Api" t="Include" />
         <e p="Home" t="Include">
+          <e p="Admin.cshtml" t="Include" />
+          <e p="AdminReise.cshtml" t="Include" />
           <e p="Billett.cshtml" t="Include" />
+          <e p="EditKunde.cshtml" t="Include" />
           <e p="Index.cshtml" t="Include" />
+          <e p="lagAdmin.cshtml" t="Include" />
+          <e p="listAdmin.cshtml" t="Include" />
           <e p="Login.cshtml" t="Include" />
           <e p="ReiseInfo.cshtml" t="Include" />
           <e p="Reisevalg.cshtml" t="Include" />
@@ -168,6 +173,7 @@
       <e p="Kredittkort.cs" t="Include" />
       <e p="Kunde.cs" t="Include" />
       <e p="KundeReise.cs" t="Include" />
+      <e p="Logging.cs" t="Include" />
       <e p="Model.csproj" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages.config" t="Include" />

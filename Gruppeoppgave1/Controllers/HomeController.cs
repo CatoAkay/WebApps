@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -77,6 +78,74 @@ namespace Gruppeoppgave1.Controllers
             return View(valgtBillett);
         }
         
+        public ActionResult Admin()
+        {
+            IEnumerable<Kunde> allebilleter = DB_bll.getAlleKunder();
+            return View(allebilleter);
+        }
+
+        public ActionResult listAdmin()
+        {
+            IEnumerable<Admin> alleAdmins = DB_bll.getAlleAdmin();
+            return View(alleAdmins);
+        }
+
+        [HttpPost]
+        public ActionResult lagAdmin(Admin admin)
+        {
+            DB_bll.lagAdmin(admin);
+            return RedirectToAction("listAdmin");
+        }
+
+        public ActionResult lagAdmin()
+        {
+            return View();
+        }
+
+        public ActionResult slettAdmin(int ID)
+        { 
+            DB_bll.slettAdmin(ID);
+            return RedirectToAction("listAdmin");
+        }
+
+        public ActionResult SlettKunde(int ID)
+        {
+            DB_bll.slettKunde(ID);
+            return RedirectToAction("Admin");
+        }
+
+        public ActionResult EditKunde(int ID)
+        {
+            Kunde valgtkunde = DB_bll.editKunde(ID);
+            return View(valgtkunde);
+        }
+
+        [HttpPost]
+        public ActionResult EditKunde(Kunde kunde)
+        {
+            DB_bll.editKunde(kunde);
+            return RedirectToAction("Admin");
+        }
+
+        public ActionResult AdminReise(int ID)
+        {
+            Reise valgtreise = DB_bll.seReise(ID);
+            return View(valgtreise);
+        }
+
+        [HttpPost]
+        public ActionResult AdminReise(Reise reise)
+        {
+            DB_bll.seReise(reise);
+            return RedirectToAction("Admin");
+        }
+
+        public ActionResult SlettReise(int ID)
+        {
+            DB_bll.slettReise(ID);
+            return RedirectToAction("Admin");
+        }
+        
         public ActionResult Login()
         {
             return View();
@@ -92,7 +161,7 @@ namespace Gruppeoppgave1.Controllers
             else
             {
                 Session["loginID"] = admin.ID;
-                return RedirectToAction("Index");
+                return RedirectToAction("listAdmin");
             }
         }
 
