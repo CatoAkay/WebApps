@@ -21,33 +21,33 @@ namespace Gruppeoppgave1.Models
 
         public override int SaveChanges()
         {
-            var modifiedEntities = ChangeTracker.Entries()
+            var modifisertEntitet = ChangeTracker.Entries()
                 .Where(p => p.State == EntityState.Modified).ToList();
-            var now = DateTime.UtcNow;
+            var now = DateTime.Now;
 
 
-            foreach (var change in modifiedEntities)
+            foreach (var endring in modifisertEntitet)
             {
-                var entityName = change.Entity.GetType().Name;
-                var primaryKey = GetPrimaryKeyValue(change);
+                var entitNavn = endring.Entity.GetType().Name;
+                var primaerVerdi = GetPrimaerNokkel(endring);
 
-                foreach (var prop in change.OriginalValues.PropertyNames)
+                foreach (var prop in endring.OriginalValues.PropertyNames)
                 {
 
-                    var orginalValue = change.GetDatabaseValues().GetValue<object>(prop).ToString();
-                    var currentValue = change.CurrentValues[prop].ToString();
+                    var orginalVerdi = endring.GetDatabaseValues().GetValue<object>(prop).ToString();
+                    var endretVerdi = endring.CurrentValues[prop].ToString();
 
-                    if (orginalValue != currentValue)
+                    if (orginalVerdi != endretVerdi)
                     {
 
                         var log = new Logging()
                         {
-                            EntityName = entityName,
-                            PrimaryKeyValue = primaryKey.ToString(),
-                            PropertyName = prop,
-                            OldValue = orginalValue,
-                            NewValue = currentValue,
-                            DateChanged = now
+                            Entitet = entitNavn,
+                            Nokkelverdi = primaerVerdi.ToString(),
+                            Egenskap = prop,
+                            GammelVerdi = orginalVerdi,
+                            NyVerdi = endretVerdi,
+                            DatoEndret = now
                         };
                         Logg.Add(log);
                     }
@@ -56,11 +56,11 @@ namespace Gruppeoppgave1.Models
             return base.SaveChanges();
         } 
 
-        object GetPrimaryKeyValue(DbEntityEntry entry)
+        private object GetPrimaerNokkel(DbEntityEntry entry)
         {
-            var objectStateEntry =
+            var verdi =
                 ((IObjectContextAdapter) this).ObjectContext.ObjectStateManager.GetObjectStateEntry(entry.Entity);
-            return objectStateEntry.EntityKey.EntityKeyValues[0].Value;
+            return verdi.EntityKey.EntityKeyValues[0].Value;
         }
 
 		public virtual DbSet<Kunde> Kunde { get; set; }
