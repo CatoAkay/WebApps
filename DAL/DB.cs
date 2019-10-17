@@ -1,7 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using Model;
 
-namespace Gruppeoppgave1.Models
+namespace DAL
 {
     public class DB : DbContext
     {
@@ -19,5 +20,6 @@ namespace Gruppeoppgave1.Models
 		public DbSet<Billett> Billett { get; set; }
         public DbSet<Reise> Reise { get; set; }
         public DbSet<Kredittkort> Kredittkort { get; set; }
+        public DbSet<Admin> Login { get; set; }
     }
 }

@@ -1,15 +1,16 @@
-﻿using Gruppeoppgave1.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BLL;
+using Model;
 
 namespace Gruppeoppgave1.Controllers
 {
     public class HomeController : Controller
     {
-        private DB db = new DB();
+        DatabaseLogikkBLL DB_bll = new DatabaseLogikkBLL();
         private Reise reise = new Reise();
 
         // GET: Home
@@ -41,76 +42,58 @@ namespace Gruppeoppgave1.Controllers
             return View(Session["Reise"]);
         }
 
-        public ActionResult Kunde()
-        {
-            return View();
-        }
-
-        public ActionResult Reiser()
-        {
-            return View(Session["Reisen"]);
-        }
-
         [HttpPost]
         public ActionResult ReiseInfo(KundeReise info)
         {
             if (info.kunde == null)
             {
-                var fra = Session["Fra"].ToString();
-                var til = Session["Til"].ToString();
-                var dato = Session["Dato"].ToString();
-                var tid = Request["Tid"];
-                double pris = Double.Parse(Request["Pris"]);
-                var spor = Request["Spor"];
-                var tog = Request["Tog"];
-                int bytter = int.Parse(Request["Bytter"]);
-                var avgang = Request["Avgang"];
-                var ankomst = Request["Ankomst"];
-
-                 reise = new Reise
+                info.reise = new Reise
                 {
-                    Fra = fra,
-                    Til = til,
-                    Dato = dato,
-                    Tid = tid,
-                    Pris = pris,
-                    Spor = spor,
-                    Tog = tog,
-                    Bytter = bytter,
-                    Avgang = avgang,
-                    Ankomst = ankomst
+                    Fra = Session["Fra"].ToString(),
+                    Til = Session["Til"].ToString(),
+                    Dato = Session["Dato"].ToString(),
+                    Tid = Request["Tid"],
+                    Pris = Double.Parse(Request["Pris"]),
+                    Spor = Request["Spor"],
+                    Tog = Request["Tog"],
+                    Bytter = int.Parse(Request["Bytter"]),
+                    Avgang = Request["Avgang"],
+                    Ankomst = Request["Ankomst"]
                 };
-
-                KundeReise reisen = new KundeReise
-                {
-                    kunde = null,
-                    reise = reise
-                };
-                Session["Reisen"] = reisen;
-
+                Session["Reisen"] = info;
                 return View(Session["Reisen"]);
-            }
-
-            Billett billet = new Billett();
-            info.reise = ((KundeReise)Session["Reisen"]).reise;
-            billet.Reise = info.reise;
-            billet.Kunde = info.kunde;
-            db.Billett.Add(billet);
-            db.Reise.Add(info.reise);
-            db.Kunde.Add(info.kunde);
-            db.SaveChanges();
-            Session["ID"] = billet.ID;
-
+            } 
+            info.reise = ((KundeReise)Session["Reisen"]).reise; 
+            var id = DB_bll.lagreBillett(info);
+            Session["ID"] = id; 
             return RedirectToAction("Billett", Session["ID"]);
         }
+
 
         public ActionResult Billett()
         {
             var billettID = Session["ID"];
-            DB db = new DB();
-            var valgtBillett = db.Billett.Find(billettID);
-
+            var valgtBillett = DB_bll.getBillett((int)billettID);
             return View(valgtBillett);
+        }
+        
+        public ActionResult Login()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public ActionResult Autorisasjon(Admin admin)
+        { 
+            if (DB_bll.Autorisasjon(admin))
+            {
+                return View("Login", admin); 
+            }
+            else
+            {
+                Session["loginID"] = admin.ID;
+                return RedirectToAction("Index");
+            }
         }
 
     }

@@ -13,35 +13,39 @@
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 </head>
 <body>
-<div class="white navbar navbar-inverse navbar-fixed-top">
-    <div class="col-lg-1">
-            <a href="/Home/Index"><img class="img img-center" src="~/IMG/logo.png"/></a>
+    <div class="white navbar navbar-inverse navbar-fixed-top row">
+        <div class="col-lg-4">
+            <a href="/Home/Index"><img class="img img-center" src="~/IMG/logo.png" /></a>
         </div>
-    @*<div class="container">
-        <div class="col-lg-2 navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+        <div class="col-lg-4">
+            <a href="/Home/Login" class="nav-link glyphicon glyphicon-user">Admin Login</a>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-            </ul>
+
+    </div>
+    @*
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+            </div>
         </div>
-    </div>*@
-</div>
+        </div>*@
 
 
-<div class="container body-content">
-    @*<img class="size" src="~/IMG/logo.png"/>*@
-    @RenderBody()
-    @*<hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>*@
-</div>
-<script src="~/Scripts/site/main.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
+    <div class="container body-content">
+        @*<img class="size" src="~/IMG/logo.png"/>*@
+        @RenderBody()
+        @*<hr/>
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>*@
+    </div>
+    <script src="~/Scripts/site/main.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
