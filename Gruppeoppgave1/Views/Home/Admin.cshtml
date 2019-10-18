@@ -3,13 +3,16 @@
 @{
     ViewBag.Title = "Admin";
 
-    var login = Request["loginID"];
+    var ID = Session["idAdmin"].ToString();
+    var navn = Session["AdminNavn"].ToString();
 }
 
 <h2>Admin</h2>
 
 <p>
     @Html.ActionLink("Create New", "")
+    du er logget inn som: @navn <br/>
+    med ID: @ID
 </p>
 <table class="table">
     <tr>
@@ -27,7 +30,6 @@
         </th>
         <th></th>
     </tr>
-    <label> Welcome: @login</label>
 
     @foreach (var item in Model)
     {

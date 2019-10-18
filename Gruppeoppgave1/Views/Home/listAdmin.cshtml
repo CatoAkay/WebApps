@@ -1,14 +1,17 @@
-﻿@model IEnumerable<Model.Admin>
+﻿@using Model
+@model IEnumerable<Model.Admin>
 
 @{
     ViewBag.Title = "listAdmin";
+
+    var Id = Session["idAdmin"].ToString();
+    var navn = Session["AdminNavn"];
+    
 }
 
-<h2>listAdmin</h2>
 
-<p>
-    @Html.ActionLink("Lag Admin", "lagAdmin")
-</p>
+
+
 <table class="table">
     <tr>
         <th>
@@ -20,18 +23,53 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Brukernavn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Passord)
-        </td>
-        <td>
-            @Html.ActionLink("Slett admin", "slettAdmin", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            @{
+                if (item.ID == 1)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Brukernavn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Passord)
+                    </td>
+                    <td>
+                    </td>
+                    continue; 
+                }
+
+                if (Id == "1")
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Brukernavn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Passord)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Slett admin", "slettAdmin", new {id = item.ID})
+                    </td>
+                    continue;
+                }
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Brukernavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Passord)
+            </td>
+            <td>
+                bare hoved Admin kan slette andre Adminds
+            </td>
+            
+        </tr>
+    }
 
 </table>
+<p>
+    @Html.ActionLink("Lag Admin", "lagAdmin")
+    du er logget inn som: @navn <br />
+    med ID: @Id
+</p>

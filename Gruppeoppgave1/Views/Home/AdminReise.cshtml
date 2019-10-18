@@ -2,9 +2,17 @@
 
 @{
     ViewBag.Title = "ReiseAdmin";
+
+    var ID = Session["idAdmin"].ToString();
+    var navn = Session["AdminNavn"].ToString();
 }
 
 <h2>ReiseAdmin</h2>
+
+<p>
+    du er logget inn som: @navn <br />
+    med ID: @ID
+</p>
 
 
 @using (Html.BeginForm())

@@ -113,7 +113,7 @@ namespace DAL
             db.SaveChanges();
         }
         
-        public bool Autorisasjon(Admin admin)
+        public Admin Autorisasjon(Admin admin)
         { 
             using (db)
             {
@@ -121,13 +121,11 @@ namespace DAL
                 if (adminDetail == null)
                 { 
                     admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
-                    return true;
+                    return null;
 
                 }
-                else
-                {
-                    return false;
-                }
+
+                return adminDetail;
             }
         }
     }

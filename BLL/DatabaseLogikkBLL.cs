@@ -18,7 +18,7 @@ namespace BLL
             return DBdal.getBillett(id);
         }
 
-        public bool Autorisasjon(Admin admin)
+        public Admin Autorisasjon(Admin admin)
         {
             return DBdal.Autorisasjon(admin);
         }

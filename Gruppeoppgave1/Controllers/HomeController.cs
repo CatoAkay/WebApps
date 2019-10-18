@@ -84,7 +84,7 @@ namespace Gruppeoppgave1.Controllers
             return View(allebilleter);
         }
 
-        public ActionResult listAdmin()
+        public ActionResult listAdmin(Admin admin)
         {
             IEnumerable<Admin> alleAdmins = DB_bll.getAlleAdmin();
             return View(alleAdmins);
@@ -152,18 +152,19 @@ namespace Gruppeoppgave1.Controllers
         }
         
         [HttpPost]
-        public ActionResult Autorisasjon(Admin admin)
-        { 
-            if (DB_bll.Autorisasjon(admin))
-            {
-                return View("Login", admin); 
-            }
-            else
-            {
-                Session["loginID"] = admin.ID;
-                return RedirectToAction("listAdmin");
-            }
-        }
+        public ActionResult Autorisasjon(Admin inAdmin)
+        {
+            Admin admin2 = DB_bll.Autorisasjon(inAdmin);
 
+            if (admin2 == null)
+            {
+                return View("Login", inAdmin); 
+            }
+
+            Session["IdAdmin"] = admin2.ID;
+            Session["AdminNavn"] = admin2.Brukernavn;
+            return RedirectToAction("Admin");
+            
+        }
     }
 }
