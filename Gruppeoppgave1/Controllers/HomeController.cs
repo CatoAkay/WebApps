@@ -1,5 +1,7 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -88,6 +90,7 @@ namespace Gruppeoppgave1.Controllers
             return View(allebilleter);
         }
 
+
         public ActionResult listAdmin(Admin admin)
         {
             IEnumerable<Admin> alleAdmins = DB_bll.getAlleAdmin();
@@ -169,6 +172,19 @@ namespace Gruppeoppgave1.Controllers
             Session["AdminNavn"] = admin2.Brukernavn;
             return RedirectToAction("Admin");
             
+        }
+
+        public ActionResult Loggut()
+        {
+            Session["idAdmin"] = null;
+            Session["AdminNavn"] = null;
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Loggs()
+        {
+            IEnumerable<Logging> alleLoggs = DB_bll.getAlleLoggs();
+            return View(alleLoggs);
         }
     }
 }
