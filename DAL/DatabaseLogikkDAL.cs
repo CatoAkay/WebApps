@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Model;
@@ -114,21 +115,29 @@ namespace DAL
         }
         
         public bool Autorisasjon(Admin admin)
-        { 
-            using (db)
+        {
+            try
             {
-                var adminDetail = db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn && x.Passord == admin.Passord);
-                if (adminDetail == null)
-                { 
-                    admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
-                    return true;
 
-                }
-                else
+          
+                using (db)
                 {
+                    var adminDetail = db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn && x.Passord == admin.Passord);
+                    if (adminDetail == null)
+                    { 
+                        admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
+                        return true;
+
+                    }
                     return false;
                 }
             }
+            catch (Exception e)
+            {
+                Logging.ErrorTilFil(e);
+            }
+
+            return true;
         }
     }
 }
