@@ -11,10 +11,20 @@ namespace Gruppeoppgave1.Controllers
 {
     public class HomeController : Controller
     {
-        DatabaseLogikkBLL DB_bll = new DatabaseLogikkBLL();
+        private IDatabaseLogikkBLL _databaseLogikkBll;
         private Reise reise = new Reise();
 
         // GET: Home
+        public HomeController()
+        {
+            _databaseLogikkBll = new DatabaseLogikkBLL();
+        }
+
+        public HomeController(IDatabaseLogikkBLL stub)
+        {
+            _databaseLogikkBll = stub;
+        }
+
         public ActionResult Index()
         {
             var tider = reise.getAlleTider();
@@ -65,7 +75,7 @@ namespace Gruppeoppgave1.Controllers
                 return View(Session["Reisen"]);
             } 
             info.reise = ((KundeReise)Session["Reisen"]).reise; 
-            var id = DB_bll.lagreBillett(info);
+            var id = _databaseLogikkBll.lagreBillett(info);
             Session["ID"] = id; 
             return RedirectToAction("Billett", Session["ID"]);
         }
@@ -74,26 +84,26 @@ namespace Gruppeoppgave1.Controllers
         public ActionResult Billett()
         {
             var billettID = Session["ID"];
-            var valgtBillett = DB_bll.getBillett((int)billettID);
+            var valgtBillett = _databaseLogikkBll.getBillett((int)billettID);
             return View(valgtBillett);
         }
         
         public ActionResult Admin()
         {
-            IEnumerable<Kunde> allebilleter = DB_bll.getAlleKunder();
+            IEnumerable<Kunde> allebilleter = _databaseLogikkBll.getAlleKunder();
             return View(allebilleter);
         }
 
         public ActionResult listAdmin()
         {
-            IEnumerable<Admin> alleAdmins = DB_bll.getAlleAdmin();
+            IEnumerable<Admin> alleAdmins = _databaseLogikkBll.getAlleAdmin();
             return View(alleAdmins);
         }
 
         [HttpPost]
         public ActionResult lagAdmin(Admin admin)
         {
-            DB_bll.lagAdmin(admin);
+            _databaseLogikkBll.lagAdmin(admin);
             return RedirectToAction("listAdmin");
         }
 
@@ -104,45 +114,45 @@ namespace Gruppeoppgave1.Controllers
 
         public ActionResult slettAdmin(int ID)
         { 
-            DB_bll.slettAdmin(ID);
+            _databaseLogikkBll.slettAdmin(ID);
             return RedirectToAction("listAdmin");
         }
 
         public ActionResult SlettKunde(int ID)
         {
-            DB_bll.slettKunde(ID);
+            _databaseLogikkBll.slettKunde(ID);
             return RedirectToAction("Admin");
         }
 
         public ActionResult EditKunde(int ID)
         {
-            Kunde valgtkunde = DB_bll.editKunde(ID);
+            Kunde valgtkunde = _databaseLogikkBll.editKunde(ID);
             return View(valgtkunde);
         }
 
         [HttpPost]
         public ActionResult EditKunde(Kunde kunde)
         {
-            DB_bll.editKunde(kunde);
+            _databaseLogikkBll.editKunde(kunde);
             return RedirectToAction("Admin");
         }
 
         public ActionResult AdminReise(int ID)
         {
-            Reise valgtreise = DB_bll.seReise(ID);
+            Reise valgtreise = _databaseLogikkBll.seReise(ID);
             return View(valgtreise);
         }
 
         [HttpPost]
         public ActionResult AdminReise(Reise reise)
         {
-            DB_bll.seReise(reise);
+            _databaseLogikkBll.seReise(reise);
             return RedirectToAction("Admin");
         }
 
         public ActionResult SlettReise(int ID)
         {
-            DB_bll.slettReise(ID);
+            _databaseLogikkBll.slettReise(ID);
             return RedirectToAction("Admin");
         }
         
@@ -154,7 +164,7 @@ namespace Gruppeoppgave1.Controllers
         [HttpPost]
         public ActionResult Autorisasjon(Admin admin)
         { 
-            if (DB_bll.Autorisasjon(admin))
+            if (_databaseLogikkBll.Autorisasjon(admin))
             {
                 return View("Login", admin); 
             }

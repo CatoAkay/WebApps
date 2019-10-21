@@ -4,73 +4,83 @@ using Model;
 
 namespace BLL
 {
-    public class DatabaseLogikkBLL
+    public class DatabaseLogikkBLL : IDatabaseLogikkBLL
     {
-        DatabaseLogikkDAL DBdal = new DatabaseLogikkDAL();
+        private IDatabaseLogikkDAL _databaseLogikkDal;
+
+        public DatabaseLogikkBLL()
+        {
+            _databaseLogikkDal = new DatabaseLogikkDAL();
+        }
+
+        public DatabaseLogikkBLL(IDatabaseLogikkDAL stub)
+        {
+            _databaseLogikkDal = stub;
+        }
         public int lagreBillett(KundeReise info)
         { 
-            DBdal.lagreBillett(info);
+            _databaseLogikkDal.lagreBillett(info);
             return info.kunde.ID;
         }
         
         public Billett getBillett(int id)
         {
-            return DBdal.getBillett(id);
+            return _databaseLogikkDal.getBillett(id);
         }
 
         public bool Autorisasjon(Admin admin)
         {
-            return DBdal.Autorisasjon(admin);
+            return _databaseLogikkDal.Autorisasjon(admin);
         }
         
         public IEnumerable<Kunde> getAlleKunder()
         {
-            return DBdal.getAlleKunder();
+            return _databaseLogikkDal.getAlleKunder();
         } 
         
         public IEnumerable<Admin> getAlleAdmin()
         {
-            return DBdal.getAlleAdmin();
+            return _databaseLogikkDal.getAlleAdmin();
         }
         
         public void lagAdmin(Admin admin)
         {
-            DBdal.lagAdmin(admin);
+            _databaseLogikkDal.lagAdmin(admin);
         }
 
         public void slettAdmin(int ID)
         {
-            DBdal.slettAdmin(ID);
+            _databaseLogikkDal.slettAdmin(ID);
         }
 
         public void slettKunde(int ID)
         {
-            DBdal.slettKunde(ID);
+            _databaseLogikkDal.slettKunde(ID);
         }
 
         public Kunde editKunde(int ID)
         {
-            return DBdal.editKunde(ID);
+            return _databaseLogikkDal.editKunde(ID);
         }
 
         public void editKunde(Kunde kunde)
         {
-            DBdal.editKunde(kunde);
+            _databaseLogikkDal.editKunde(kunde);
         }
 
         public Reise seReise(int ID)
         {
-            return DBdal.seReise(ID);
+            return _databaseLogikkDal.seReise(ID);
         }
 
         public void seReise(Reise reise)
         {
-            DBdal.seReise(reise);
+            _databaseLogikkDal.seReise(reise);
         }
 
         public void slettReise(int ID)
         {
-            DBdal.slettReise(ID);
+            _databaseLogikkDal.slettReise(ID);
         }
 
     }

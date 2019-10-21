@@ -49,7 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseLogikkDAL.cs" />
+    <Compile Include="DatabaseLogikkStub.cs" />
     <Compile Include="DB.cs" />
+    <Compile Include="IDatabaseLogikkDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

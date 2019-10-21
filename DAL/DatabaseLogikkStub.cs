@@ -5,26 +5,51 @@ using Model;
 
 namespace DAL
 {
-    public class DatabaseLogikkDAL : IDatabaseLogikkDAL
+    public class DatabaseLogikkStub : IDatabaseLogikkDAL
     {
         private DB db = new DB();
 
-        public DatabaseLogikkDAL()
+        public DatabaseLogikkStub()
         {
             db.setAdmin();
         }
 
         public void lagreBillett(KundeReise info)
         {
+            Reise reise = new Reise
+            {
+                Ankomst = "14:00",
+                Avgang = "12:00",
+                Bytter = 1,
+                Dato = "20.12.2019",
+                Fra = "Asker",
+                ID = 1,
+                Pris = 159,
+                Spor = "5",
+                Tid = "2 t",
+                Til = "Eidsvoll"
+            };
+            Kredittkort kredittkort = new Kredittkort
+            {
+                Cvc = "345",
+                ID = 1,
+                Kortnummer = "4444555566667777",
+                Utlopsdato = "12/22"
+            };
+            Kunde kunde = new Kunde
+            {
+                Email = "ole@hotmail.com",
+                Etternavn = "Olavsen",
+                Fornavn = "Ole",
+                ID = 1,
+                Kredittkort = kredittkort,
+                Telefon = "98765432"
+            };
             Billett billett = new Billett
             {
-                Reise = info.reise, 
-                Kunde = info.kunde
+                Reise = reise, 
+                Kunde = kunde
             };
-            db.Billett.Add(billett);
-            db.Reise.Add(info.reise);
-            db.Kunde.Add(info.kunde);
-            db.SaveChanges();
         }
 
         public Billett getBillett(int id)
