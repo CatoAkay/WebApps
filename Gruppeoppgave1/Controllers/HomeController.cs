@@ -80,6 +80,10 @@ namespace Gruppeoppgave1.Controllers
         
         public ActionResult Admin()
         {
+            if (Session["idAdmin"] == null)
+            {
+                return RedirectToAction("Index");
+            }
             IEnumerable<Kunde> allebilleter = DB_bll.getAlleKunder();
             return View(allebilleter);
         }
