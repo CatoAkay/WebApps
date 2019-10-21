@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Model;
@@ -18,7 +19,7 @@ namespace DAL
         {
             Billett billett = new Billett
             {
-                Reise = info.reise, 
+                Reise = info.reise,
                 Kunde = info.kunde
             };
             db.Billett.Add(billett);
@@ -31,19 +32,19 @@ namespace DAL
         {
             return db.Billett.Find(id);
         }
-        
+
         public IEnumerable<Kunde> getAlleKunder()
         {
             IEnumerable<Kunde> allebilleter = db.Kunde;
             return allebilleter;
-        }         
-        
+        }
+
         public IEnumerable<Admin> getAlleAdmin()
         {
             IEnumerable<Admin> alleAdmin = db.Admin;
             return alleAdmin;
-        } 
-        
+        }
+
         public void lagAdmin(Admin admin)
         {
             DB db = new DB();
@@ -112,23 +113,34 @@ namespace DAL
             db.Kredittkort.Remove(kredidkort);
             db.SaveChanges();
         }
-        
-        public bool Autorisasjon(Admin admin)
-        { 
-            using (db)
-            {
-                var adminDetail = db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn && x.Passord == admin.Passord);
-                if (adminDetail == null)
-                { 
-                    admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
-                    return true;
 
-                }
-                else
+        public bool Autorisasjon(Admin admin)
+        {
+            try
+            {
+                using (db)
                 {
-                    return false;
+                    var adminDetail = db.Admin.FirstOrDefault(x =>
+                        x.Brukernavn == admin.Brukernavn && x.Passord == admin.Passord);
+                    if (adminDetail == null)
+                    {
+                        admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
+                        return true;
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
+
             }
+            catch (Exception ex)
+            {
+                Logging.errorTilFil(ex);
+            }
+
+            return true;
         }
     }
 }
