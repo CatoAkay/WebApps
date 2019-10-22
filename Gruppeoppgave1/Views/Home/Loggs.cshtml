@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Model.Logging>
+
+@{
+    ViewBag.Title = "Loggs";
+}
+
+<h2>Loggs</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Entitet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Egenskap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nokkelverdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GammelVerdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NyVerdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatoEndret)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Entitet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Egenskap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nokkelverdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GammelVerdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NyVerdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatoEndret)
+        </td>
+        <td>
+        </td>
+    </tr>
+}
+
+</table>

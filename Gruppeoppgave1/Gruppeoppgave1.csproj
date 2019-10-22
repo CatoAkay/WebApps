@@ -198,6 +198,7 @@
     <Content Include="Views\Home\Reisevalg.cshtml" />
     <Content Include="Views\Home\Billett.cshtml" />
     <Content Include="Views\Home\ReiseInfo.cshtml" />
+    <Content Include="Views\Home\Loggs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

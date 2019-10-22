@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 using DAL;
 using Model;
 
@@ -28,9 +30,19 @@ namespace BLL
             return _databaseLogikkDal.getBillett(id);
         }
 
-        public bool Autorisasjon(Admin admin)
+        public Admin Autorisasjon(Admin admin)
         {
-            return _databaseLogikkDal.Autorisasjon(admin);
+            string skrevetPassord = admin.Passord;
+
+            Admin admin2 = verifiserPassord(admin, skrevetPassord);
+                
+
+            return admin2;
+        }
+
+        public Admin AutorisasjonAdmin(Admin admin)
+        {
+            return DBdal.AutorisasjonAdmin(admin);
         }
         
         public IEnumerable<Kunde> getAlleKunder()
@@ -45,7 +57,8 @@ namespace BLL
         
         public void lagAdmin(Admin admin)
         {
-            _databaseLogikkDal.lagAdmin(admin);
+            admin.Passord = lageSikkertPassord(admin.Passord);
+            DBdal.lagAdmin(admin);
         }
 
         public void slettAdmin(int ID)
@@ -81,6 +94,56 @@ namespace BLL
         public void slettReise(int ID)
         {
             _databaseLogikkDal.slettReise(ID);
+        }
+
+        public IEnumerable<Logging> getAlleLoggs()
+        {
+            return DBdal.getAlleLoggs();
+        }
+
+        public string lageSikkertPassord(string password)
+        {
+            byte[] salt;
+            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+
+            var rfc = new Rfc2898DeriveBytes(password, salt, 10000);
+            byte[] hash = rfc.GetBytes(20);
+
+            byte[] hashBytes = new byte[36];
+            Array.Copy(salt, 0, hashBytes, 0,16);
+            Array.Copy(hash, 0, hashBytes, 16, 20);
+
+            string lagtHashetPassord = Convert.ToBase64String(hashBytes);
+
+            return lagtHashetPassord;
+        }
+
+        public Admin verifiserPassord(Admin innAdmin, string userPassord)
+        {
+            Admin admin = DBdal.Autorisasjon(innAdmin);
+            if (admin == null)
+            {
+                return null;
+            }
+
+            string hashetPassord = admin.Passord;
+
+            byte[] hashBytes = Convert.FromBase64String(hashetPassord);
+            byte[] salt = new byte[16];
+            Array.Copy(hashBytes,0, salt, 0,16);
+
+            var rfc = new Rfc2898DeriveBytes(userPassord, salt, 10000);
+            byte[] hash = rfc.GetBytes(20);
+
+            for (int i = 0; i < 20; i++)
+            {
+                if (hashBytes[i + 16] != hash[i])
+                {
+                    return null;
+                }
+            }
+
+            return admin;
         }
 
     }

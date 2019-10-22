@@ -1,5 +1,7 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -92,11 +94,16 @@ namespace Gruppeoppgave1.Controllers
         
         public ActionResult Admin()
         {
-            IEnumerable<Kunde> allebilleter = _databaseLogikkBll.getAlleKunder();
+            if (Session["idAdmin"] == null)
+            {
+                return RedirectToAction("Index");
+            }
+            IEnumerable<Kunde> allebilleter = DB_bll.getAlleKunder();
             return View(allebilleter);
         }
 
-        public ActionResult listAdmin()
+
+        public ActionResult listAdmin(Admin admin)
         {
             IEnumerable<Admin> alleAdmins = _databaseLogikkBll.getAlleAdmin();
             return View(alleAdmins);
@@ -164,18 +171,34 @@ namespace Gruppeoppgave1.Controllers
         }
         
         [HttpPost]
-        public ActionResult Autorisasjon(Admin admin)
-        { 
-            if (_databaseLogikkBll.Autorisasjon(admin))
+        public ActionResult Autorisasjon(Admin inAdmin)
+        {
+            Admin admin2 = DB_bll.Autorisasjon(inAdmin);
+
+
+            if (admin2 == null)
             {
-                Session["loginID"] = admin.ID;
-                return RedirectToAction("listAdmin");
+                inAdmin.loginMsgError = "Passord stemmer ikke";
+                return View("Login", inAdmin); 
             }
-            else
-            {
-                return View("Login", admin); 
-            }
+
+            Session["IdAdmin"] = admin2.ID;
+            Session["AdminNavn"] = admin2.Brukernavn;
+            return RedirectToAction("Admin");
+            
         }
 
+        public ActionResult Loggut()
+        {
+            Session["idAdmin"] = null;
+            Session["AdminNavn"] = null;
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Loggs()
+        {
+            IEnumerable<Logging> alleLoggs = DB_bll.getAlleLoggs();
+            return View(alleLoggs);
+        }
     }
 }
