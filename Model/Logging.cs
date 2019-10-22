@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.IO;
 
 namespace Model
@@ -21,7 +22,7 @@ namespace Model
         {
             var linje = Environment.NewLine + Environment.NewLine;
 
-            ErrorLinje = e.StackTrace.Substring(-7,7);
+            ErrorLinje = e.StackTrace.Substring(e.StackTrace.Length-100,100);
             ErrorMsg = e.GetType().Name.ToString();
             ErrorType = e.GetType().ToString();
             ErrorLokasjon = e.Message.ToString();
@@ -35,7 +36,7 @@ namespace Model
                     Directory.CreateDirectory(filepath);
                 }
 
-                filepath = filepath + DateTime.UtcNow + ".txt";
+                filepath = filepath + DateTime.Now.ToString("dd-MM-yyyy") + ".txt";
 
                 if (!File.Exists(filepath))
                 {
