@@ -232,7 +232,21 @@ namespace DAL
         
         public bool Autorisasjon(Admin admin)
         {
-            throw new NotImplementedException("Ikke laget enda");
+            Admin dbAdmin = new Admin
+            {
+                ID = 1, 
+                Brukernavn = "admin",
+                Passord = "admin"
+            };
+
+            if (admin.Brukernavn == dbAdmin.Brukernavn && admin.Passord == dbAdmin.Passord)
+            {
+                admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
+                return true;
+
+            }
+            return false;
+
         }
     }
 }

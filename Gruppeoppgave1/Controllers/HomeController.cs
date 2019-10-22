@@ -166,12 +166,12 @@ namespace Gruppeoppgave1.Controllers
         { 
             if (_databaseLogikkBll.Autorisasjon(admin))
             {
-                return View("Login", admin); 
+                Session["loginID"] = admin.ID;
+                return RedirectToAction("listAdmin");
             }
             else
             {
-                Session["loginID"] = admin.ID;
-                return RedirectToAction("listAdmin");
+                return View("Login", admin); 
             }
         }
 

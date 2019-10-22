@@ -15,7 +15,7 @@ namespace Enhetstest
     [TestClass]
     public class HomeControllerTest
     {
-        [TestMethod]
+/*        [TestMethod]
         public void testIndex()
         {
             //Arrange
@@ -42,51 +42,59 @@ namespace Enhetstest
             //Assert
             Assert.AreEqual(resultat.RouteName, "");
             Assert.AreEqual(resultat.RouteValues.Values.First(), "reiseModel");
-        }
+        }*/
         
         [TestMethod]
-        public void TestIndexView()
+        public void TestLoginView()
         {
-            //Arrange
+            // Arrange
             var controller = new HomeController(new DatabaseLogikkBLL(new DatabaseLogikkStub()));
-            Reise reise = new Reise
+			
+            // Act
+            var result = (ViewResult) controller.Login();
+
+            // Assert 
+            Assert.AreEqual(result.ViewName, "");
+        }
+
+        [TestMethod]
+        public void TestAutorisasjonFeil()
+        {
+            // Arrange
+            Admin admin = new Admin
             {
-                Ankomst = "14:00",
-                Avgang = "12:00",
-                Bytter = 1,
-                Dato = "20.12.2019",
-                Fra = "Asker",
                 ID = 1,
-                Pris = 159,
-                Spor = "5",
-                Tid = "2 t",
-                Til = "Eidsvoll"
+                Brukernavn = "admin",
+                Passord = ""
             };
-            Kredittkort kredittkort = new Kredittkort
+
+            var controller = new HomeController(new DatabaseLogikkBLL(new DatabaseLogikkStub()));
+
+            // act
+            var result = (ViewResult) controller.Autorisasjon(admin);
+
+            // Assert
+            Assert.AreEqual(result.ViewName, "Login");
+        }
+
+        [TestMethod]
+        public void TestAutorisasjonO()
+        {
+            // Arrange
+            Admin admin = new Admin
             {
-                Cvc = "345",
                 ID = 1,
-                Kortnummer = "4444555566667777",
-                Utlopsdato = "12/22"
+                Brukernavn = "admin",
+                Passord = ""
             };
-            Kunde kunde = new Kunde
-            {
-                Email = "ole@hotmail.com",
-                Etternavn = "Olavsen",
-                Fornavn = "Ole",
-                ID = 1,
-                Kredittkort = kredittkort,
-                Telefon = "98765432"
-            };
-            KundeReise kundeReise = new KundeReise
-            {
-                kunde = kunde,
-                reise = reise
-            };
-            //Act
-            var index = controller.Index(kundeReise);
-            //Assert
-            Assert.Equals(index, kundeReise);
+
+            var controller = new HomeController(new DatabaseLogikkBLL(new DatabaseLogikkStub()));
+
+            // act
+            var result = (ViewResult)controller.Autorisasjon(admin);
+
+            // Assert
+            Assert.AreEqual(result.ViewName, "Login");
         }
     }
 }
