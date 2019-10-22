@@ -121,13 +121,11 @@ namespace DAL
                 if (adminDetail == null)
                 { 
                     admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
-                    return true;
+                    return false;
 
                 }
-                else
-                {
-                    return false;
-                }
+
+                return true;
             }
         }
     }

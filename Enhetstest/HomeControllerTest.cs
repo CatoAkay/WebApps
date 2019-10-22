@@ -88,10 +88,28 @@ namespace Enhetstest
 			// act
 			var result = (ViewResult) controller.Autorisasjon(admin);
 
-			
+			// Assert
+			Assert.AreEqual(result.ViewName, "Login");
+        }
 
+        [TestMethod]
+        public void TestAutorisasjonO()
+        {
+	        // Arrange
+	        Admin admin = new Admin
+	        {
+		        ID = 1,
+		        Brukernavn = "admin",
+		        Passord = ""
+	        };
 
+	        var controller = new HomeController(new DatabaseLogikkBLL(new DatabaseLogikkStub()));
 
+	        // act
+	        var result = (ViewResult)controller.Autorisasjon(admin);
+
+	        // Assert
+	        Assert.AreEqual(result.ViewName, "Login");
         }
 
 
