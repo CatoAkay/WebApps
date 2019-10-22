@@ -14,5 +14,6 @@ namespace Model
         [Required(ErrorMessage = "Fyll inn passord")]
         public String Passord { get; set; }
         public string loginMsgError { get; set; }
+
     }
 }

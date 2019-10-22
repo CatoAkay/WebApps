@@ -161,18 +161,12 @@ namespace Gruppeoppgave1.Controllers
         [HttpPost]
         public ActionResult Autorisasjon(Admin inAdmin)
         {
-            if (inAdmin.Passord == "admin" && inAdmin.Brukernavn == "admin")
-            {
-                var admin = DB_bll.AutorisasjonAdmin(inAdmin);
-                Session["IdAdmin"] = admin.ID;
-                Session["AdminNavn"] = admin.Brukernavn;
-                return RedirectToAction("Admin");
-            }
-
             Admin admin2 = DB_bll.Autorisasjon(inAdmin);
+
 
             if (admin2 == null)
             {
+                inAdmin.loginMsgError = "Passord stemmer ikke";
                 return View("Login", inAdmin); 
             }
 

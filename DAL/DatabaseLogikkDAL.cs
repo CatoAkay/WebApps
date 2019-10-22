@@ -118,14 +118,20 @@ namespace DAL
         { 
             using (db)
             {
-
                 var adminDetail = db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn);
                 if (adminDetail == null)
                 { 
-                    admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
+                    admin.loginMsgError = "Ikke gyldig bruker";
                     return null;
-
                 }
+
+                //var adminDetail2 = db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn && x.Passord == admin.Passord);
+                //if (adminDetail2 != )
+                //{
+                //    admin.loginMsgError = "Ikke gyldig bruker";
+                //    return null;
+                //}
+
 
                 return adminDetail;
             }

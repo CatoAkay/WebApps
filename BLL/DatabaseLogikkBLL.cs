@@ -111,6 +111,11 @@ namespace BLL
         public Admin verifiserPassord(Admin innAdmin, string userPassord)
         {
             Admin admin = DBdal.Autorisasjon(innAdmin);
+            if (admin == null)
+            {
+                return null;
+            }
+
             string hashetPassord = admin.Passord;
 
             byte[] hashBytes = Convert.FromBase64String(hashetPassord);

@@ -73,7 +73,7 @@ namespace DAL
                 var admin = new Admin
                 {
                     Brukernavn = "admin",
-                    Passord = "admin"
+                    Passord = "vsSDUXwrarYGhShJBLoDVxqPreD+GGQXVKKo0JOq4Eh2H8pw"
                 };
                 db.Admin.Add(admin);
                 db.SaveChanges();
