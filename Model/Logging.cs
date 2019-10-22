@@ -15,27 +15,27 @@ namespace Model
 
 
 
-        private static String ErrorLinje, ErrorMsg, ErrorType, HostIp, ErrorLokasjon;
+        private static String ErrorLinje, ErrorMsg, ErrorType, ErrorLokasjon;
 
         public static void ErrorTilFil(Exception e)
         {
             var linje = Environment.NewLine + Environment.NewLine;
 
-            ErrorLinje = e.StackTrace.Substring(e.StackTrace.Length - 7, 7);
+            ErrorLinje = e.StackTrace;
             ErrorMsg = e.GetType().Name.ToString();
             ErrorType = e.GetType().ToString();
             ErrorLokasjon = e.Message.ToString();
 
             try
             {
-                string filepath = @"D:\Logg\";
+                string filepath = @"C:\Logg\";
 
                 if (!Directory.Exists(filepath))
                 {
                     Directory.CreateDirectory(filepath);
                 }
 
-                filepath = filepath + DateTime.Today.ToString("dd-mm-yy") + ".txt";
+                filepath = filepath + DateTime.UtcNow + ".txt";
 
                 if (!File.Exists(filepath))
                 {
@@ -44,12 +44,11 @@ namespace Model
 
                 using (StreamWriter sw = File.AppendText(filepath))
                 {
-                    var error = "Logg dato: " + " " + DateTime.Now.ToString() 
-                                + linje + "Error linje :" + " " + ErrorLinje + linje 
-                                + "Error melding:" + " " + ErrorMsg + linje 
-                                + "Exception type:" + " " + ErrorType + linje 
-                                + "Error lokasjon :" + " " + ErrorLokasjon + linje 
-                                + "Host IP:" + " " + HostIp + linje;
+                    var error = "Logg dato: " + " " + DateTime.Now.ToString()
+                                + linje + "Error linje :" + " " + ErrorLinje + linje
+                                + "Error melding:" + " " + ErrorMsg + linje
+                                + "Exception type:" + " " + ErrorType + linje
+                                + "Error lokasjon :" + " " + ErrorLokasjon + linje;
 
                     sw.WriteLine("Exception på datoen:  " + " " + DateTime.Now.ToString());
                     sw.WriteLine(linje);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -19,10 +20,11 @@ namespace DAL
         {
             Billett billett = new Billett
             {
-                Reise = info.reise, 
+                Reise = info.reise,
                 Kunde = info.kunde
             };
             db.Billett.Add(billett);
+
             db.Reise.Add(info.reise);
             db.Kunde.Add(info.kunde);
             db.SaveChanges();
@@ -32,19 +34,19 @@ namespace DAL
         {
             return db.Billett.Find(id);
         }
-        
+
         public IEnumerable<Kunde> getAlleKunder()
         {
             IEnumerable<Kunde> allebilleter = db.Kunde;
             return allebilleter;
-        }         
-        
+        }
+
         public IEnumerable<Admin> getAlleAdmin()
         {
             IEnumerable<Admin> alleAdmin = db.Admin;
             return alleAdmin;
-        } 
-        
+        }
+
         public void lagAdmin(Admin admin)
         {
             DB db = new DB();
@@ -113,31 +115,22 @@ namespace DAL
             db.Kredittkort.Remove(kredidkort);
             db.SaveChanges();
         }
-        
+
         public bool Autorisasjon(Admin admin)
-        {
-            try
+        {   
+            using (db)
             {
-
-          
-                using (db)
+                var adminDetail =
+                    db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn && x.Passord == admin.Passord);
+                if (adminDetail == null)
                 {
-                    var adminDetail = db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn && x.Passord == admin.Passord);
-                    if (adminDetail == null)
-                    { 
-                        admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
-                        return true;
+                    admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
+                    return true;
 
-                    }
-                    return false;
                 }
+                return false;
             }
-            catch (Exception e)
-            {
-                Logging.ErrorTilFil(e);
-            }
-
-            return true;
+            
         }
     }
 }

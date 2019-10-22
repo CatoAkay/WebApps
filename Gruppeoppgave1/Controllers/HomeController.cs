@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
 using BLL;
@@ -74,8 +75,16 @@ namespace Gruppeoppgave1.Controllers
         public ActionResult Billett()
         {
             var billettID = Session["ID"];
-            var valgtBillett = DB_bll.getBillett((int)billettID);
-            return View(valgtBillett);
+            try
+            {
+                var valgtBillett = DB_bll.getBillett((int)billettID);
+            }
+            catch (Exception e)
+            {
+                Logging.ErrorTilFil(e);
+            }
+            
+            return View();
         }
         
         public ActionResult Admin()
@@ -163,6 +172,26 @@ namespace Gruppeoppgave1.Controllers
                 Session["loginID"] = admin.ID;
                 return RedirectToAction("listAdmin");
             }
+        }
+
+        [HttpPost]
+        public ActionResult testView(Kunde kunde)
+        {
+            try
+            {
+                return RedirectToAction("Billett");
+            }
+            catch (Exception e)
+            {
+                Logging.ErrorTilFil(e);
+            }
+
+            return RedirectToAction("Billett");
+        }
+
+        public ActionResult testView()
+        {
+            return View();
         }
 
     }
