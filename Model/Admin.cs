@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model
 {
@@ -13,6 +14,7 @@ namespace Model
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Fyll inn passord")]
         public String Passord { get; set; }
+        [NotMapped]
         public string loginMsgError { get; set; }
 
     }
