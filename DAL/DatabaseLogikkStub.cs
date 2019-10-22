@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Model;
@@ -7,14 +8,8 @@ namespace DAL
 {
     public class DatabaseLogikkStub : IDatabaseLogikkDAL
     {
-        private DB db = new DB();
 
-        public DatabaseLogikkStub()
-        {
-            db.setAdmin();
-        }
-
-        public void lagreBillett(KundeReise info)
+	    public void lagreBillett(KundeReise info)
         {
             Reise reise = new Reise
             {
@@ -54,106 +49,86 @@ namespace DAL
 
         public Billett getBillett(int id)
         {
-            return db.Billett.Find(id);
-        }
-        
-        public IEnumerable<Kunde> getAlleKunder()
+			throw new NotImplementedException();
+
+		}
+
+		public IEnumerable<Kunde> getAlleKunder()
         {
-            IEnumerable<Kunde> allebilleter = db.Kunde;
-            return allebilleter;
+	        throw new NotImplementedException();
         }         
         
         public IEnumerable<Admin> getAlleAdmin()
         {
-            IEnumerable<Admin> alleAdmin = db.Admin;
-            return alleAdmin;
-        } 
-        
-        public void lagAdmin(Admin admin)
-        {
-            DB db = new DB();
-            db.Admin.Add(admin);
-            db.SaveChanges();
-        }
+			throw new NotImplementedException();
 
-        public void slettAdmin(int ID)
-        {
-            DB db = new DB();
-            Admin admin = db.Admin.Find(ID);
-            db.Admin.Remove(admin);
-            db.SaveChanges();
-        }
+		}
 
-        public void slettKunde(int ID)
+		public void lagAdmin(Admin admin)
         {
-            DB db = new DB();
-            Kunde valgkunde = db.Kunde.Find(ID);
-            Reise valgtReise = db.Reise.Find(ID);
-            Billett billett = db.Billett.Find(ID);
-            Kredittkort kredidkort = db.Kredittkort.Find(ID);
-            db.Kunde.Remove(valgkunde);
-            db.Reise.Remove(valgtReise);
-            db.Billett.Remove(billett);
-            db.Kredittkort.Remove(kredidkort);
-            db.SaveChanges();
-        }
+			throw new NotImplementedException();
 
-        public Kunde editKunde(int ID)
+		}
+
+		public void slettAdmin(int ID)
         {
-            Kunde kunde = db.Kunde.Find(ID);
-            return kunde;
-        }
+			throw new NotImplementedException();
 
-        public void editKunde(Kunde kunde)
+		}
+
+		public void slettKunde(int ID)
         {
-            db.Kunde.Attach(kunde);
-            db.Entry(kunde).State = EntityState.Modified;
-            db.SaveChanges();
-        }
+			throw new NotImplementedException();
 
-        public Reise seReise(int ID)
+		}
+
+		public Kunde editKunde(int ID)
         {
-            Reise reise = db.Reise.Find(ID);
-            return reise;
-        }
+			throw new NotImplementedException();
 
-        public void seReise(Reise reise)
+		}
+
+		public void editKunde(Kunde kunde)
         {
-            db.Reise.Attach(reise);
-            db.Entry(reise).State = EntityState.Modified;
-            db.SaveChanges();
-        }
+			throw new NotImplementedException();
 
-        public void slettReise(int ID)
+		}
+
+		public Reise seReise(int ID)
         {
-            DB db = new DB();
-            Kunde valgkunde = db.Kunde.Find(ID);
-            Reise valgtReise = db.Reise.Find(ID);
-            Billett billett = db.Billett.Find(ID);
-            Kredittkort kredidkort = db.Kredittkort.Find(ID);
-            db.Kunde.Remove(valgkunde);
-            db.Reise.Remove(valgtReise);
-            db.Billett.Remove(billett);
-            db.Kredittkort.Remove(kredidkort);
-            db.SaveChanges();
-        }
-        
-        public bool Autorisasjon(Admin admin)
-        { 
-            using (db)
-            {
-                var adminDetail = db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn && x.Passord == admin.Passord);
-                if (adminDetail == null)
-                { 
-                    admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
-                    return true;
+			throw new NotImplementedException();
 
-                }
-                else
-                {
-                    return false;
-                }
-            }
+		}
+
+		public void seReise(Reise reise)
+        {
+			throw new NotImplementedException();
+
+		}
+
+		public void slettReise(int ID)
+        {
+			throw new NotImplementedException();
+
+		}
+
+		public bool Autorisasjon(Admin admin)
+        {
+	        Admin dbAdmin = new Admin
+	        {
+		        ID = 1, 
+				Brukernavn = "admin",
+				Passord = "admin"
+	        };
+
+	        if (admin.Brukernavn == dbAdmin.Brukernavn && admin.Passord == dbAdmin.Passord)
+	        {
+		        admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
+		        return true;
+
+			}
+	        return false;
+
         }
-    }
+	}
 }

@@ -58,5 +58,42 @@ namespace Enhetstest
             //Assert
             Assert.Equals(index, kundeReise);
         }
+
+        [TestMethod]
+        public void TestLoginView()
+        {
+			// Arrange
+			var controller = new HomeController(new DatabaseLogikkBLL(new DatabaseLogikkStub()));
+			
+			// Act
+			var result = (ViewResult) controller.Login();
+
+			// Assert 
+			Assert.AreEqual(result.ViewName, "");
+        }
+
+        [TestMethod]
+        public void TestAutorisasjonFeil()
+        {
+			// Arrange
+	        Admin admin = new Admin
+	        {
+		        ID = 1,
+		        Brukernavn = "admin",
+		        Passord = ""
+	        };
+
+			var controller = new HomeController(new DatabaseLogikkBLL(new DatabaseLogikkStub()));
+
+			// act
+			var result = (ViewResult) controller.Autorisasjon(admin);
+
+			
+
+
+
+        }
+
+
     }
 }
