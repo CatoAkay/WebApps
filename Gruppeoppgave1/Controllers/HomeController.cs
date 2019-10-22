@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
 using BLL;
@@ -86,6 +87,7 @@ namespace Gruppeoppgave1.Controllers
             var billettID = Session["ID"];
             var valgtBillett = _databaseLogikkBll.getBillett((int)billettID);
             return View(valgtBillett);
+
         }
         
         public ActionResult Admin()

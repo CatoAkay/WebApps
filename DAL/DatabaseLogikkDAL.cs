@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.CodeDom;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Model;
@@ -16,34 +18,43 @@ namespace DAL
 
         public void lagreBillett(KundeReise info)
         {
-            Billett billett = new Billett
+            try
             {
-                Reise = info.reise, 
-                Kunde = info.kunde
-            };
-            db.Billett.Add(billett);
-            db.Reise.Add(info.reise);
-            db.Kunde.Add(info.kunde);
-            db.SaveChanges();
+                Billett billett = new Billett
+                {
+                    Reise = info.reise,
+                    Kunde = info.kunde
+                };
+                db.Billett.Add(billett);
+
+                db.Reise.Add(info.reise);
+                db.Kunde.Add(info.kunde);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Logging.ErrorTilFil(e);
+            }
+            
         }
 
         public Billett getBillett(int id)
         {
             return db.Billett.Find(id);
         }
-        
+
         public IEnumerable<Kunde> getAlleKunder()
         {
             IEnumerable<Kunde> allebilleter = db.Kunde;
             return allebilleter;
-        }         
-        
+        }
+
         public IEnumerable<Admin> getAlleAdmin()
         {
             IEnumerable<Admin> alleAdmin = db.Admin;
             return alleAdmin;
-        } 
-        
+        }
+
         public void lagAdmin(Admin admin)
         {
             DB db = new DB();
@@ -53,23 +64,40 @@ namespace DAL
 
         public void slettAdmin(int ID)
         {
-            DB db = new DB();
-            Admin admin = db.Admin.Find(ID);
-            db.Admin.Remove(admin);
-            db.SaveChanges();
+            try
+            {
+                DB db = new DB();
+                Admin admin = db.Admin.Find(ID);
+                db.Admin.Remove(admin);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Logging.ErrorTilFil(e);
+            }
+            
         }
 
         public void slettKunde(int ID)
         {
-            Kunde valgkunde = db.Kunde.Find(ID);
-            Reise valgtReise = db.Reise.Find(ID);
-            Billett billett = db.Billett.Find(ID);
-            Kredittkort kredidkort = db.Kredittkort.Find(ID);
-            db.Kunde.Remove(valgkunde);
-            db.Reise.Remove(valgtReise);
-            db.Billett.Remove(billett);
-            db.Kredittkort.Remove(kredidkort);
-            db.SaveChanges();
+            try
+            {
+                DB db = new DB();
+                Kunde valgkunde = db.Kunde.Find(ID);
+                Reise valgtReise = db.Reise.Find(ID);
+                Billett billett = db.Billett.Find(ID);
+                Kredittkort kredidkort = db.Kredittkort.Find(ID);
+                db.Kunde.Remove(valgkunde);
+                db.Reise.Remove(valgtReise);
+                db.Billett.Remove(billett);
+                db.Kredittkort.Remove(kredidkort);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Logging.ErrorTilFil(e);
+            }
+           
         }
 
         public Kunde editKunde(int ID)
@@ -80,9 +108,17 @@ namespace DAL
 
         public void editKunde(Kunde kunde)
         {
-            db.Kunde.Attach(kunde);
-            db.Entry(kunde).State = EntityState.Modified;
-            db.SaveChanges();
+            try
+            {
+                db.Kunde.Attach(kunde);
+                db.Entry(kunde).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Logging.ErrorTilFil(e);
+            }
+           
         }
 
         public Reise seReise(int ID)
@@ -100,25 +136,34 @@ namespace DAL
 
         public void slettReise(int ID)
         {
-            DB db = new DB();
-            Kunde valgkunde = db.Kunde.Find(ID);
-            Reise valgtReise = db.Reise.Find(ID);
-            Billett billett = db.Billett.Find(ID);
-            Kredittkort kredidkort = db.Kredittkort.Find(ID);
-            db.Kunde.Remove(valgkunde);
-            db.Reise.Remove(valgtReise);
-            db.Billett.Remove(billett);
-            db.Kredittkort.Remove(kredidkort);
-            db.SaveChanges();
+            try
+            {
+                DB db = new DB();
+                Kunde valgkunde = db.Kunde.Find(ID);
+                Reise valgtReise = db.Reise.Find(ID);
+                Billett billett = db.Billett.Find(ID);
+                Kredittkort kredidkort = db.Kredittkort.Find(ID);
+                db.Kunde.Remove(valgkunde);
+                db.Reise.Remove(valgtReise);
+                db.Billett.Remove(billett);
+                db.Kredittkort.Remove(kredidkort);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Logging.ErrorTilFil(e);
+            }
+            
         }
-        
+
         public bool Autorisasjon(Admin admin)
-        { 
+        {   
             using (db)
             {
-                var adminDetail = db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn && x.Passord == admin.Passord);
+                var adminDetail =
+                    db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn && x.Passord == admin.Passord);
                 if (adminDetail == null)
-                { 
+                {
                     admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
                     return false;
 
@@ -128,6 +173,7 @@ namespace DAL
                     return true;
                 }
             }
+            
         }
     }
 }
