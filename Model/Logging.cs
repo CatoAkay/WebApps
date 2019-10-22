@@ -21,7 +21,7 @@ namespace Model
         {
             var linje = Environment.NewLine + Environment.NewLine;
 
-            ErrorLinje = e.StackTrace;
+            ErrorLinje = e.StackTrace.Substring(-7,7);
             ErrorMsg = e.GetType().Name.ToString();
             ErrorType = e.GetType().ToString();
             ErrorLokasjon = e.Message.ToString();
