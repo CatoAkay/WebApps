@@ -49,7 +49,8 @@ namespace Model
                                 + linje + "Error linje :" + " " + ErrorLinje + linje
                                 + "Error melding:" + " " + ErrorMsg + linje
                                 + "Exception type:" + " " + ErrorType + linje
-                                + "Error lokasjon :" + " " + ErrorLokasjon + linje;
+                                + "Error lokasjon :" + " " + ErrorLokasjon + linje 
+                                + "------------------------------------------------------------------------------------------";
 
                     sw.WriteLine("Exception på datoen:  " + " " + DateTime.Now.ToString());
                     sw.WriteLine(linje);

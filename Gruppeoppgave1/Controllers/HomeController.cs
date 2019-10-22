@@ -78,6 +78,7 @@ namespace Gruppeoppgave1.Controllers
             var valgtBillett = DB_bll.getBillett((int)billettID);
 
             return View(valgtBillett);
+
         }
         
         public ActionResult Admin()
