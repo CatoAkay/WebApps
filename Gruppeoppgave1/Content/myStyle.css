@@ -89,6 +89,12 @@ body {
     box-shadow: none;
 }
 
+.adminKnapp{
+    float: right;
+    height: 75px;
+    margin-top: 2px;
+}
+
 .fontReise{
     font-size: 25px;
 }
@@ -96,6 +102,12 @@ body {
 .hForside{
     margin-top: 2em;
     text-align: center;
+    font-weight: bold;
+}
+
+.hLogin{
+    margin-top: 2em;
+    margin-bottom: 1em;
     font-weight: bold;
 }
 
