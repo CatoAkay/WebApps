@@ -40,19 +40,6 @@
                     continue; 
                 }
 
-                if (Id == "1")
-                {
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Brukernavn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Passord)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Slett admin", "slettAdmin", new {id = item.ID})
-                    </td>
-                    continue;
-                }
             }
             <td>
                 @Html.DisplayFor(modelItem => item.Brukernavn)
@@ -61,7 +48,7 @@
                 @Html.DisplayFor(modelItem => item.Passord)
             </td>
             <td>
-                bare hoved Admin kan slette andre Adminds
+                @Html.ActionLink("Slett admin", "slettAdmin", new {id = item.ID})
             </td>
             
         </tr>

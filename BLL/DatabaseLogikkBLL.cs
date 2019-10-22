@@ -29,6 +29,11 @@ namespace BLL
 
             return admin2;
         }
+
+        public Admin AutorisasjonAdmin(Admin admin)
+        {
+            return DBdal.AutorisasjonAdmin(admin);
+        }
         
         public IEnumerable<Kunde> getAlleKunder()
         {

@@ -131,6 +131,23 @@ namespace DAL
             }
         }
 
+        public Admin AutorisasjonAdmin(Admin admin)
+        {
+            using (db)
+            {
+
+                var adminDetail = db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn && x.Passord == admin.Passord);
+                if (adminDetail == null)
+                {
+                    admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
+                    return null;
+
+                }
+
+                return adminDetail;
+            }
+        }
+
 
 
         public IEnumerable<Logging> getAlleLoggs()
