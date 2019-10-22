@@ -10,10 +10,40 @@ using Model;
 
 namespace Enhetstest
 {
+
     /// Tester metoder i HomeController
     [TestClass]
     public class HomeControllerTest
     {
+        [TestMethod]
+        public void testIndex()
+        {
+            //Arrange
+            var controller = new HomeController(new DatabaseLogikkBLL(new DatabaseLogikkStub()));
+            Reise reise = new Reise
+            {
+                Ankomst = "14:00",
+                Avgang = "12:00",
+                Bytter = 1,
+                Dato = "20.12.2019",
+                Fra = "Asker",
+                ID = 1,
+                Pris = 159,
+                Spor = "5",
+                Tid = "2 t",
+                Til = "Eidsvoll"
+            };
+            KundeReise kundeReise = new KundeReise
+            {
+                reise = reise
+            };
+            //Act
+            var resultat = (RedirectToRouteResult) controller.Index();
+            //Assert
+            Assert.AreEqual(resultat.RouteName, "");
+            Assert.AreEqual(resultat.RouteValues.Values.First(), "reiseModel");
+        }
+        
         [TestMethod]
         public void TestIndexView()
         {

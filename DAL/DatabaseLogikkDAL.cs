@@ -61,7 +61,6 @@ namespace DAL
 
         public void slettKunde(int ID)
         {
-            DB db = new DB();
             Kunde valgkunde = db.Kunde.Find(ID);
             Reise valgtReise = db.Reise.Find(ID);
             Billett billett = db.Billett.Find(ID);

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Model;
@@ -7,14 +9,19 @@ namespace DAL
 {
     public class DatabaseLogikkStub : IDatabaseLogikkDAL
     {
-        private DB db = new DB();
-
-        public DatabaseLogikkStub()
+        public void lagreBillett(KundeReise info)
         {
-            db.setAdmin();
+            List<Billett> alleBilletter = new List<Billett>();
+            Billett billett = new Billett
+            {
+                ID = 1,
+                Kunde = info.kunde,
+                Reise = info.reise
+            };
+            alleBilletter.Add(billett);
         }
 
-        public void lagreBillett(KundeReise info)
+        public Billett getBillett(int id)
         {
             Reise reise = new Reise
             {
@@ -48,112 +55,184 @@ namespace DAL
             Billett billett = new Billett
             {
                 Reise = reise, 
-                Kunde = kunde
+                Kunde = kunde,
+                ID = id
             };
-        }
-
-        public Billett getBillett(int id)
-        {
-            return db.Billett.Find(id);
+            return billett;
         }
         
         public IEnumerable<Kunde> getAlleKunder()
         {
-            IEnumerable<Kunde> allebilleter = db.Kunde;
-            return allebilleter;
+            IEnumerable<Kunde> alleKunder = new List<Kunde>();
+            Kunde kunde = new Kunde
+            {
+                Email = "ole@hotmail.com",
+                Etternavn = "Olavsen",
+                Fornavn = "Ole",
+                ID = 1,
+                Telefon = "98765432"
+            };
+            Kunde kunde2 = new Kunde
+            {
+                Email = "knut@hotmail.com",
+                Etternavn = "Bertilsen",
+                Fornavn = "Knut",
+                ID = 2,
+                Telefon = "99765432"
+            };
+            Kunde kunde3 = new Kunde
+            {
+                Email = "knut@hotmail.com",
+                Etternavn = "Bertilsen",
+                Fornavn = "Knut",
+                ID = 3,
+                Telefon = "99965432"
+            };
+            alleKunder.Append(kunde);
+            alleKunder.Append(kunde2);
+            alleKunder.Append(kunde3);
+            return alleKunder; 
         }         
         
         public IEnumerable<Admin> getAlleAdmin()
         {
-            IEnumerable<Admin> alleAdmin = db.Admin;
+            IEnumerable<Admin> alleAdmin = new List<Admin>();
+            Admin admin = new Admin
+            {
+                Brukernavn = "Admin",
+                ID = 1,
+                Passord = "Admin"
+            };            
+            
+            Admin admin2 = new Admin
+            {
+                Brukernavn = "Admin2",
+                ID = 2,
+                Passord = "Admin2"
+            };
+            alleAdmin.Append(admin);
+            alleAdmin.Append(admin2);
             return alleAdmin;
         } 
         
         public void lagAdmin(Admin admin)
         {
-            DB db = new DB();
-            db.Admin.Add(admin);
-            db.SaveChanges();
+            List<Admin> allAdmins = new List<Admin>();
+            Admin nyAdmin = new Admin
+            {
+                Brukernavn = admin.Brukernavn,
+                Passord = admin.Passord,
+            };
+            allAdmins.Add(nyAdmin);
         }
 
         public void slettAdmin(int ID)
         {
-            DB db = new DB();
-            Admin admin = db.Admin.Find(ID);
-            db.Admin.Remove(admin);
-            db.SaveChanges();
+            List<Admin> allAdmins = new List<Admin>();
+            Admin slettetAdmin = new Admin
+            {
+                Brukernavn = "Admin",
+                Passord = "admin",
+                ID = ID,
+            };
+            allAdmins.Add(slettetAdmin);
+            allAdmins.Remove(slettetAdmin);
         }
 
         public void slettKunde(int ID)
         {
-            DB db = new DB();
-            Kunde valgkunde = db.Kunde.Find(ID);
-            Reise valgtReise = db.Reise.Find(ID);
-            Billett billett = db.Billett.Find(ID);
-            Kredittkort kredidkort = db.Kredittkort.Find(ID);
-            db.Kunde.Remove(valgkunde);
-            db.Reise.Remove(valgtReise);
-            db.Billett.Remove(billett);
-            db.Kredittkort.Remove(kredidkort);
-            db.SaveChanges();
+            List<Kunde> alleKunder = new List<Kunde>();
+            Kunde kunde = new Kunde
+            {
+                Email = "ole@hotmail.com",
+                Etternavn = "Olavsen",
+                Fornavn = "Ole",
+                ID = ID,
+                Telefon = "98765432"
+            };
+            alleKunder.Add(kunde);
+            alleKunder.Remove(kunde);
         }
 
         public Kunde editKunde(int ID)
         {
-            Kunde kunde = db.Kunde.Find(ID);
+            Kunde kunde = new Kunde
+            {
+                Email = "ole@hotmail.com",
+                Etternavn = "Olavsen",
+                Fornavn = "Ole",
+                ID = ID,
+                Telefon = "98765432"
+            };
             return kunde;
         }
 
         public void editKunde(Kunde kunde)
         {
-            db.Kunde.Attach(kunde);
-            db.Entry(kunde).State = EntityState.Modified;
-            db.SaveChanges();
+            kunde.Fornavn = "Hans";
+            kunde.Etternavn = "Kristian";
         }
 
         public Reise seReise(int ID)
         {
-            Reise reise = db.Reise.Find(ID);
+            Reise reise = new Reise
+            {
+                Ankomst = "14:00",
+                Avgang = "12:00",
+                Bytter = 1,
+                Dato = "20.12.2019",
+                Fra = "Asker",
+                ID = ID,
+                Pris = 159,
+                Spor = "5",
+                Tid = "2 t",
+                Til = "Eidsvoll"
+            };
             return reise;
         }
 
         public void seReise(Reise reise)
         {
-            db.Reise.Attach(reise);
-            db.Entry(reise).State = EntityState.Modified;
-            db.SaveChanges();
+            List<Reise> denReisen = new List<Reise>();
+            Reise seReise = new Reise
+            {
+                Ankomst = reise.Ankomst,
+                Avgang = reise.Avgang,
+                Bytter = reise.Bytter,
+                Dato = reise.Dato,
+                Fra = reise.Fra,
+                ID = reise.ID,
+                Pris = reise.Pris,
+                Spor = reise.Spor,
+                Tid = reise.Tid,
+                Til = reise.Til,
+            };
+            denReisen.Add(seReise);
         }
 
         public void slettReise(int ID)
         {
-            DB db = new DB();
-            Kunde valgkunde = db.Kunde.Find(ID);
-            Reise valgtReise = db.Reise.Find(ID);
-            Billett billett = db.Billett.Find(ID);
-            Kredittkort kredidkort = db.Kredittkort.Find(ID);
-            db.Kunde.Remove(valgkunde);
-            db.Reise.Remove(valgtReise);
-            db.Billett.Remove(billett);
-            db.Kredittkort.Remove(kredidkort);
-            db.SaveChanges();
+            List<Reise> alleReiser = new List<Reise>();
+            Reise slettetReise = new Reise
+            {
+                Ankomst = "14:00",
+                Avgang = "12:00",
+                Bytter = 1,
+                Dato = "20.12.2019",
+                Fra = "Asker",
+                ID = ID,
+                Pris = 159,
+                Spor = "5",
+                Tid = "2 t",
+                Til = "Eidsvoll"
+            };
+            alleReiser.Add(slettetReise);
+            alleReiser.Remove(slettetReise);
         }
         
         public bool Autorisasjon(Admin admin)
-        { 
-            using (db)
-            {
-                var adminDetail = db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn && x.Passord == admin.Passord);
-                if (adminDetail == null)
-                { 
-                    admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
-                    return true;
-
-                }
-                else
-                {
-                    return false;
-                }
-            }
+        {
+            throw new NotImplementedException("Ikke laget enda");
         }
     }
 }
