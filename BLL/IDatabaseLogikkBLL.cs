@@ -7,7 +7,7 @@ namespace BLL
     {
         int lagreBillett(KundeReise info);
         Billett getBillett(int id);
-        bool Autorisasjon(Admin admin);
+        Admin Autorisasjon(Admin admin);
         IEnumerable<Kunde> getAlleKunder();
         IEnumerable<Admin> getAlleAdmin();
         void lagAdmin(Admin admin);
@@ -18,5 +18,6 @@ namespace BLL
         Reise seReise(int ID);
         void seReise(Reise reise);
         void slettReise(int ID);
+        IEnumerable<Logging> getAlleLoggs();
     }
 }

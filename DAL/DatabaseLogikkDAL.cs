@@ -197,9 +197,6 @@ namespace DAL
             }
             
         }
-
-
-
         public IEnumerable<Logging> getAlleLoggs()
         {
             IEnumerable<Logging> alleLoggs = db.Logg;

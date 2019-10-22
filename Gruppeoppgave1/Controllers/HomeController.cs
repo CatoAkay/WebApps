@@ -98,7 +98,7 @@ namespace Gruppeoppgave1.Controllers
             {
                 return RedirectToAction("Index");
             }
-            IEnumerable<Kunde> allebilleter = DB_bll.getAlleKunder();
+            IEnumerable<Kunde> allebilleter = _databaseLogikkBll.getAlleKunder();
             return View(allebilleter);
         }
 
@@ -173,7 +173,7 @@ namespace Gruppeoppgave1.Controllers
         [HttpPost]
         public ActionResult Autorisasjon(Admin inAdmin)
         {
-            Admin admin2 = DB_bll.Autorisasjon(inAdmin);
+            Admin admin2 = _databaseLogikkBll.Autorisasjon(inAdmin);
 
 
             if (admin2 == null)
@@ -197,7 +197,7 @@ namespace Gruppeoppgave1.Controllers
 
         public ActionResult Loggs()
         {
-            IEnumerable<Logging> alleLoggs = DB_bll.getAlleLoggs();
+            IEnumerable<Logging> alleLoggs = _databaseLogikkBll.getAlleLoggs();
             return View(alleLoggs);
         }
     }

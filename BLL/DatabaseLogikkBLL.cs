@@ -40,11 +40,6 @@ namespace BLL
             return admin2;
         }
 
-        public Admin AutorisasjonAdmin(Admin admin)
-        {
-            return DBdal.AutorisasjonAdmin(admin);
-        }
-        
         public IEnumerable<Kunde> getAlleKunder()
         {
             return _databaseLogikkDal.getAlleKunder();
@@ -58,7 +53,7 @@ namespace BLL
         public void lagAdmin(Admin admin)
         {
             admin.Passord = lageSikkertPassord(admin.Passord);
-            DBdal.lagAdmin(admin);
+            _databaseLogikkDal.lagAdmin(admin);
         }
 
         public void slettAdmin(int ID)
@@ -98,7 +93,7 @@ namespace BLL
 
         public IEnumerable<Logging> getAlleLoggs()
         {
-            return DBdal.getAlleLoggs();
+            return _databaseLogikkDal.getAlleLoggs();
         }
 
         public string lageSikkertPassord(string password)
@@ -120,7 +115,7 @@ namespace BLL
 
         public Admin verifiserPassord(Admin innAdmin, string userPassord)
         {
-            Admin admin = DBdal.Autorisasjon(innAdmin);
+            Admin admin = _databaseLogikkDal.Autorisasjon(innAdmin);
             if (admin == null)
             {
                 return null;

@@ -17,6 +17,7 @@ namespace DAL
         Reise seReise(int ID);
         void seReise(Reise reise);
         void slettReise(int ID);
-        bool Autorisasjon(Admin admin);
+        Admin Autorisasjon(Admin admin);
+        IEnumerable<Logging> getAlleLoggs();
     }
 }

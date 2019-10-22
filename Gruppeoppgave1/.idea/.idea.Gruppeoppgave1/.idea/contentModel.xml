@@ -170,6 +170,7 @@
           <e p="Index.cshtml" t="Include" />
           <e p="lagAdmin.cshtml" t="Include" />
           <e p="listAdmin.cshtml" t="Include" />
+          <e p="Loggs.cshtml" t="Include" />
           <e p="Login.cshtml" t="Include" />
           <e p="ReiseInfo.cshtml" t="Include" />
           <e p="Reisevalg.cshtml" t="Include" />

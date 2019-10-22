@@ -230,9 +230,10 @@ namespace DAL
             alleReiser.Remove(slettetReise);
         }
         
-        public bool Autorisasjon(Admin admin)
+        public Admin Autorisasjon(Admin admin)
         {
-            Admin dbAdmin = new Admin
+            throw new NotImplementedException("Må gjøres på nytt");
+/*            Admin dbAdmin = new Admin
             {
                 ID = 1, 
                 Brukernavn = "admin",
@@ -245,8 +246,12 @@ namespace DAL
                 return true;
 
             }
-            return false;
+            return false;*/
+        }
 
+        public IEnumerable<Logging> getAlleLoggs()
+        {
+            throw new NotImplementedException("Må lages også");
         }
     }
 }
