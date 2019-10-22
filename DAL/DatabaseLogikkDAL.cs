@@ -118,9 +118,8 @@ namespace DAL
         { 
             using (db)
             {
-                
+
                 var adminDetail = db.Admin.FirstOrDefault(x => x.Brukernavn == admin.Brukernavn);
-                
                 if (adminDetail == null)
                 { 
                     admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
@@ -131,6 +130,8 @@ namespace DAL
                 return adminDetail;
             }
         }
+
+
 
         public IEnumerable<Logging> getAlleLoggs()
         {

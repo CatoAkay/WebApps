@@ -24,12 +24,10 @@ namespace BLL
         {
             string skrevetPassord = admin.Passord;
 
-            if (verifiserPassord(admin, skrevetPassord))
-            {
-                return DBdal.Autorisasjon(admin);
-            }
+            Admin admin2 = verifiserPassord(admin, skrevetPassord);
+                
 
-            return null;
+            return admin2;
         }
         
         public IEnumerable<Kunde> getAlleKunder()
@@ -93,19 +91,19 @@ namespace BLL
             byte[] salt;
             new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
 
-            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000);
-            byte[] hash = pbkdf2.GetBytes(20);
+            var rfc = new Rfc2898DeriveBytes(password, salt, 10000);
+            byte[] hash = rfc.GetBytes(20);
 
-            byte[] hashbytBytes = new byte[36];
-            Array.Copy(salt, 0, hashbytBytes, 0,16);
-            Array.Copy(hash, 0, hashbytBytes, 16, 20);
+            byte[] hashBytes = new byte[36];
+            Array.Copy(salt, 0, hashBytes, 0,16);
+            Array.Copy(hash, 0, hashBytes, 16, 20);
 
-            string lagtHashetPassord = Convert.ToBase64String(hashbytBytes);
+            string lagtHashetPassord = Convert.ToBase64String(hashBytes);
 
             return lagtHashetPassord;
         }
 
-        public Boolean verifiserPassord(Admin innAdmin, string userPassord)
+        public Admin verifiserPassord(Admin innAdmin, string userPassord)
         {
             Admin admin = DBdal.Autorisasjon(innAdmin);
             string hashetPassord = admin.Passord;
@@ -114,18 +112,18 @@ namespace BLL
             byte[] salt = new byte[16];
             Array.Copy(hashBytes,0, salt, 0,16);
 
-            var pbkdf2 = new Rfc2898DeriveBytes(userPassord, salt, 10000);
-            byte[] hash = pbkdf2.GetBytes(20);
+            var rfc = new Rfc2898DeriveBytes(userPassord, salt, 10000);
+            byte[] hash = rfc.GetBytes(20);
 
             for (int i = 0; i < 20; i++)
             {
                 if (hashBytes[i + 16] != hash[i])
                 {
-                    return false;
+                    return null;
                 }
             }
 
-            return true;
+            return admin;
         }
 
     }
