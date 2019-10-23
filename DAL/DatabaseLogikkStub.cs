@@ -232,26 +232,45 @@ namespace DAL
         
         public Admin Autorisasjon(Admin admin)
         {
-            throw new NotImplementedException("Må gjøres på nytt");
-/*            Admin dbAdmin = new Admin
+	        Admin dbAdmin = new Admin
             {
                 ID = 1, 
                 Brukernavn = "admin",
-                Passord = "admin"
-            };
+                Passord = "QuTZxlmc+5PaD1Kgl/Eb9Rpl9iZkGeviPTlOu6fEqf3DIM6s"
+			};
 
             if (admin.Brukernavn == dbAdmin.Brukernavn && admin.Passord == dbAdmin.Passord)
             {
                 admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
-                return true;
+                return dbAdmin;
 
             }
-            return false;*/
+            return null;
         }
 
         public IEnumerable<Logging> getAlleLoggs()
         {
-            throw new NotImplementedException("Må lages også");
+	        // Removes milliseconds
+	        var date = DateTime.Now;
+	        date = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Kind);
+
+	        var forventetResultat = new List<Logging>();
+	        var logg = new Logging()
+	        {
+		        ID = 1,
+		        DatoEndret = date,
+		        Egenskap = "Egenskap",
+		        Entitet = "Entitet",
+		        GammelVerdi = "OldValue",
+		        Nokkelverdi = "Verdi",
+		        NyVerdi = "NyVerdi"
+
+	        };
+	        forventetResultat.Add(logg);
+	        forventetResultat.Add(logg);
+
+	        return forventetResultat;
         }
+
     }
 }
