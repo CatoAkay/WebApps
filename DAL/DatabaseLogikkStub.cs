@@ -60,6 +60,7 @@ namespace DAL
             };
             return billett;
         }
+
         
         public IEnumerable<Kunde> getAlleKunder()
         {
@@ -133,10 +134,24 @@ namespace DAL
             {
                 Brukernavn = "Admin",
                 Passord = "admin",
-                ID = ID,
+                ID = 1,
             };
-            allAdmins.Add(slettetAdmin);
-            allAdmins.Remove(slettetAdmin);
+
+            Admin slettetAdmin2 = new Admin
+            {
+	            Brukernavn = "Admin",
+	            Passord = "admin",
+	            ID = 2,
+            };
+			allAdmins.Add(slettetAdmin);
+			allAdmins.Add(slettetAdmin);
+
+			foreach (var admin in allAdmins)
+            {
+	            if(admin.ID == ID)
+		            allAdmins.Remove(admin);
+			}
+            
         }
 
         public void slettKunde(int ID)

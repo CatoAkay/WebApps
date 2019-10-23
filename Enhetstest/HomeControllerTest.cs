@@ -16,36 +16,8 @@ namespace Enhetstest
     [TestClass]
     public class HomeControllerTest
     {
-/*        [TestMethod]
-        public void testIndex()
-        {
-            //Arrange
-            var controller = new HomeController(new DatabaseLogikkBLL(new DatabaseLogikkStub()));
-            Reise reise = new Reise
-            {
-                Ankomst = "14:00",
-                Avgang = "12:00",
-                Bytter = 1,
-                Dato = "20.12.2019",
-                Fra = "Asker",
-                ID = 1,
-                Pris = 159,
-                Spor = "5",
-                Tid = "2 t",
-                Til = "Eidsvoll"
-            };
-            KundeReise kundeReise = new KundeReise
-            {
-                reise = reise
-            };
-            //Act
-            var resultat = (RedirectToRouteResult) controller.Index();
-            //Assert
-            Assert.AreEqual(resultat.RouteName, "");
-            Assert.AreEqual(resultat.RouteValues.Values.First(), "reiseModel");
-        }*/
-        
-        [TestMethod]
+
+	    [TestMethod]
         public void TestLoginView()
         {
             // Arrange
@@ -72,12 +44,11 @@ namespace Enhetstest
 			var controller = new HomeController(new DatabaseLogikkBLL(new DatabaseLogikkStub()));
 			
 			// Act
-			var result = controller.lagAdmin(admin);
-	        controller.listAdmin(admin);
+			var result = (RedirectToRouteResult)controller.lagAdmin(admin);
+			var liste = result.RouteValues.Values.Count;
 
 			// Assert 
-			var hei = 0;
-
+			Assert.AreEqual(liste, 1);
         }
 
 		[TestMethod]
@@ -101,6 +72,27 @@ namespace Enhetstest
         }
 
         [TestMethod]
+        public void TestSlettAdmin()
+        {
+	        // Arrange
+	        Admin admin = new Admin
+	        {
+		        ID = 1,
+		        Brukernavn = "admin",
+		        Passord = "admin"
+	        };
+
+	        var controller = new HomeController(new DatabaseLogikkBLL(new DatabaseLogikkStub()));
+
+	        // act
+	        var result = (RedirectToRouteResult)controller.slettAdmin(1);
+	        var liste = result.RouteValues.Values.Count;
+
+	        // Assert
+	        Assert.AreEqual(liste, 1);
+        }
+
+		[TestMethod]
         public void TestAutorisasjonOk()
         {
             // Arrange
