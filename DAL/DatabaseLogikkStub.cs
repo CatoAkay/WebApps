@@ -251,7 +251,27 @@ namespace DAL
 
         public IEnumerable<Logging> getAlleLoggs()
         {
-            throw new NotImplementedException("Må lages også");
-        }
+            // Removes milliseconds
+            var date = DateTime.Now;
+            date = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Kind);
+
+            var forventetResultat = new List<Logging>();
+            var logg = new Logging()
+            {
+                ID = 1,
+                DatoEndret = date,
+                Egenskap = "Egenskap",
+                Entitet = "Entitet",
+                GammelVerdi = "OldValue",
+                Nokkelverdi = "Verdi",
+                NyVerdi = "NyVerdi"
+
+            };
+            forventetResultat.Add(logg);
+            forventetResultat.Add(logg);
+
+            return forventetResultat;
+        } 
+         
     }
 }
