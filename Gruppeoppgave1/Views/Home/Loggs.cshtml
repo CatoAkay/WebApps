@@ -2,59 +2,62 @@
 
 @{
     ViewBag.Title = "Loggs";
+    
+    var ID = Session["idAdmin"].ToString();
+    var navn = Session["AdminNavn"].ToString();
 }
 
-<h2>Loggs</h2>
+<h3 class="hAdmin2">Du er logget inn som: @navn <br>ID:@ID</h3>
+<h1 class="hAdminReise">Logging av endringer i databasen</h1>
 
-<p>
-    @Html.ActionLink("Create New", "")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Entitet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Egenskap)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nokkelverdi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GammelVerdi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NyVerdi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DatoEndret)
-        </th>
-        <th></th>
-    </tr>
+<div class="form-horizontal">
+    <table class="table">
+        <tr class="boksReisevalg2 row">
+            <th>
+                @Html.DisplayNameFor(model => model.Entitet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Egenskap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nokkelverdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GammelVerdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NyVerdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatoEndret)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Entitet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Egenskap)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nokkelverdi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GammelVerdi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NyVerdi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DatoEndret)
-        </td>
-        <td>
-        </td>
-    </tr>
-}
-
-</table>
+        @foreach (var item in Model) {
+            <tr class="boksReisevalg row">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Entitet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Egenskap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nokkelverdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GammelVerdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NyVerdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatoEndret)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </table>
+    <a href="Admin" class="AdminMenu"><button class="tilbake AdminMenu btn">Tilbake</button></a>
+</div>

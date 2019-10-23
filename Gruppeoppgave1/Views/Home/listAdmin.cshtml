@@ -4,59 +4,58 @@
 @{
     ViewBag.Title = "listAdmin";
 
-    var Id = Session["idAdmin"].ToString();
+    var ID = Session["idAdmin"].ToString();
     var navn = Session["AdminNavn"];
     
 }
 
 
+<h3 class="hAdmin2">Du er logget inn som: @navn <br>ID:@ID</h3>
+<h1 class="hAdminReise">Liste over Admins</h1>
 
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Brukernavn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Passord)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            @{
-                if (item.ID == 1)
-                {
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Brukernavn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Passord)
-                    </td>
-                    <td>
-                    </td>
-                    continue; 
-                }
-
-            }
-            <td>
-                @Html.DisplayFor(modelItem => item.Brukernavn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Passord)
-            </td>
-            <td>
-                @Html.ActionLink("Slett admin", "slettAdmin", new {id = item.ID})
-            </td>
-            
+<div class="form-horizontal">
+    <table class="table">
+        <tr class="boksReisevalg2 row">
+            <th>
+                @Html.DisplayNameFor(model => model.Brukernavn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Passord)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
-<p>
-    @Html.ActionLink("Lag Admin", "lagAdmin")
-    du er logget inn som: @navn <br />
-    med ID: @Id
-</p>
+        @foreach (var item in Model)
+        {
+            <tr class="boksReisevalg row">
+                @{
+                    if (item.ID == 1)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Brukernavn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Passord)
+                        </td>
+                        <td>
+                        </td>
+                        continue; 
+                    }
+
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brukernavn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Passord)
+                </td>
+                <td>
+                    <button class="tilbake AdminMenu2 btn">@Html.ActionLink("Slett admin", "slettAdmin", new {id = item.ID}, new {@class="ekstraPadding3 AdminMenu2"})</button>
+                </td>
+            
+            </tr>
+        }
+    </table>
+</div>
+<a href="Admin" class="AdminMenu"><button class="tilbake AdminMenu btn">Tilbake</button></a>
+<a href="lagAdmin" class="AdminMenu"><button class="tilbake AdminMenu btn">Lag admin</button></a>

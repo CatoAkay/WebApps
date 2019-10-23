@@ -7,20 +7,15 @@
     var navn = Session["AdminNavn"].ToString();
 }
 
-<h2>Admin</h2>
+<h3 class="hAdmin2">Du er logget inn som: @navn <br>ID:@ID</h3>
+<h1 class="hAdmin">Administrasjon side</h1>
 
-<p>
-    @Html.ActionLink("Create New", "")
-    du er logget inn som: @navn <br />
-    med ID: @ID
-</p>
-
-@Html.ActionLink("Logg ut", "Loggut")
-
-@Html.ActionLink("Se Loggs", "Loggs")
+<button class="AdminMenu tilbake btn">@Html.ActionLink("Logg ut", "Loggut", null, new {@class = "AdminMenu ekstraPadding2"})</button>
+<button class="AdminMenu tilbake btn">@Html.ActionLink("Se Loggs", "Loggs",null, new {@class = "AdminMenu ekstraPadding2"})</button>
+<button class="AdminMenu tilbake btn">@Html.ActionLink("Oversik over admins", "listAdmin",null, new {@class = "AdminMenu ekstraPadding2"})</button>
 
 <table class="table">
-    <tr>
+    <tr class="boksReisevalg2 row">
         <th>
             @Html.DisplayNameFor(model => model.Fornavn)
         </th>
@@ -38,7 +33,7 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr class="boksReisevalg row">
             <td>
                 @Html.DisplayFor(modelItem => item.Fornavn)
             </td>
@@ -52,13 +47,13 @@
                 @Html.DisplayFor(modelItem => item.Telefon)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditKunde", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "SlettKunde", new { id = item.ID }) |
-                @Html.ActionLink("Se Reisen", "AdminReise", new { id = item.ID })
+                <button class="AdminMenu2 tilbake btn">@Html.ActionLink("Edit", "EditKunde", new { id = item.ID },new {@class = "AdminMenu2 ekstraPadding3"})</button>
+                <button class="AdminMenu2 tilbake btn">@Html.ActionLink("Delete", "SlettKunde", new { id = item.ID },new {@class = "AdminMenu2 ekstraPadding3"})</button>
+                <button class="AdminMenu2 tilbake btn">@Html.ActionLink("Se Reisen", "AdminReise", new { id = item.ID },new {@class = "AdminMenu2 ekstraPadding3"})</button>
             </td>
         </tr>
     }
 
-    @Html.ActionLink("Oversik over admins", "listAdmin")
+
 
 </table>

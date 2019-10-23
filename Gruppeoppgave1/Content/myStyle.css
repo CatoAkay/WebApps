@@ -72,6 +72,14 @@ body {
     padding: 19px !important;
 }
 
+.ekstraPadding2{
+    padding: 35px !important;
+}
+
+.ekstraPadding3{
+    padding: 10px !important;
+}
+
 .select{
     background: #F5F5F5;
     border:0;
@@ -130,6 +138,17 @@ body {
     margin-right: 185px !important;
 }
 
+.spaceAdminInfo{
+    margin-right: 85px !important;
+    margin-bottom: 2em !important;
+    
+}
+
+.biggerText{
+    font-size: 25px !important;
+    text-align: center;
+}
+
 .borderStrekk2{
     border-top: 2px solid black;
     padding-top: 2em;
@@ -140,11 +159,50 @@ body {
     margin-bottom: 2em;
 }
 
+/*Admin*/
+.AdminMenu{
+    text-decoration: none!important;
+    color: black !important;
+    margin-bottom: 1em;
+}
+
+.AdminMenu2{
+    text-decoration: none!important;
+    color: black !important;
+    height: auto;
+}
+
+.hAdmin{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.hAdmin2{
+    margin-top: 3em;
+    font-weight: bold;
+    text-align: left;
+}
+
+.hAdmin3{
+    margin-bottom: 1em;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*AdminReise*/
+.hAdminReise{
+    margin-bottom: 1em;
+    text-align: center;
+}
+
 /*Reise Valg*/
 
 .tilbake{
     font-size: 20px;
 }
+
 #velgReise{
     height: auto;
 }
@@ -193,6 +251,15 @@ body {
     border-bottom: 5px solid #089C80;
     padding-top: 1em;
     padding-bottom: 1em;    
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: 23px;
+}
+
+.boksReisevalg2{
+    border-bottom: 5px solid #089C80;
+    padding-top: 1em;
+    padding-bottom: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
     font-size: 23px;

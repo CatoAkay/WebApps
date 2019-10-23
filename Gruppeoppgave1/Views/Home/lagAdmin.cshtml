@@ -2,47 +2,39 @@
 
 @{
     ViewBag.Title = "lagAdmin";
+    var ID = Session["idAdmin"].ToString();
+    var navn = Session["AdminNavn"].ToString();
 }
 
-<h2>lagAdmin</h2>
-
-
+<h3 class="hAdmin2">Du er logget inn som: @navn <br>ID:@ID</h3>
+<h1 class="hAdminReise">Endre kunde</h1>
+<div class="borderStrekk2 form-horizontal">
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Admin</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Brukernavn, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Brukernavn, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Brukernavn, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Passord, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Passord, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Passord, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        <div class="spaceAdminInfo webflow-style-input col-md-10">
+            <label class="biggerText">Brukernavn</label>
+            @Html.EditorFor(model => model.Brukernavn, new {htmlAttributes = new {@class = "biggerText"}})
+            @Html.ValidationMessageFor(model => model.Brukernavn, "", new {@class = "text-danger"})
         </div>
     </div>
+    
+    <div class="form-group">
+        <div class="spaceAdminInfo webflow-style-input col-md-10">
+            <label class="biggerText">Passord</label>
+            @Html.EditorFor(model => model.Passord, new {htmlAttributes = new {@class = "biggerText"}})
+            @Html.ValidationMessageFor(model => model.Passord, "", new {@class = "text-danger"})
+        </div>
+    </div>
+    <button style="width: 155px" class="tilbake AdminMenu btn" type="submit">Lag Admin</button>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+<button class="tilbake AdminMenu btn">@Html.ActionLink("Tilbake", "listAdmin", null, new {@class="AdminMenu ekstraPadding2"})</button>
+
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

@@ -7,113 +7,90 @@
     var navn = Session["AdminNavn"].ToString();
 }
 
+<h3 class="hAdmin2">Du er logget inn som: @navn <br>ID:@ID</h3>
+<h1 class="hAdminReise">ReiseInfo</h1>
 
-<h2>ReiseAdmin</h2>
-
-<p>
-    du er logget inn som: @navn <br />
-    med ID: @ID
-</p>
-
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="borderStrekk2 form-horizontal">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+        @Html.AntiForgeryToken()
+        <div class="container-fluid">
+            <div class="row">
+                <div class="spaceAdminInfo webflow-style-input col-md-6">
+                    <label class="biggerText">Fra</label>
+                    @Html.EditorFor(model => model.Fra, new { htmlAttributes = new { @class = "stopInput biggerText" , list = "fromSuggestions", name = "Fra"} })
+                    <datalist id="fromSuggestions">
+                    </datalist>
+                    @Html.ValidationMessageFor(model => model.Fra, "", new { @class = "text-danger" })
+                </div>
+                <div class="spaceAdminInfo webflow-style-input col-md-6">
+                    <label class="biggerText">Til</label>
+                    @Html.EditorFor(model => model.Til, new {htmlAttributes = new {@class = "stopInput biggerText", list = "toSuggestions", id = "til", name = "Til"}})
+                    <datalist id="toSuggestions">
+                    </datalist>
+                    @Html.ValidationMessageFor(model => model.Fra, "", new {@class = "text-danger"})
+                </div>
+            </div>        
+            <div class="row">
+                <div class="spaceAdminInfo webflow-style-input col-md-6">
+                    <label class="biggerText">Dato</label>
+                    @Html.EditorFor(model => model.Dato, new {htmlAttributes = new {@class = "biggerText"}})
+                    @Html.ValidationMessageFor(model => model.Dato, "", new {@class = "text-danger"})
+                </div>
+                <div class="spaceAdminInfo webflow-style-input col-md-6">
+                    <label class="biggerText">Tid</label>
+                    @Html.EditorFor(model => model.Tid, new { htmlAttributes = new { @class = "biggerText" } })
+                    @Html.ValidationMessageFor(model => model.Tid, "", new { @class = "text-danger" })
+                </div>
+            </div>        
+            <div class="row">
+                <div class="spaceAdminInfo webflow-style-input col-md-6">
+                    <label class="biggerText">Pris</label>
+                    @Html.EditorFor(model => model.Pris, new { htmlAttributes = new { @class = "biggerText" } })
+                    @Html.ValidationMessageFor(model => model.Pris, "", new { @class = "text-danger" })
+                </div>
+                <div class="spaceAdminInfo webflow-style-input col-md-6">
+                    <label class="biggerText">Spor</label>
+                    @Html.EditorFor(model => model.Spor, new { htmlAttributes = new { @class = "biggerText" } })
+                    @Html.ValidationMessageFor(model => model.Spor, "", new { @class = "text-danger" })
+                </div>
+            </div>        
+            <div class="row">
+                <div class="spaceAdminInfo webflow-style-input col-md-6">
+                    <label class="biggerText">Tog</label>
+                    @Html.EditorFor(model => model.Tog, new {htmlAttributes = new {@class = "biggerText"}})
+                    @Html.ValidationMessageFor(model => model.Tog, "", new {@class = "text-danger"})
+                </div>
+                <div class="spaceAdminInfo webflow-style-input col-md-6">
+                    <label class="biggerText">Bytter</label>
+                    @Html.EditorFor(model => model.Bytter, new {htmlAttributes = new {@class = "biggerText"}})
+                    @Html.ValidationMessageFor(model => model.Bytter, "", new {@class = "text-danger"})
+                </div>
+            </div>        
+            <div class="row">
+                <div class="spaceAdminInfo webflow-style-input col-md-6">
+                    <label class="biggerText">Avgang</label>
+                    @Html.EditorFor(model => model.Avgang, new {htmlAttributes = new {@class = "biggerText"}})
+                    @Html.ValidationMessageFor(model => model.Avgang, "", new {@class = "text-danger"})
+                </div>
+                <div class="spaceAdminInfo webflow-style-input col-md-6">
+                    <label class="biggerText">Ankomst</label>
+                    @Html.EditorFor(model => model.Ankomst, new {htmlAttributes = new {@class = "biggerText"}})
+                    @Html.ValidationMessageFor(model => model.Ankomst, "", new {@class = "text-danger"})
+                </div>
+            </div>
+        </div>
     
-<div class="form-horizontal">
-    <h4>Reise</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.ID)
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Fra, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Fra, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Fra, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <button class="AdminMenu tilbake btn"><a class="ekstraPadding AdminMenu" href="/Home/SlettReise?id=@Model.ID">Slett Reisen</a></button>
+            <button type="submit" value="Edit" class="AdminMenu tilbake btn">Lagre endringer</button>
         </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Til, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Til, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Til, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Dato, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Dato, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Dato, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Tid, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Tid, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Tid, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Pris, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Pris, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Pris, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Spor, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Spor, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Spor, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Tog, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Tog, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Tog, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Bytter, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Bytter, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Bytter, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Avgang, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Avgang, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Avgang, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Ankomst, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Ankomst, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Ankomst, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    "<td><a href="/Home/SlettReise?id=@Model.ID" class="btn">Slett Reisen</a></td>
-    <input type="submit" value="Edit" class="btn btn-default" />
-    "<td><a href="/Home/Admin?id=@Model.ID" class="btn">tilbake</a></td>
+    }
 </div>
-}
+<button class="AdminMenu tilbake btn"><a class="ekstraPadding AdminMenu" href="/Home/Admin?id=@Model.ID">Tilbake</a></button>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
