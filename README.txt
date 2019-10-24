@@ -10,6 +10,7 @@ Alle passord blir hashet i databasen. Alle endringer som admin/admins gjør i dat
 Det er satt opp exception "catcher" der vi aksesserer databasen. Ved feil, skrives disse til fil med beskrivelse (C:\Logg\). 
 
 For å teste programmet må man age en reise eller flere, deretter logge in som admin for å kunne manipulere disse. 
+Grunnet sikkerhet har vi valgt å gjøre det umulig for Admin å endre kredritkort. 
 
 ** Hvis programmet kræsjer grunnet CreateDatabaseIfNotExist -> slett filene i App_Data i prosjektmappen
 
