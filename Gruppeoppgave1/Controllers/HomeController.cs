@@ -92,17 +92,14 @@ namespace Gruppeoppgave1.Controllers
 
         }
         
+        [SessionTimeOut]
         public ActionResult Admin()
         {
-            if (Session["idAdmin"] == null)
-            {
-                return RedirectToAction("Index");
-            }
             IEnumerable<Kunde> allebilleter = _databaseLogikkBll.getAlleKunder();
             return View(allebilleter);
         }
 
-
+        [SessionTimeOut]
         public ActionResult listAdmin(Admin admin)
         {
             IEnumerable<Admin> alleAdmins = _databaseLogikkBll.getAlleAdmin();
@@ -110,29 +107,34 @@ namespace Gruppeoppgave1.Controllers
         }
 
         [HttpPost]
+        [SessionTimeOut]
         public ActionResult lagAdmin(Admin admin)
         {
             _databaseLogikkBll.lagAdmin(admin);
             return RedirectToAction("listAdmin");
         }
-
+        
+        [SessionTimeOut]
         public ActionResult lagAdmin()
         {
             return View();
         }
-
+        
+        [SessionTimeOut]
         public ActionResult slettAdmin(int ID)
         { 
             _databaseLogikkBll.slettAdmin(ID);
             return RedirectToAction("listAdmin");
         }
-
+        
+        [SessionTimeOut]
         public ActionResult SlettKunde(int ID)
         {
             _databaseLogikkBll.slettKunde(ID);
             return RedirectToAction("Admin");
         }
-
+        
+        [SessionTimeOut]
         public ActionResult EditKunde(int ID)
         {
             Kunde valgtkunde = _databaseLogikkBll.editKunde(ID);
@@ -140,12 +142,14 @@ namespace Gruppeoppgave1.Controllers
         }
 
         [HttpPost]
+        [SessionTimeOut]
         public ActionResult EditKunde(Kunde kunde)
         {
             _databaseLogikkBll.editKunde(kunde);
             return RedirectToAction("Admin");
         }
-
+        
+        [SessionTimeOut]
         public ActionResult AdminReise(int ID)
         {
             Reise valgtreise = _databaseLogikkBll.seReise(ID);
@@ -153,12 +157,14 @@ namespace Gruppeoppgave1.Controllers
         }
 
         [HttpPost]
+        [SessionTimeOut]
         public ActionResult AdminReise(Reise reise)
         {
             _databaseLogikkBll.seReise(reise);
             return RedirectToAction("Admin");
         }
-
+        
+        [SessionTimeOut]
         public ActionResult SlettReise(int ID)
         {
             _databaseLogikkBll.slettReise(ID);
@@ -187,7 +193,7 @@ namespace Gruppeoppgave1.Controllers
             return RedirectToAction("Admin");
             
         }
-
+        
         public ActionResult Loggut()
         {
             Session["idAdmin"] = null;
@@ -195,6 +201,7 @@ namespace Gruppeoppgave1.Controllers
             return RedirectToAction("Index");
         }
 
+        [SessionTimeOut]
         public ActionResult Loggs()
         {
             IEnumerable<Logging> alleLoggs = _databaseLogikkBll.getAlleLoggs();
