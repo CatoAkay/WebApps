@@ -142,10 +142,10 @@ namespace Enhetstest
 	        controller.Session["idAdmin"] = null;
 
 	        // act
-	        var result = (RedirectToRouteResult)controller.Admin();
+	        var result = (ViewResult)controller.Admin();
 
 	        // Assert
-	        Assert.AreEqual("", result.RouteName);
+	        Assert.AreEqual("", result.ViewName);
 		}
 
 		[TestMethod]
