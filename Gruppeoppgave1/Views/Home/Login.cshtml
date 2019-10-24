@@ -22,7 +22,7 @@
 
         <div class="row">
             <div class="webflow-style-input col-md-1"> 
-                @Html.EditorFor(model => model.Passord, new { htmlAttributes = new { @class = "stopInput fyll", type = "text", list = "fromSuggestions", name = "Passord", placeholder = "Passord"  } })
+                @Html.EditorFor(model => model.Passord, new { htmlAttributes = new { @class = "stopInput fyll", type = "password", list = "fromSuggestions", name = "Passord", placeholder = "Passord"  } })
                 @Html.ValidationMessageFor(model => model.Passord, "", new { @class = "text-danger" })
             </div>
         </div>
