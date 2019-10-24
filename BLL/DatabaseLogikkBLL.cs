@@ -115,7 +115,8 @@ namespace BLL
 
         public Admin verifiserPassord(Admin innAdmin, string userPassord)
         {
-            Admin admin = _databaseLogikkDal.Autorisasjon(innAdmin);
+            
+	        Admin admin = _databaseLogikkDal.Autorisasjon(innAdmin);
             if (admin == null)
             {
                 return null;

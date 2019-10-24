@@ -129,7 +129,7 @@ namespace DAL
 
         public void slettAdmin(int ID)
         {
-            List<Admin> allAdmins = new List<Admin>();
+            IEnumerable<Admin> allAdmins = new List<Admin>();
             Admin slettetAdmin = new Admin
             {
                 Brukernavn = "Admin",
@@ -143,15 +143,16 @@ namespace DAL
 	            Passord = "admin",
 	            ID = 2,
             };
-			allAdmins.Add(slettetAdmin);
-			allAdmins.Add(slettetAdmin);
+			allAdmins.Append(slettetAdmin);
+			allAdmins.Append(slettetAdmin);
 
-			foreach (var admin in allAdmins)
-            {
-	            if(admin.ID == ID)
-		            allAdmins.Remove(admin);
+			var alleAdmins = allAdmins.ToList();
+
+			foreach (var admin in alleAdmins)
+			{
+				if (admin.ID == ID)
+					alleAdmins.Remove(admin);
 			}
-            
         }
 
         public void slettKunde(int ID)

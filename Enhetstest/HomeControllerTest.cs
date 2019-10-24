@@ -86,7 +86,7 @@ namespace Enhetstest
 
 	        // act
 	        var result = (RedirectToRouteResult)controller.slettAdmin(1);
-	        var liste = result.RouteValues.Values.Count;
+			var liste = result.RouteValues.Count;
 
 	        // Assert
 	        Assert.AreEqual(liste, 1);
