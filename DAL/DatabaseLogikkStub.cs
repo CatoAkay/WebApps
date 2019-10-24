@@ -60,6 +60,7 @@ namespace DAL
             };
             return billett;
         }
+
         
         public IEnumerable<Kunde> getAlleKunder()
         {
@@ -128,15 +129,30 @@ namespace DAL
 
         public void slettAdmin(int ID)
         {
-            List<Admin> allAdmins = new List<Admin>();
+            IEnumerable<Admin> allAdmins = new List<Admin>();
             Admin slettetAdmin = new Admin
             {
                 Brukernavn = "Admin",
                 Passord = "admin",
-                ID = ID,
+                ID = 1,
             };
-            allAdmins.Add(slettetAdmin);
-            allAdmins.Remove(slettetAdmin);
+
+            Admin slettetAdmin2 = new Admin
+            {
+	            Brukernavn = "Admin",
+	            Passord = "admin",
+	            ID = 2,
+            };
+			allAdmins.Append(slettetAdmin);
+			allAdmins.Append(slettetAdmin);
+
+			var alleAdmins = allAdmins.ToList();
+
+			foreach (var admin in alleAdmins)
+			{
+				if (admin.ID == ID)
+					alleAdmins.Remove(admin);
+			}
         }
 
         public void slettKunde(int ID)
@@ -232,26 +248,45 @@ namespace DAL
         
         public Admin Autorisasjon(Admin admin)
         {
-            throw new NotImplementedException("Må gjøres på nytt");
-/*            Admin dbAdmin = new Admin
+	        Admin dbAdmin = new Admin
             {
                 ID = 1, 
                 Brukernavn = "admin",
-                Passord = "admin"
-            };
+                Passord = "QuTZxlmc+5PaD1Kgl/Eb9Rpl9iZkGeviPTlOu6fEqf3DIM6s"
+			};
 
             if (admin.Brukernavn == dbAdmin.Brukernavn && admin.Passord == dbAdmin.Passord)
             {
                 admin.loginMsgError = "Ikke gyldig brukernavn eller passord";
-                return true;
+                return dbAdmin;
 
             }
-            return false;*/
+            return null;
         }
 
         public IEnumerable<Logging> getAlleLoggs()
         {
-            throw new NotImplementedException("Må lages også");
+	        // Removes milliseconds
+	        var date = DateTime.Now;
+	        date = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Kind);
+
+	        var forventetResultat = new List<Logging>();
+	        var logg = new Logging()
+	        {
+		        ID = 1,
+		        DatoEndret = date,
+		        Egenskap = "Egenskap",
+		        Entitet = "Entitet",
+		        GammelVerdi = "OldValue",
+		        Nokkelverdi = "Verdi",
+		        NyVerdi = "NyVerdi"
+
+	        };
+	        forventetResultat.Add(logg);
+	        forventetResultat.Add(logg);
+
+	        return forventetResultat;
         }
+
     }
 }
