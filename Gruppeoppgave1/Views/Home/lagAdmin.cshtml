@@ -7,7 +7,7 @@
 }
 
 <h3 class="hAdmin2">Du er logget inn som: @navn <br>ID:@ID</h3>
-<h1 class="hAdminReise">Endre kunde</h1>
+<h1 class="hAdminReise">Lag Admin</h1>
 <div class="borderStrekk2 form-horizontal">
 @using (Html.BeginForm()) 
 {
@@ -15,7 +15,7 @@
     
     <div class="form-group">
         <div class="spaceAdminInfo webflow-style-input col-md-10">
-            <label class="biggerText">Brukernavn</label>
+            <label class="biggerText">Brukernavn:</label>
             @Html.EditorFor(model => model.Brukernavn, new {htmlAttributes = new {@class = "biggerText"}})
             @Html.ValidationMessageFor(model => model.Brukernavn, "", new {@class = "text-danger"})
         </div>
@@ -23,7 +23,7 @@
     
     <div class="form-group">
         <div class="spaceAdminInfo webflow-style-input col-md-10">
-            <label class="biggerText">Passord</label>
+            <label class="biggerText">Passord:</label>
             @Html.EditorFor(model => model.Passord, new {htmlAttributes = new {@class = "biggerText"}})
             @Html.ValidationMessageFor(model => model.Passord, "", new {@class = "text-danger"})
         </div>

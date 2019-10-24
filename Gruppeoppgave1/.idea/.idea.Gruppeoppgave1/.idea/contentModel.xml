@@ -32,6 +32,7 @@
       </e>
     </e>
     <e p="D:\GitHub\WebApps\Enhetstest" t="IncludeRecursive">
+      <e p="App.config" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="Enhetstest.csproj" t="IncludeRecursive" />
       <e p="HomeControllerTest.cs" t="Include" />

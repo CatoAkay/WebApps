@@ -1,7 +1,7 @@
 ﻿/*Felles */
 body {
     background-color: whitesmoke;
-    font-family: "Times New Roman", Times, serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .img {
@@ -145,7 +145,7 @@ body {
 }
 
 .biggerText{
-    font-size: 25px !important;
+    font-size: 20px !important;
     text-align: center;
 }
 
